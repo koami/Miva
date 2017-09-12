@@ -1,0 +1,30 @@
+adminRayon:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:RayonAdmin:index" }
+
+adminRayon_show:
+    path:     /{id}/show
+    defaults: { _controller: "EcommerceBundle:RayonAdmin:show" }
+
+adminRayon_new:
+    path:     /new
+    defaults: { _controller: "EcommerceBundle:RayonAdmin:new" }
+
+adminRayon_create:
+    path:     /create
+    defaults: { _controller: "EcommerceBundle:RayonAdmin:create" }
+    requirements: { _method: post }
+
+adminRayon_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EcommerceBundle:RayonAdmin:edit" }
+
+adminRayon_update:
+    path:     /{id}/update
+    defaults: { _controller: "EcommerceBundle:RayonAdmin:update" }
+    requirements: { _method: post|put }
+
+adminRayon_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EcommerceBundle:RayonAdmin:delete" }
+    requirements: { _method: post|delete }

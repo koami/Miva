@@ -1,0 +1,220 @@
+{% extends "::layout/defaultLayout.html.twig" %}
+
+{% block titre %}{{ produit.nom }}{% endblock %}
+{#{% block description %}{{ produit.description }}{% endblock %}#}
+{% set quantite = 0 %}
+{% block body %}
+    <main>
+
+        <!--Main layout-->
+        <div class="container">
+
+            <div class="row">
+
+                <!--Sidebar-->
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.2s">
+
+                    <div class="widget-wrapper">
+                        {% set cat = 0 %}
+                        <div class="list-group">
+                            {% for subCategorie in produit.subCategorie.categorie.subCategories %}
+                                {% if cat == 0 %}
+                                <a href="{{ path('subCategorieProduits', { 'id' : subCategorie.id }) }}"
+                                   class="list-group-item active">
+                                    {{ subCategorie.nom }}
+                                </a>
+                                {% else %}
+                                <a href="{{ path('subCategorieProduits', { 'id' : subCategorie.id }) }}"
+                                   class="list-group-item">
+                                    {{ subCategorie.nom }}
+                                </a>
+                                {% endif %}
+                                {% set cat = 1 %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+                <!--/.Sidebar-->
+
+                <!--Main Presatention column-->
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <div class="">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <img class="img-responsive"
+                                         src="{{ asset(produit.image.AssetPath) }}"
+                                         alt="{{ produit.image.name }}"
+                                         id="zoom_01"
+                                         data-zoom-image="{{ asset(produit.image.AssetPath) }}">
+                                    </a>
+                                </div>
+                                <div class="row" style="margin-top: 20px">
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cadre">
+                                        <img class="img-responsive" src="{{ asset('img/img00.jpg') }}"
+                                             alt="autres images" />
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cadre">
+                                        <img class="img-responsive" src="{{ asset('img/img00.jpg') }}"
+                                             alt="autres images"/>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cadre">
+                                        <img class="img-responsive" src="{{ asset('img/img00.jpg') }}"
+                                             alt="autres images"/>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cadre" >
+                                        <img class="img-responsive" src="{{ asset('img/img00.jpg') }}"
+                                             alt="autres images"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <h3>{{ produit.nom }}</h3>
+                            <p class="red-text">{{ produit.partenaire.nom }}</p>
+
+                            <p style="margin-bottom: -15px">Prix actuel</p>
+                            <p>
+                                <span class="orange-text" style="font-weight: 700;font-size: 3em;">
+                                    {{ produit.prix }}
+                                </span> F CFA
+                            </p>
+
+                            <div>
+                                {% if produit.reduction != 0 %}
+                                <p class="m-t-n-md">
+                                    Reduction de :
+                                    <span class="badge green " style="font-weight: 600">
+                                        {{ produit.reduction }}%
+                                    </span>
+                                </p>
+                                {% endif %}
+
+                                <br>
+
+                                <form class="m-t-n-lg" action="{{ path('ajouter', { 'id' : produit.id }) }}"
+                                      method="get">
+                                    {% if panier[produit.id] is not defined %}
+                                        <label>Quantité:</label>
+                                        <select name="qte" class="form-control">
+                                            {% set quantite = produit.quantite %}
+                                            {% for i in 1..quantite %}
+                                                <option value="{{ i }}">{{ i }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    {% endif %}&nbsp;
+
+                                    {% if produit.garantie != null %}
+                                    <p>Garantie de
+                                        <span style="color:blue">{{ produit.garantie.valeur }} {{ produit.garantie.periode }}</span>
+                                        <img src="img/gar.png" width="50px"/>
+                                    </p>
+                                    {% endif %}
+
+                                    <label>Description:</label>
+                                    <ul style="list-style: circle">
+                                    {% for description in produit.descriptions %}
+                                        <li>
+                                            <span class="fa fa-arrow-circle-o-right"></span>
+                                            {{ description.getDescription() }}
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+
+                                    {% if panier[produit.id] is not defined %}
+                                        <button class="btn miva btn-lg" type="submit">
+                                            AJOUTER AU PANIER
+                                        </button>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/.Main Presatention column-->
+
+            </div>
+
+            <!--Autres Produits de la meme sous Categorie-->
+            <div class="m-t-lg">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2
+                            col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 not-bordered"
+                     id="not-bordered-1">
+                    <h3>Autres articles</h3>
+                </div>
+                <!--Carousel Wrapper-->
+                <div >
+
+                    {% for produit in produit.subCategorie.produits %}
+                    <!--Slides-->
+                    <div >
+                        <!--First slide-->
+                        <div class="active">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                    <a href="">
+                                        <div class="weater">
+                                            <div class="city-selected">
+                                                <article>
+
+                                                    <div class="info">
+                                                        {#<div class="city"><span>Boutique:</span> Skopje</div>#}
+                                                        <div class="night">{{ produit.nom }}</div>
+
+                                                        <div class="temp">{{ produit.prix }}
+                                                            <span style="font-size: 15px">F CFA</span>
+                                                        </div>
+
+                                                        {% if produit.reduction != null %}
+                                                        <div class="wind">
+                                                            Promotion
+                                                            <span>{{ produit.reduction }}%</span>
+                                                        </div>
+                                                        {% endif %}
+                                                    </div>
+
+                                                    <div class="icon">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-half-full"></i>
+                                                    </div>
+
+                                                </article>
+
+                                                <figure style="background-image: url('img/image7.jpg')"></figure>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/First slide-->
+                    </div>
+                    <!--/.Slides-->
+                    {% endfor %}
+                </div>
+                <!--/.Carousel Wrapper-->
+            </div>
+            <!--End Autres Produits de la meme sous Categorie-->
+        </div>
+        <!--/.Main layout-->
+
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Panier -->
+    <script src="{{ asset('js/panier.js') }}"></script>
+
+    <script>
+        //$("#zoom_01").elevateZoom();
+        $("#zoom_01").elevateZoom({tint:true, tintColour:'#5E0F0F', tintOpacity:0.1,
+            zoomWindowPosition: 11});
+    </script>
+{% endblock %}

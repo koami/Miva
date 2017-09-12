@@ -1,0 +1,95 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block titre %}MIVA | Login{% endblock %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    {% if error %}
+        <div>{{ error|trans }}</div>
+    {% endif %}
+
+    <!--Main layout-->
+    <main>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" >
+                    <div class="login-body" align="center">
+                        <article class="container-login">
+                            <section>
+                                <ul id="top-bar" class="nav nav-tabs nav-justified">
+                                    <li class="active"><a href="#">Connexion</a></li>
+                                    <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+                                </ul>
+
+                                <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+
+                                    <!-- Connexion Layout -->
+                                    <div id="connexion" class="tab-pane active in">
+                                        <h2 align="left"><i class="glyphicon glyphicon-log-in"></i>
+                                            Connexion
+                                        </h2>
+
+                                        <form action="{{ path("fos_user_security_check") }}"
+                                              method="post" accept-charset="utf-8"
+                                              autocomplete="off" role="form"
+                                              class="form-horizontal">
+
+                                            <input type="hidden" name="_csrf_token"
+                                                   value="{{ csrf_token }}" />
+
+                                            <div class="form-group ">
+                                                <label for="username" class="sr-only">
+                                                    {{ 'security.login.username'|trans }}
+                                                </label>
+
+                                                <input type="text" class="" name="_username"
+                                                       id="username"
+                                                       placeholder="Entrez votre Pseudo ou Email"
+                                                       tabindex="1" value=""
+                                                       value="{{ last_username }}" required="required"/>
+                                            </div>
+
+                                            <div class="form-group ">
+                                                <label for="password" class="sr-only">
+                                                    {{ 'security.login.password'|trans }}
+                                                </label>
+
+                                                <input type="password" class=""
+                                                       name="_password" id="password"
+                                                       placeholder="Mot de passe" value=""
+                                                       tabindex="2" required="required" />
+                                            </div>
+
+                                            <div align="left" class="checkbox">
+                                                <a href="{{ path('fos_user_resetting_request') }}">
+                                                    Mot de passe oublié ?
+                                                </a>
+                                            </div>
+                                            <br/>
+
+                                            <div class="form-group ">
+                                                <button type="submit" name="log-me-in"
+                                                        id="submit" tabindex="5"
+                                                        class="btn btn-lg miva waves-effect waves-light">
+                                                    {{ 'security.login.submit'|trans }}
+                                                </button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <!--/.Connexion layout-->
+                                    <hr/>
+
+                                </div>
+                            </section>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--/.Main layout-->
+
+{% endblock fos_user_content %}

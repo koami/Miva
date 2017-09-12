@@ -1,0 +1,77 @@
+<?php
+
+namespace Ecommerce\EcommerceBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Garanties
+ *
+ * @ORM\Table("garanties")
+ * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\GarantiesRepository")
+ */
+class Garanties
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Ecommerce\EcommerceBundle\Entity\Partenaires", inversedBy="garanties")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $partenaire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=100)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="periode", type="string", length=30)
+     */
+    private $periode;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set periode
+     *
+     * @param string $periode
+     * @return Garanties
+     */
+    public function setPeriode($periode)
+    {
+        $this->periode = $periode;
+
+        return $this;
+    }
+
+    /**
+     * Get periode
+     *
+     * @return string 
+     */
+    public function getPeriode()
+    {
+        return $this->periode;
+    }
+}

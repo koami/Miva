@@ -1,0 +1,31 @@
+.onpbreadcrumb { display: block; border-radius: 3px; background-color: #fafafa; padding: 5px; margin-bottom: 10px; }
+.breadcrumbspace { padding-left: 10px; padding-right: 10px; }
+
+.bs-callout {padding:20px;margin:20px 0;border:1px solid #eee;border-left-width:5px;border-radius:3px}
+.bs-callout h4 {margin-top:0;margin-bottom:5px}
+.bs-callout p:last-child {margin-bottom:0}
+.bs-callout code {border-radius:3px}
+.bs-callout+.bs-callout {margin-top:-5px}
+.bs-callout-danger {border-left-color:#d9534f}
+.bs-callout-danger h4 {color:#d9534f}
+.bs-callout-warning {border-left-color:#f0ad4e}
+.bs-callout-warning h4 {color:#f0ad4e}
+.bs-callout-info {border-left-color:#5bc0de}
+.bs-callout-info h4 {color:#5bc0de}
+
+pre.prettyprint {
+    padding: 2px;
+    border: 1px solid #cccccc;
+    -webkit-tab-size: 3;
+    -moz-tab-size: 3;
+    -ms-tab-size: 3;
+    -o-tab-size: 3;
+    tab-size: 3;
+}
+
+#display_contents { display: block; border-radius: 8px 0 8px 0; margin: 2% 0% 2% 2%; background-color: #f7f7f7; color: #62726a; font-size: 11px; padding: 1%; float: right; line-height: 2em; }
+#display_contents a { color: #62726a; text-decoration: none }
+#display_contents a:hover { color: #3f4944; text-decoration: underline }
+
+.star { display: inline-block; background: url("../img/star.png") no-repeat; width: 15px; height: 15px;}
+.star_hover { display: inline-block; background: url("../img/star.png") no-repeat; background-position: 0 -15px; width: 15px; height: 15px }

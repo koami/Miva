@@ -1,0 +1,5 @@
+{% for commentaire in commentaires %}
+    <li>
+        <a href="{{ path('commentairesProduits', { 'commentaire' : commentaire.id }) }}">{{ commentaire.commentaire }}</a>
+    </li>
+{% endfor %}

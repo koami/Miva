@@ -1,0 +1,78 @@
+{% extends '::layout/defaultLayout.html.twig' %}
+
+{% block titre %}MIVA | Categorie{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="space-30 well">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-xs-12">
+
+            <h1>Categories creation</h1>
+
+            <form action="{{ path('adminCategories_create') }}" {{ form_enctype(form) }} method="post" >
+
+                {{  form_widget(form.nom,
+                {'attr':{
+                    'class':'form-control',
+                    'placeholder':'Nom' }})
+                }}
+
+                {{ form_widget(form.rayon,
+                {'attr':{
+                    'class':'form-control',
+                    'placeholder':'Rayon' }})
+                }}
+
+                <label for="file" class="label-file btn miva">
+                    <i class="fa fa-camera"></i>
+                    Choisir une image
+                    {{ form_widget(form.image.file,
+                    {'attr':{
+                        'class':'form-control fa fa-camera'}})
+                    }}
+                </label>
+
+                {#{{ form_widget(form.image.file,
+                {'attr':{
+                    'class':'form-control fa fa-camera'}})
+                }} #}
+
+                {{ form_widget(form.image.name,
+                {'attr':{
+                    'class':'form-control',
+                    'placeholder':'Nom image' }})
+                }}
+
+                {#{% block file_widget %}
+                    {% spaceless %}
+                     <td>{% set type = type|default('file') %}
+                         <input type="{{ type }}" {{ block('widget_attributes') }} />
+                     </td>
+                    {% endspaceless %}
+                {% endblock file_widget %}#}
+
+                {{ form_widget(form.submit,
+                {'attr':{
+                    'class' : 'btn btn-large waves-effect waves-light btn-block login-button miva',
+                    'target' :  '_blank',
+                    'type' : 'submit',
+                    'label': 'Click me'
+                    }})
+                }}
+            {#{{ form(form) }}#}
+                {{ form_widget(form) }}
+            </form>
+
+            <ul class="record_actions">
+                <li>
+                    <a href="{{ path('adminCategories') }}">
+                        Back to the list
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

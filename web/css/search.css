@@ -1,0 +1,38 @@
+/* Debut RECHERCHE */
+.searchAjax,.resultats,ul{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.resultats li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.resultats ul li a{
+    color: #000;
+    text-decoration: none;
+    width: 200px; 
+    height: 30px;
+    display: block;
+    text-align: center;
+    border: 1px solid #000;
+    border-top: 0px;
+    background-color: #ccc;
+}
+
+.resultats{
+    position: absolute;
+    right: 400px;
+    
+}
+
+.resultats ul li a:hover
+{
+    background-color: #333;
+    color: #FFF;
+}
+
+/* Fin RECHERCHE */

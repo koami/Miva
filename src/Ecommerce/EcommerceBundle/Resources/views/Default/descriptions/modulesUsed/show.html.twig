@@ -1,0 +1,5 @@
+{% for description in descriptions %}
+    <li>
+        <a href="{{ path('decriptionsProduits', { 'description' : description.id }) }}">{{ description.description }}</a>
+    </li>
+{% endfor %}

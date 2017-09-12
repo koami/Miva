@@ -1,0 +1,23 @@
+produits:
+    pattern:  /
+    defaults: { _controller: EcommerceBundle:Produits:produits }
+
+presentation:
+    pattern:  /produit/{id}
+    defaults: { _controller: EcommerceBundle:Produits:presentation }
+
+subCategorieProduits:
+    pattern:  /subCategorie/{id}
+    defaults: { _controller: EcommerceBundle:Produits:produits }
+
+articles:
+    pattern:  /articles/{id}
+    defaults: { _controller: EcommerceBundle:Produits:articles }
+
+rechercheProduits:
+    pattern:  /recherche
+    defaults: { _controller: EcommerceBundle:Produits:rechercheTraitement }
+
+ajax_star_rating_system:
+  path:  /ajax/starrating/update/data
+  defaults: { _controller: EcommerceBundle:AjaxStarRatingSystem:updateData }

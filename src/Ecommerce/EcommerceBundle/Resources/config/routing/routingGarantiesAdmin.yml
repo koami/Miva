@@ -1,0 +1,30 @@
+adminGaranties:
+    pattern:  /
+    defaults: { _controller: "EcommerceBundle:GarantiesAdmin:index" }
+
+adminGaranties_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcommerceBundle:GarantiesAdmin:show" }
+
+adminGaranties_new:
+    pattern:  /new
+    defaults: { _controller: "EcommerceBundle:GarantiesAdmin:new" }
+
+adminGaranties_create:
+    pattern:  /create
+    defaults: { _controller: "EcommerceBundle:GarantiesAdmin:create" }
+    requirements: { _method: post }
+
+adminGaranties_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcommerceBundle:GarantiesAdmin:edit" }
+
+adminGaranties_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcommerceBundle:GarantiesAdmin:update" }
+    requirements: { _method: post|put }
+
+adminGaranties_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EcommerceBundle:GarantiesAdmin:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,202 @@
+<?php
+
+namespace Ecommerce\EcommerceBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SubCategories
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\SubCategoriesRepository")
+ */
+class SubCategories
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Ecommerce\EcommerceBundle\Entity\Media", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $image;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Ecommerce\EcommerceBundle\Entity\Categories", inversedBy="subCategories")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Ecommerce\EcommerceBundle\Entity\Produits", mappedBy="subCategorie", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $produits;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=125)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="specificite", type="string", length=125)
+     */
+    private $specificite;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return SubCategories
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \Ecommerce\EcommerceBundle\Entity\Media $image
+     * @return SubCategories
+     */
+    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Ecommerce\EcommerceBundle\Entity\Media 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \Ecommerce\EcommerceBundle\Entity\Categories $categorie
+     * @return SubCategories
+     */
+    public function setCategorie(\Ecommerce\EcommerceBundle\Entity\Categories $categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \Ecommerce\EcommerceBundle\Entity\Categories 
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+    
+    public function __toString() {
+        return $this->getNom();
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set specificite
+     *
+     * @param string $specificite
+     * @return SubCategories
+     */
+    public function setSpecificite($specificite)
+    {
+        $this->specificite = $specificite;
+
+        return $this;
+    }
+
+    /**
+     * Get specificite
+     *
+     * @return string 
+     */
+    public function getSpecificite()
+    {
+        return $this->specificite;
+    }
+
+    /**
+     * Add produits
+     *
+     * @param \Ecommerce\EcommerceBundle\Entity\Produits $produits
+     * @return SubCategories
+     */
+    public function addProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produits)
+    {
+        $this->produits[] = $produits;
+
+        return $this;
+    }
+
+    /**
+     * Remove produits
+     *
+     * @param \Ecommerce\EcommerceBundle\Entity\Produits $produits
+     */
+    public function removeProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produits)
+    {
+        $this->produits->removeElement($produits);
+    }
+
+    /**
+     * Get produits
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProduits()
+    {
+        return $this->produits;
+    }
+}

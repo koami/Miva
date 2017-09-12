@@ -1,0 +1,30 @@
+adminSubCategories:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:SubCategoriesAdmin:index" }
+
+admin_subCategories_show:
+    path:     /{id}/show
+    defaults: { _controller: "EcommerceBundle:SubCategoriesAdmin:show" }
+
+admin_subCategories_new:
+    path:     /new
+    defaults: { _controller: "EcommerceBundle:SubCategoriesAdmin:new" }
+
+admin_subCategories_create:
+    path:     /create
+    defaults: { _controller: "EcommerceBundle:SubCategoriesAdmin:create" }
+    requirements: { _method: post }
+
+admin_subCategories_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EcommerceBundle:SubCategoriesAdmin:edit" }
+
+admin_subCategories_update:
+    path:     /{id}/update
+    defaults: { _controller: "EcommerceBundle:SubCategoriesAdmin:update" }
+    requirements: { _method: post|put }
+
+admin_subCategories_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EcommerceBundle:SubCategoriesAdmin:delete" }
+    requirements: { _method: post|delete }

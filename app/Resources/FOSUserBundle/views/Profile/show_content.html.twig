@@ -1,0 +1,51 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<main>
+
+    <!--Main layout-->
+    <div class="container">
+        <h1 style="font-weight: 700">Mes informations</h1>
+        <p>Verifiez vos informations ici.</p>
+        <div class="well">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="md-form">
+                        <p>{{ 'profile.show.username'|trans }}: {{ user.username|capitalize }}</p>
+                        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <a class="btn btn-large miva waves-effect waves-light"
+               href="{{ path('fos_user_profile_edit') }}">
+                Modifier mes Infos
+            </a>
+        </div>
+    </div>
+    <!--/.Main layout-->
+
+</main>
+
+{#<div class="row">
+
+    <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+        <h2>Mes informations</h2>
+        <div >
+            <div >
+                <div class="span4">
+                    <p>{{ 'profile.show.username'|trans }}: {{ user.username|capitalize }}</p>
+                    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <a class="center-block" 
+           href="{{ path('fos_user_profile_edit') }}">
+            Modifier mes Infos
+        </a>
+    </div>
+</div>
+
+<div class="fos_user_user_show">
+    
+</div>#}

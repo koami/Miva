@@ -1,0 +1,115 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<a class="nav-link dropdown-toggle" id="dropdownMenu2"
+   data-toggle="dropdown" aria-haspopup="true"
+   aria-expanded="false" href="#">
+    <span class="yellow-text" style="font-weight: 700; ">
+        <strong>
+            Admin {{ app.user.username|capitalize }}
+        </strong>
+    </span>
+
+</a>
+
+<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+    <li>
+        <a class="dropdown-item" tabindex="-1"
+           href="{{ path('fos_user_profile_show') }}">
+            Mes infromations
+        </a>
+    </li>
+
+    <li>
+        <a class="dropdown-item" tabindex="-1"
+           href="{{ path('fos_user_change_password') }}">
+            Changer de mot de passe
+        </a>
+    </li>
+
+    <li>
+        <a class="dropdown-item" tabindex="-1"
+           href="{{ path('factures') }}">
+            Mes factures
+        </a>
+    </li>
+
+    <li>
+        <a class="dropdown-item" tabindex="-1"
+           href="{{ path('fos_user_security_logout') }}">
+            Déconnexion
+        </a>
+    </li>
+
+    <li class="divider-short "></li>
+
+    <li class="dropdown-submenu">
+
+        <a class="dropdown-submenu-item" tabindex="-1" href="#">Administration</a>
+
+        <ul class="dropdown-menu">
+
+            <li>
+                <a class="dropdown-item" tabindex="-1"
+                   href="{{ path('adminProduits') }}">
+                    Produits
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item" tabindex="-1"
+                   href="{{ path('adminCategories') }}">
+                    Catégories
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item" tabindex="-1"
+                   href="{{ path('adminSubCategories') }}">
+                    Sous-catégories produits
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item" tabindex="-1"
+                   href="{{ path('adminUtilisateurs') }}">
+                    Clients
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item" tabindex="-1"
+                   href="{{ path('adminCommande') }}">
+                    Commandes
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item" tabindex="-1"
+                   href="{{ path('adminPartenaires') }}">
+                    Partenaires
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item" tabindex="-1"
+                   href="{{ path('adminGaranties') }}">
+                    Garanties
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item" tabindex="-1"
+                   href="{{ path('adminRayon') }}">
+                    Rayon
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-item" tabindex="-1"
+                   href="{{ path('adminMedia') }}">
+                    Media
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
