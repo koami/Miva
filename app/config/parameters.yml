@@ -1,15 +1,15 @@
 # This file is auto-generated during the composer install
 parameters:
     database_driver: pdo_mysql
-    database_host: 127.0.0.1
-    database_port: null
-    database_name: ecommerce_final
-    database_user: root
-    database_password: null
+    database_host: localhost
+    database_port: 2083
+    database_name: mivadmin_ecommerce_final
+    database_user: mivadmin
+    database_password: pZaUVM2)=MIs
     mailer_transport: smtp
-    mailer_host: smtp.gmail.com
+    mailer_host: smtp.miva.tg
     mailer_user: ark@miva.tg
-    mailer_password: null
+    mailer_password: principia15&s
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
 twig:
