@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SubCategories
  *
- * @ORM\Table()
+ * @ORM\Table("subcategories")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\SubCategoriesRepository")
  */
 class SubCategories

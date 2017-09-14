@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Rayon
  *
- * @ORM\Table()
+ * @ORM\Table("rayon")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\RayonRepository")
  */
 class Rayon
