@@ -5,3 +5,7 @@ adminCommande:
 adminShowFacture:
     pattern:  /facture/{id}
     defaults: { _controller: EcommerceBundle:CommandesAdmin:showFacture }
+
+adminLivrer:
+    pattern:  /livrer/{id}
+    defaults: { _controller: EcommerceBundle:CommandesAdmin:livrer }

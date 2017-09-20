@@ -35,4 +35,17 @@ class CommandesAdminController extends Controller
         
         return $response;
     }
+
+    public function livrerAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $commande = $em->getRepository('EcommerceBundle:Commandes')->find($id);
+
+        $commande->setLivrer(1);
+        $em->persist($commande);
+        $em->flush();
+
+        $commandes = $em->getRepository('EcommerceBundle:Commandes')->findAll();
+        return $this->render('EcommerceBundle:Administration:Commandes/layout/index.html.twig', array('commandes' => $commandes));
+    }
 }

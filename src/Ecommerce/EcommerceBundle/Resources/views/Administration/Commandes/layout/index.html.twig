@@ -1,4 +1,4 @@
-{% extends '::layout/defaultLayout.html.twig' %}
+{% extends '::layout/layoutAdmin.html.twig' %}
 
 {% block body %}
     <h1>Commandes list</h1>
@@ -9,7 +9,8 @@
                 <th>Date</th>
                 <th>Référence</th>
                 <th>Client</th>
-                <th>Actions</th>
+                <th>Factures</th>
+                <th>Etat</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +20,18 @@
                 <td>{{ commande.reference }}</td>
                 <td>{{ commande.utilisateur.username }}</td>
                 <td>
-                    <a href="{{ path('adminShowFacture', { 'id' : commande.id }) }}"><i class="fa fa-book"></i></a>
+                    <a href="{{ path('adminShowFacture', { 'id' : commande.id }) }}">
+                        <i class="fa fa-book"></i>
+                    </a>
+                </td>
+                <td>
+                    {% if commande.livrer == 0 %}
+                        <a href="{{ path('adminLivrer', { 'id' : commande.id }) }}">
+                            <i class="fa fa-bus"></i>
+                        </a>
+                    {% else %}
+                        <i class="fa fa-check-circle"></i> Livrer
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
