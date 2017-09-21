@@ -11,6 +11,7 @@
                 <th>Client</th>
                 <th>Factures</th>
                 <th>Etat</th>
+                <th>Livraison</th>
             </tr>
         </thead>
         <tbody>
@@ -25,12 +26,19 @@
                     </a>
                 </td>
                 <td>
-                    {% if commande.livrer == 0 %}
+                    {% if commande.livrer %}
+                        <i class="fa fa-check-circle"></i> Livrer
+                    {% else %}
                         <a href="{{ path('adminLivrer', { 'id' : commande.id }) }}">
                             <i class="fa fa-bus"></i>
                         </a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if commande.kabba %}
+                        Kabba / {{ commande.getDate()|date('d-m-Y H:i:s') }}
                     {% else %}
-                        <i class="fa fa-check-circle"></i> Livrer
+                        Normal
                     {% endif %}
                 </td>
             </tr>
