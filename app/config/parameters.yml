@@ -9,7 +9,7 @@ parameters:
     mailer_transport: smtp
     mailer_host: smtp.miva.tg
     mailer_user: ark@miva.tg
-    mailer_password: principia15&s
+    mailer_password: 'principia15&s'
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
 twig:
