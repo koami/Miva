@@ -17,6 +17,19 @@ class CommandesAdminController extends Controller
         
         return $this->render('EcommerceBundle:Administration:Commandes/layout/index.html.twig', array('commandes' => $commandes));
     }
+	
+	public function menuAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('count(c.id)');
+        $qb->from('EcommerceBundle:Commandes','c');
+        $qb->where('c.livrer = :livrer');
+        $qb->setParameter('livrer', 0);
+        $commandes = $qb->getQuery()->getSingleScalarResult();
+
+        return $this->render('EcommerceBundle:Administration:Commandes/modulesUsed/commande.html.twig', array('commandes' => $commandes));
+    }
     
     public function showFactureAction($id)
     {
