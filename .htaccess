@@ -1,5 +1,5 @@
 <ifModule mod_rewrite.c>
-	RewriteEmgime On
+	RewriteEngine On
 	Rewritecond
 	%{REQUEST_FILENAME} !-F
 	RewriteRule^(.)$ web/$1 [QSA,L]
