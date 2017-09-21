@@ -12,7 +12,6 @@
 namespace Symfony\Component\Validator\Mapping\Loader;
 
 use Symfony\Component\Validator\Constraint;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Exception\MappingException;
 
 /**
