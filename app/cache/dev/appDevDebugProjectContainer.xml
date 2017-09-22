@@ -82,7 +82,7 @@
       </parameter>
       <parameter key="FOSUserBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle</parameter>
+        <parameter key="path">C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle</parameter>
         <parameter key="namespace">FOS\UserBundle</parameter>
       </parameter>
       <parameter key="UtilisateursBundle" type="collection">
@@ -656,16 +656,18 @@
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
-    <parameter key="fos_user.backend_type_orm">true</parameter>
-    <parameter key="fos_user.security.interactive_login_listener.class">FOS\UserBundle\EventListener\LastLoginListener</parameter>
+    <parameter key="fos_user.validator.password.class">FOS\UserBundle\Validator\PasswordValidator</parameter>
+    <parameter key="fos_user.validator.unique.class">FOS\UserBundle\Validator\UniqueValidator</parameter>
+    <parameter key="fos_user.security.interactive_login_listener.class">FOS\UserBundle\Security\InteractiveLoginListener</parameter>
     <parameter key="fos_user.security.login_manager.class">FOS\UserBundle\Security\LoginManager</parameter>
-    <parameter key="fos_user.resetting.email.template">@FOSUser/Resetting/email.txt.twig</parameter>
-    <parameter key="fos_user.registration.confirmation.template">@FOSUser/Registration/email.txt.twig</parameter>
+    <parameter key="fos_user.resetting.email.template">FOSUserBundle:Resetting:email.txt.twig</parameter>
+    <parameter key="fos_user.registration.confirmation.template">FOSUserBundle:Registration:email.txt.twig</parameter>
     <parameter key="fos_user.storage">orm</parameter>
     <parameter key="fos_user.firewall_name">main</parameter>
     <parameter key="fos_user.model_manager_name">null</parameter>
     <parameter key="fos_user.model.user.class">Utilisateurs\UtilisateursBundle\Entity\Utilisateurs</parameter>
-    <parameter key="fos_user.profile.form.type">FOS\UserBundle\Form\Type\ProfileFormType</parameter>
+    <parameter key="fos_user.template.engine">twig</parameter>
+    <parameter key="fos_user.profile.form.type">fos_user_profile</parameter>
     <parameter key="fos_user.profile.form.name">fos_user_profile_form</parameter>
     <parameter key="fos_user.profile.form.validation_groups" type="collection">
       <parameter>Profile</parameter>
@@ -675,13 +677,13 @@
       <parameter key="ark@miva.tg">ark@miva.tg</parameter>
     </parameter>
     <parameter key="fos_user.registration.confirmation.enabled">false</parameter>
-    <parameter key="fos_user.registration.form.type">FOS\UserBundle\Form\Type\RegistrationFormType</parameter>
+    <parameter key="fos_user.registration.form.type">fos_user_registration</parameter>
     <parameter key="fos_user.registration.form.name">fos_user_registration_form</parameter>
     <parameter key="fos_user.registration.form.validation_groups" type="collection">
       <parameter>Registration</parameter>
       <parameter>Default</parameter>
     </parameter>
-    <parameter key="fos_user.change_password.form.type">FOS\UserBundle\Form\Type\ChangePasswordFormType</parameter>
+    <parameter key="fos_user.change_password.form.type">fos_user_change_password</parameter>
     <parameter key="fos_user.change_password.form.name">fos_user_change_password_form</parameter>
     <parameter key="fos_user.change_password.form.validation_groups" type="collection">
       <parameter>ChangePassword</parameter>
@@ -690,9 +692,8 @@
     <parameter key="fos_user.resetting.email.from_email" type="collection">
       <parameter key="ark@miva.tg">ark@miva.tg</parameter>
     </parameter>
-    <parameter key="fos_user.resetting.retry_ttl">7200</parameter>
     <parameter key="fos_user.resetting.token_ttl">86400</parameter>
-    <parameter key="fos_user.resetting.form.type">FOS\UserBundle\Form\Type\ResettingFormType</parameter>
+    <parameter key="fos_user.resetting.form.type">fos_user_resetting</parameter>
     <parameter key="fos_user.resetting.form.name">fos_user_resetting_form</parameter>
     <parameter key="fos_user.resetting.form.validation_groups" type="collection">
       <parameter>ResetPassword</parameter>
@@ -1142,14 +1143,11 @@
         <argument key="resource_files" type="collection">
           <argument key="af" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.af.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.af.yml</argument>
           </argument>
           <argument key="ar" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.ar.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.ar.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.ar.yml</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.az.xlf</argument>
@@ -1160,23 +1158,22 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.bg.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.bg.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.bg.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.bg.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.bg.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.bg.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.bg.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\coresphere\console-bundle/Resources/translations\messages.bg.yml</argument>
           </argument>
           <argument key="ca" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.ca.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.ca.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.ca.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.ca.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.ca.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.ca.yml</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.cs.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.cs.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.cs.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.cs.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.cs.yml</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.cy.xlf</argument>
@@ -1185,16 +1182,16 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.da.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.da.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.da.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.da.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.da.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.da.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.da.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.da.xliff</argument>
           </argument>
           <argument key="de" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.de.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.de.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.de.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.de.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.de.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.de.xliff</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\coresphere\console-bundle/Resources/translations\messages.de.yml</argument>
           </argument>
@@ -1202,15 +1199,13 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.el.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.el.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.el.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.el.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.el.yml</argument>
           </argument>
           <argument key="en" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.en.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.en.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.en.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.en.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.en.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.en.xliff</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\coresphere\console-bundle/Resources/translations\messages.en.yml</argument>
           </argument>
@@ -1218,34 +1213,34 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.es.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.es.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.es.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.es.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.es.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.es.xliff</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\coresphere\console-bundle/Resources/translations\messages.es.yml</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.et.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.et.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.et.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.et.yml</argument>
           </argument>
           <argument key="eu" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.eu.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.eu.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.eu.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.eu.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.eu.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.eu.yml</argument>
           </argument>
           <argument key="fa" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.fa.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.fa.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.fa.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.fa.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.fa.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.fa.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.fa.yml</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.fi.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.fi.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.fi.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.fi.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.fi.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.fi.yml</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.fr.xlf</argument>
@@ -1253,8 +1248,8 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.fr.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\src\Ecommerce\EcommerceBundle/Resources/translations\messages.fr.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\src\Pages\PagesBundle/Resources/translations\messages.fr.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.fr.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.fr.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.fr.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.fr.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\src\Utilisateurs\UtilisateursBundle/Resources/translations\messages.fr.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.fr.xliff</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\coresphere\console-bundle/Resources/translations\messages.fr.yml</argument>
@@ -1263,28 +1258,25 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.gl.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.gl.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.gl.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.gl.yml</argument>
           </argument>
           <argument key="he" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.he.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.he.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.he.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.he.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.he.yml</argument>
           </argument>
           <argument key="hr" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.hr.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.hr.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.hr.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.hr.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.hr.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.hr.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.hr.yml</argument>
           </argument>
           <argument key="hu" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.hu.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.hu.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.hu.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.hu.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.hu.yml</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.hy.xlf</argument>
@@ -1294,16 +1286,14 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.id.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.id.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.id.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.id.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.id.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.id.xliff</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.it.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.it.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.it.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.it.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.it.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.it.xliff</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\coresphere\console-bundle/Resources/translations\messages.it.yml</argument>
           </argument>
@@ -1311,29 +1301,29 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.ja.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.ja.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.ja.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.ja.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.ja.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.ja.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.ja.yml</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.lb.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.lb.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.lb.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.lb.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.lb.yml</argument>
           </argument>
           <argument key="lt" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.lt.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.lt.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.lt.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.lt.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.lt.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.lt.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.lt.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.lt.xliff</argument>
           </argument>
           <argument key="lv" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.lv.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.lv.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.lv.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.lv.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.lv.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.lv.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.lv.yml</argument>
           </argument>
           <argument key="mn" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.mn.xlf</argument>
@@ -1343,8 +1333,8 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.nl.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.nl.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.nl.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.nl.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.nl.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.nl.xliff</argument>
           </argument>
           <argument key="nn" type="collection">
@@ -1359,38 +1349,36 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.pl.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.pl.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.pl.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.pl.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.pl.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.pl.xliff</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\coresphere\console-bundle/Resources/translations\messages.pl.yml</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.pt.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.pt.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.pt.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.pt.yml</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.pt_BR.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.pt_BR.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.pt_BR.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.pt_BR.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.pt_BR.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.pt_BR.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.pt_BR.yml</argument>
           </argument>
           <argument key="ro" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.ro.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.ro.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.ro.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.ro.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.ro.xliff</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.ru.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.ru.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.ru.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.ru.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.ru.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.ru.xliff</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\coresphere\console-bundle/Resources/translations\messages.ru.yml</argument>
           </argument>
@@ -1398,15 +1386,15 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.sk.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.sk.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.sk.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.sk.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.sk.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.sk.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.sk.yml</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.sl.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.sl.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.sl.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.sl.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.sl.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.sl.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.sl.yml</argument>
           </argument>
           <argument key="sq" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.sq.xlf</argument>
@@ -1420,77 +1408,56 @@
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.sr_Latn.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.sr_Latn.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.sr_Latn.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.sr_Latn.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.sr_Latn.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.sr_Latn.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.sr_Latn.yml</argument>
           </argument>
           <argument key="sv" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.sv.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.sv.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.sv.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.sv.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.sv.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.sv.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.sv.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.sv.xliff</argument>
           </argument>
           <argument key="th" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.th.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.th.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.th.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.th.yml</argument>
           </argument>
           <argument key="tr" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.tr.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.tr.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.tr.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.tr.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.tr.yml</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.uk.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.uk.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.uk.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.uk.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.uk.yml</argument>
           </argument>
           <argument key="vi" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.vi.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.vi.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.vi.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.vi.yml</argument>
           </argument>
           <argument key="zh_CN" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.zh_CN.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.zh_CN.xlf</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.zh_CN.xlf</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.zh_CN.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.zh_CN.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.zh_CN.yml</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\validators.zh_CN.yml</argument>
           </argument>
           <argument key="zh_TW" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.zh_TW.xlf</argument>
           </argument>
           <argument key="pt_PT" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.pt_PT.xlf</argument>
+            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/translations\FOSUserBundle.pt_PT.yml</argument>
           </argument>
           <argument key="ua" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.ua.xlf</argument>
           </argument>
-          <argument key="bn" type="collection">
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.bn.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.bn.yml</argument>
-          </argument>
-          <argument key="bn_BD" type="collection">
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.bn_BD.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.bn_BD.yml</argument>
-          </argument>
-          <argument key="eo" type="collection">
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.eo.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.eo.yml</argument>
-          </argument>
           <argument key="ky" type="collection">
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.ky.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.ky.yml</argument>
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.ky.xliff</argument>
-          </argument>
-          <argument key="nb" type="collection">
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.nb.yml</argument>
-            <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.nb.yml</argument>
           </argument>
           <argument key="sw" type="collection">
             <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\knplabs\knp-paginator-bundle/Resources/translations\KnpPaginatorBundle.sw.xliff</argument>
@@ -2054,7 +2021,7 @@
       <call method="addXmlMappings">
         <argument type="collection">
           <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/config/validation.xml</argument>
-          <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/config/validation.xml</argument>
+          <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/config/validation.xml</argument>
         </argument>
       </call>
       <call method="enableAnnotationMapping">
@@ -2069,13 +2036,13 @@
           <argument type="service">
             <service class="FOS\UserBundle\Validator\Initializer" public="false">
               <tag name="validator.initializer"/>
-              <argument type="service" id="fos_user.util.canonical_fields_updater"/>
+              <argument type="service" id="fos_user.user_manager"/>
             </service>
           </argument>
         </argument>
       </call>
       <call method="addXmlMapping">
-        <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\DependencyInjection\Compiler/../../Resources/config/storage-validation/orm.xml</argument>
+        <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle\DependencyInjection\Compiler/../../Resources/config/storage-validation/orm.xml</argument>
       </call>
       <factory class="Symfony\Component\Validator\Validation" method="createValidatorBuilder"/>
     </service>
@@ -2398,6 +2365,14 @@
         <argument>0</argument>
       </call>
       <call method="addListenerService">
+        <argument>security.interactive_login</argument>
+        <argument type="collection">
+          <argument>fos_user.security.interactive_login_listener</argument>
+          <argument>onSecurityInteractiveLogin</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument>knp_paginator.subscriber.sliding_pagination</argument>
@@ -2494,22 +2469,6 @@
         <argument>Sensio\Bundle\FrameworkExtraBundle\EventListener\SecurityListener</argument>
       </call>
       <call method="addSubscriberService">
-        <argument>fos_user.security.interactive_login_listener</argument>
-        <argument>FOS\UserBundle\EventListener\LastLoginListener</argument>
-      </call>
-      <call method="addSubscriberService">
-        <argument>fos_user.listener.authentication</argument>
-        <argument>FOS\UserBundle\EventListener\AuthenticationListener</argument>
-      </call>
-      <call method="addSubscriberService">
-        <argument>fos_user.listener.flash</argument>
-        <argument>FOS\UserBundle\EventListener\FlashListener</argument>
-      </call>
-      <call method="addSubscriberService">
-        <argument>fos_user.listener.resetting</argument>
-        <argument>FOS\UserBundle\EventListener\ResettingListener</argument>
-      </call>
-      <call method="addSubscriberService">
         <argument>web_profiler.debug_toolbar</argument>
         <argument>Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener</argument>
       </call>
@@ -2566,7 +2525,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>59c455ff794831.80573154</argument>
+            <argument>59c470de710fb7.92704756</argument>
           </service>
         </argument>
         <argument type="service">
@@ -2869,7 +2828,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>59c455ff794831.80573154</argument>
+            <argument>59c470de710fb7.92704756</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3491,10 +3450,9 @@
           </call>
           <call method="addEventSubscriber">
             <argument type="service">
-              <service class="FOS\UserBundle\Doctrine\UserListener" public="false">
+              <service class="FOS\UserBundle\Entity\UserListener" public="false">
                 <tag name="doctrine.event_subscriber"/>
-                <argument type="service" id="fos_user.util.password_updater"/>
-                <argument type="service" id="fos_user.util.canonical_fields_updater"/>
+                <argument type="service" id="service_container"/>
               </service>
             </argument>
           </call>
@@ -3564,6 +3522,7 @@
               <argument key="GedmoTree">Gedmo\Tree\Entity</argument>
               <argument key="EcommerceBundle">Ecommerce\EcommerceBundle\Entity</argument>
               <argument key="PagesBundle">Pages\PagesBundle\Entity</argument>
+              <argument key="FOSUserBundle">FOS\UserBundle\Entity</argument>
               <argument key="UtilisateursBundle">Utilisateurs\UtilisateursBundle\Entity</argument>
             </argument>
           </call>
@@ -3700,18 +3659,16 @@
                 </call>
                 <call method="addDriver">
                   <argument type="service">
-                    <service class="Doctrine\ORM\Mapping\Driver\XmlDriver">
-                      <argument type="service">
-                        <service class="Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator">
-                          <argument type="collection">
-                            <argument key="C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\Resources\config\doctrine-mapping">FOS\UserBundle\Model</argument>
-                          </argument>
-                          <argument>.orm.xml</argument>
-                        </service>
+                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
+                      <argument type="collection">
+                        <argument key="C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle\Resources\config\doctrine">FOS\UserBundle\Entity</argument>
                       </argument>
+                      <call method="setGlobalBasename">
+                        <argument>mapping</argument>
+                      </call>
                     </service>
                   </argument>
-                  <argument>FOS\UserBundle\Model</argument>
+                  <argument>FOS\UserBundle\Entity</argument>
                 </call>
               </service>
             </argument>
@@ -3893,41 +3850,21 @@
       <tag name="validator.constraint_validator" alias="validatorCheckUrl"/>
       <argument type="service" id="curlurl"/>
     </service>
-    <service id="fos_user.security.interactive_login_listener" class="FOS\UserBundle\EventListener\LastLoginListener">
-      <tag name="kernel.event_subscriber"/>
+    <service id="fos_user.security.interactive_login_listener" class="FOS\UserBundle\Security\InteractiveLoginListener">
+      <tag name="kernel.event_listener" event="security.interactive_login" method="onSecurityInteractiveLogin"/>
       <argument type="service" id="fos_user.user_manager"/>
     </service>
     <service id="fos_user.security.login_manager" class="FOS\UserBundle\Security\LoginManager">
-      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.context"/>
       <argument type="service" id="security.user_checker.main"/>
       <argument type="service" id="security.authentication.session_strategy"/>
-      <argument type="service" id="request_stack"/>
-      <argument>null</argument>
+      <argument type="service" id="service_container"/>
     </service>
     <service id="fos_user.user_provider.username_email" class="FOS\UserBundle\Security\EmailUserProvider" public="false">
       <argument type="service" id="fos_user.user_manager"/>
     </service>
     <service id="fos_user.util.user_manipulator" class="FOS\UserBundle\Util\UserManipulator">
       <argument type="service" id="fos_user.user_manager"/>
-      <argument type="service" id="debug.event_dispatcher"/>
-      <argument type="service" id="request_stack"/>
-    </service>
-    <service id="fos_user.util.password_updater" class="FOS\UserBundle\Util\PasswordUpdater" public="false">
-      <argument type="service" id="security.encoder_factory"/>
-    </service>
-    <service id="fos_user.util.canonical_fields_updater" class="FOS\UserBundle\Util\CanonicalFieldsUpdater" public="false">
-      <argument type="service" id="fos_user.util.email_canonicalizer"/>
-      <argument type="service" id="fos_user.util.email_canonicalizer"/>
-    </service>
-    <service id="fos_user.listener.authentication" class="FOS\UserBundle\EventListener\AuthenticationListener">
-      <tag name="kernel.event_subscriber"/>
-      <argument type="service" id="fos_user.security.login_manager"/>
-      <argument>main</argument>
-    </service>
-    <service id="fos_user.listener.flash" class="FOS\UserBundle\EventListener\FlashListener">
-      <tag name="kernel.event_subscriber"/>
-      <argument type="service" id="session"/>
-      <argument type="service" id="translator"/>
     </service>
     <service id="fos_user.username_form_type" class="FOS\UserBundle\Form\Type\UsernameFormType">
       <tag name="form.type" alias="fos_user_username"/>
@@ -3937,62 +3874,68 @@
         </service>
       </argument>
     </service>
-    <service id="fos_user.profile.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
-      <argument type="service" id="form.factory"/>
+    <service id="fos_user.profile.form" class="Symfony\Component\Form\Form" factory-method="createNamed" factory-service="form.factory">
       <argument>fos_user_profile_form</argument>
-      <argument>FOS\UserBundle\Form\Type\ProfileFormType</argument>
+      <argument>fos_user_profile</argument>
+      <argument>null</argument>
       <argument type="collection">
-        <argument>Profile</argument>
-        <argument>Default</argument>
+        <argument key="validation_groups" type="collection">
+          <argument>Profile</argument>
+          <argument>Default</argument>
+        </argument>
       </argument>
     </service>
     <service id="fos_user.profile.form.type" class="FOS\UserBundle\Form\Type\ProfileFormType">
       <tag name="form.type" alias="fos_user_profile"/>
       <argument>Utilisateurs\UtilisateursBundle\Entity\Utilisateurs</argument>
     </service>
-    <service id="fos_user.registration.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
-      <argument type="service" id="form.factory"/>
+    <service id="fos_user.registration.form" class="Symfony\Component\Form\Form" factory-method="createNamed" factory-service="form.factory">
       <argument>fos_user_registration_form</argument>
-      <argument>FOS\UserBundle\Form\Type\RegistrationFormType</argument>
+      <argument>fos_user_registration</argument>
+      <argument>null</argument>
       <argument type="collection">
-        <argument>Registration</argument>
-        <argument>Default</argument>
+        <argument key="validation_groups" type="collection">
+          <argument>Registration</argument>
+          <argument>Default</argument>
+        </argument>
       </argument>
     </service>
     <service id="fos_user.registration.form.type" class="FOS\UserBundle\Form\Type\RegistrationFormType">
       <tag name="form.type" alias="fos_user_registration"/>
       <argument>Utilisateurs\UtilisateursBundle\Entity\Utilisateurs</argument>
     </service>
-    <service id="fos_user.change_password.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
-      <argument type="service" id="form.factory"/>
+    <service id="fos_user.change_password.form" class="Symfony\Component\Form\Form" factory-method="createNamed" factory-service="form.factory">
       <argument>fos_user_change_password_form</argument>
-      <argument>FOS\UserBundle\Form\Type\ChangePasswordFormType</argument>
+      <argument>fos_user_change_password</argument>
+      <argument>null</argument>
       <argument type="collection">
-        <argument>ChangePassword</argument>
-        <argument>Default</argument>
+        <argument key="validation_groups" type="collection">
+          <argument>ChangePassword</argument>
+          <argument>Default</argument>
+        </argument>
       </argument>
     </service>
     <service id="fos_user.change_password.form.type" class="FOS\UserBundle\Form\Type\ChangePasswordFormType">
       <tag name="form.type" alias="fos_user_change_password"/>
-      <argument>Utilisateurs\UtilisateursBundle\Entity\Utilisateurs</argument>
     </service>
-    <service id="fos_user.resetting.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
-      <argument type="service" id="form.factory"/>
+    <service id="fos_user.change_password.form.handler.default" class="FOS\UserBundle\Form\Handler\ChangePasswordFormHandler" scope="request">
+      <argument type="service" id="fos_user.change_password.form"/>
+      <argument type="service" id="request"/>
+      <argument type="service" id="fos_user.user_manager"/>
+    </service>
+    <service id="fos_user.resetting.form" class="Symfony\Component\Form\Form" factory-method="createNamed" factory-service="form.factory">
       <argument>fos_user_resetting_form</argument>
-      <argument>FOS\UserBundle\Form\Type\ResettingFormType</argument>
+      <argument>fos_user_resetting</argument>
+      <argument>null</argument>
       <argument type="collection">
-        <argument>ResetPassword</argument>
-        <argument>Default</argument>
+        <argument key="validation_groups" type="collection">
+          <argument>ResetPassword</argument>
+          <argument>Default</argument>
+        </argument>
       </argument>
     </service>
     <service id="fos_user.resetting.form.type" class="FOS\UserBundle\Form\Type\ResettingFormType">
       <tag name="form.type" alias="fos_user_resetting"/>
-      <argument>Utilisateurs\UtilisateursBundle\Entity\Utilisateurs</argument>
-    </service>
-    <service id="fos_user.listener.resetting" class="FOS\UserBundle\EventListener\ResettingListener">
-      <tag name="kernel.event_subscriber"/>
-      <argument type="service" id="router"/>
-      <argument>86400</argument>
     </service>
     <service id="knp_paginator" class="Knp\Component\Pager\Paginator" lazy="true">
       <argument type="service" id="debug.event_dispatcher"/>
@@ -4717,8 +4660,8 @@
       <argument type="service" id="router"/>
       <argument type="service" id="templating"/>
       <argument type="collection">
-        <argument key="confirmation.template">@FOSUser/Registration/email.txt.twig</argument>
-        <argument key="resetting.template">@FOSUser/Resetting/email.txt.twig</argument>
+        <argument key="confirmation.template">FOSUserBundle:Registration:email.txt.twig</argument>
+        <argument key="resetting.template">FOSUserBundle:Resetting:email.txt.twig</argument>
         <argument key="from_email" type="collection">
           <argument key="confirmation" type="collection">
             <argument key="ark@miva.tg">ark@miva.tg</argument>
@@ -4730,17 +4673,36 @@
       </argument>
     </service>
     <service id="fos_user.util.email_canonicalizer" class="FOS\UserBundle\Util\Canonicalizer"/>
-    <service id="fos_user.util.token_generator" class="FOS\UserBundle\Util\TokenGenerator"/>
+    <service id="fos_user.util.token_generator" class="FOS\UserBundle\Util\TokenGenerator">
+      <argument type="service" id="logger" on-invalid="ignore"/>
+    </service>
     <service id="fos_user.user_manager" class="FOS\UserBundle\Doctrine\UserManager">
-      <argument type="service" id="fos_user.util.password_updater"/>
-      <argument type="service" id="fos_user.util.canonical_fields_updater"/>
+      <argument type="service" id="security.encoder_factory"/>
+      <argument type="service" id="fos_user.util.email_canonicalizer"/>
+      <argument type="service" id="fos_user.util.email_canonicalizer"/>
       <argument type="service">
-        <service class="Doctrine\Common\Persistence\ObjectManager" public="false">
+        <service class="Doctrine\ORM\EntityManager" factory-method="getManager" factory-service="doctrine" public="false">
           <argument>null</argument>
-          <factory service="doctrine" method="getManager"/>
         </service>
       </argument>
       <argument>Utilisateurs\UtilisateursBundle\Entity\Utilisateurs</argument>
+    </service>
+    <service id="fos_user.profile.form.handler" class="FOS\UserBundle\Form\Handler\ProfileFormHandler" scope="request">
+      <argument type="service" id="fos_user.profile.form"/>
+      <argument type="service" id="request"/>
+      <argument type="service" id="fos_user.user_manager"/>
+    </service>
+    <service id="fos_user.registration.form.handler" class="FOS\UserBundle\Form\Handler\RegistrationFormHandler" scope="request">
+      <argument type="service" id="fos_user.registration.form"/>
+      <argument type="service" id="request"/>
+      <argument type="service" id="fos_user.user_manager"/>
+      <argument type="service" id="fos_user.mailer"/>
+      <argument type="service" id="fos_user.util.token_generator"/>
+    </service>
+    <service id="fos_user.resetting.form.handler" class="FOS\UserBundle\Form\Handler\ResettingFormHandler" scope="request">
+      <argument type="service" id="fos_user.resetting.form"/>
+      <argument type="service" id="request"/>
+      <argument type="service" id="fos_user.user_manager"/>
     </service>
     <service id="liip_imagine" class="Imagine\Gd\Imagine">
       <call method="setMetadataReader">
@@ -4786,7 +4748,7 @@
         <argument>FOSUser</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle/Resources/views</argument>
+        <argument>C:\Users\Koami\Documents\GitHub\Miva\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/views</argument>
         <argument>FOSUser</argument>
       </call>
       <call method="addPath">
@@ -4835,6 +4797,7 @@
     <service id="doctrine.orm.default_result_cache" alias="doctrine_cache.providers.doctrine.orm.default_result_cache"/>
     <service id="doctrine.orm.default_query_cache" alias="doctrine_cache.providers.doctrine.orm.default_query_cache"/>
     <service id="fos_user.util.username_canonicalizer" alias="fos_user.util.email_canonicalizer"/>
+    <service id="fos_user.change_password.form.handler" alias="fos_user.change_password.form.handler.default"/>
     <service id="sensio.distribution.webconfigurator" alias="sensio_distribution.webconfigurator"/>
   </services>
 </container>

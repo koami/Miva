@@ -67,7 +67,6 @@ class ComposerStaticInit1c8b01c7c18eb8f2c34e45b534ffd340
         ),
         'F' => 
         array (
-            'FOS\\UserBundle\\' => 15,
             'FOS\\JsRoutingBundle\\' => 20,
         ),
         'D' => 
@@ -191,10 +190,6 @@ class ComposerStaticInit1c8b01c7c18eb8f2c34e45b534ffd340
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
         ),
-        'FOS\\UserBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
-        ),
         'FOS\\JsRoutingBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofsymfony/jsrouting-bundle',
@@ -289,6 +284,13 @@ class ComposerStaticInit1c8b01c7c18eb8f2c34e45b534ffd340
             'Gedmo\\' => 
             array (
                 0 => __DIR__ . '/..' . '/gedmo/doctrine-extensions/lib',
+            ),
+        ),
+        'F' => 
+        array (
+            'FOS\\UserBundle' => 
+            array (
+                0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
             ),
         ),
         'D' => 
