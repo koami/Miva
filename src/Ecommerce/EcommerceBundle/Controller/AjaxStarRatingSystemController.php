@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Cookie;
 use Ecommerce\EcommerceBundle\Entity\StarRatingSystem;
 
-class AjaxStarratingsystemController extends Controller
+class AjaxStarRatingSystemController extends Controller
 {
     public function updateDataAction(Request $request)
     {
