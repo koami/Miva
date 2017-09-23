@@ -262,10 +262,18 @@
     opacity: 0.5;
     font-weight: 500;
 }
+.social{
+    height: 50px;
+    width: 50px;
+    background-color: darkred;
+    border: 1px solid transparent;
+    border-radius:25px;
+    text-align: center;
+    font-size: 1.5em;
+}
 
-main {
+.main {
     padding-top: 3rem;
-    padding-bottom: 2rem;
 }
 
 .bg{
@@ -299,7 +307,6 @@ main {
 footer.page-footer {
     padding: 30px 10px 0;
     background-color: #5E0F0F;
-    margin-top: 2rem;
     color: white;
 }
 .pos{
