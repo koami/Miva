@@ -80,21 +80,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mongodb.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mongodb.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/storage-validation/mongodb.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="805">
-              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state relative-caret-position="112">
+              <caret line="7" column="86" lean-forward="true" selection-start-line="7" selection-start-column="86" selection-end-line="7" selection-end-column="86" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="couchdb.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="couchdb.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/storage-validation/couchdb.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="805">
-              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state relative-caret-position="462">
+              <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -103,8 +103,8 @@
       <file leaf-file-name="orm.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/storage-validation/orm.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="29" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state relative-caret-position="63">
+              <caret line="3" column="72" lean-forward="true" selection-start-line="3" selection-start-column="72" selection-end-line="3" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -224,8 +224,8 @@
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/ChangePassword/changePassword_content.html.twig" />
         <option value="$PROJECT_DIR$/src/Ecommerce/EcommerceBundle/Controller/AjaxStarRatingSystemController.php" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
-        <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/storage-validation/mongodb.xml" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/storage-validation/couchdb.xml" />
+        <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/storage-validation/mongodb.xml" />
       </list>
     </option>
   </component>
@@ -481,17 +481,17 @@
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\Ecommerce-0.29\vendor\html2pdf" />
+      <recent name="C:\wamp\www\Ecommerce-0.29\src\Ecommerce\EcommerceBundle\Resources\views\Administration" />
+      <recent name="C:\wamp\www\Ecommerce-0.29\src\Ecommerce\EcommerceBundle\Repository" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp\www\Miva\web\js" />
       <recent name="C:\wamp\www\Ecommerce-0.29\vendor" />
       <recent name="C:\wamp\www\Ecommerce-0.29\src\Ecommerce\EcommerceBundle\Repository" />
       <recent name="C:\wamp\www\Ecommerce-0.29\src\Ecommerce\EcommerceBundle\Twig\Extension" />
       <recent name="C:\wamp\www\Ecommerce-0.29\src\Ecommerce\EcommerceBundle\Entity" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\wamp\www\Ecommerce-0.29\vendor\html2pdf" />
-      <recent name="C:\wamp\www\Ecommerce-0.29\src\Ecommerce\EcommerceBundle\Resources\views\Administration" />
-      <recent name="C:\wamp\www\Ecommerce-0.29\src\Ecommerce\EcommerceBundle\Repository" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -677,12 +677,12 @@
       <workItem from="1505207743301" duration="758000" />
       <workItem from="1505211823875" duration="7928000" />
       <workItem from="1506138238001" duration="3792000" />
-      <workItem from="1506191407530" duration="3146000" />
+      <workItem from="1506191407530" duration="3481000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="433097000" />
+    <option name="totallyTimeSpent" value="433432000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -1071,24 +1071,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/storage-validation/orm.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="29" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/storage-validation/mongodb.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="63">
+          <caret line="3" column="72" lean-forward="true" selection-start-line="3" selection-start-column="72" selection-end-line="3" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/storage-validation/couchdb.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="462">
+          <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/config/storage-validation/mongodb.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="86" lean-forward="true" selection-start-line="7" selection-start-column="86" selection-end-line="7" selection-end-column="86" />
           <folding />
         </state>
       </provider>
