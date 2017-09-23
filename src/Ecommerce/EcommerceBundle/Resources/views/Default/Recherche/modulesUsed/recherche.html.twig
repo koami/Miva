@@ -1,5 +1,8 @@
-<form data-action="{{ path('rechercheProduits') }}" method="POST" class="form-inline waves-effect waves-light formAjax">
+  <form data-action="{{ path('rechercheProduits') }}" method="POST" class="form-inline waves-effect waves-light formAjax">
+  <div>
+  	{{ form_widget(form.subCategorie) }}
+</div>
+<div>
     {{ form_widget(form.recherche) }}
-    {#<button type="submit" class="btn">Rechercher</button>#}
-    {{ form_widget(form) }}
+    </div>
 </form>
