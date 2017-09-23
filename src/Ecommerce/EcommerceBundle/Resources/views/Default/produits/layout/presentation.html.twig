@@ -109,7 +109,7 @@
                                     {% if produit.garantie != null %}
                                     <p>Garantie de
                                         <span style="color:blue">{{ produit.garantie.valeur }} {{ produit.garantie.periode }}</span>
-                                        <img src="img/gar.png" width="50px"/>
+                                        <img src="{{ asset('img/gar.png') }}"width="50px"/>
                                     </p>
                                     {% endif %}
 
