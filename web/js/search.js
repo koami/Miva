@@ -2,24 +2,33 @@ $('document').ready(function(){
 	$('.searchAjax').keyup(function(){
 		var motCle = $(this).val();
 		if (motCle.length >= 1) {
+			$('.loading').remove();
+			var subCategorie = $('.subCategorie').val();
+			console.log(subCategorie);
+			data = {chaine: motCle, subCategorie: subCategorie};
+			console.log(data);
 			var path = $('.formAjax').attr('data-action');
 			$.ajax({
-				type: 'post',
+				type: 'get',
 				url : path,
-				data: 'chaine=' +motCle,
+				data: data,
 				dataType: 'json',
+				beforeSend: function(){
+					$("form .searchAjax").parent().append('<div class="loading"></div>');
+					//console.log('ok');
+				},
 				success: function(data){
 					//console.log(data);
+					console.log(ROOT_URL);
 					$(".aja").empty();
+					if (data.message) {
+						$(".aja").append("<li><a href='#'>" +data.message+ "</a></li>");
+					}
 					$.each(data.produits, function(index, produit) {
-						//$(".aja").append($('<a class="nav-link" href="#">',{ value : value.nom , text: value.nom }));
-						//var path = {{ path('presentation', { 'id' : produit.id }) }};
-						//console.log(path);
-						$(".aja").append("<li><a href='#'>" +produit.nom+ "</a></li>");
-                       console.log(produit);
+						$(".aja").append("<li><a href="+ROOT_URL+"produit/"+produit.id+ ">" +produit.nom+ "</a></li>");
                    });
-					//console.log(data);
-					//$('body').empty().html(data.produits);
+					$('.loading').remove();
+					
 				}
 			});
 			return false;

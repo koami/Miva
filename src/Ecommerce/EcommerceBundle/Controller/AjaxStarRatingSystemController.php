@@ -9,24 +9,24 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Cookie;
 use Ecommerce\EcommerceBundle\Entity\StarRatingSystem;
 
-class AjaxStarRatingSystemController extends Controller
+class AjaxStarratingsystemController extends Controller
 {
     public function updateDataAction(Request $request)
     {
-        $produit = $request->get('mediaId');
+        $produit = $request->get('produit');
         $rate = $request->get('rate');
-
+        
         $em = $this->getDoctrine()->getManager();
 
-        $rateExists = $em->createQuery('SELECT s.id FROM EcommerceBundle:StarRatingSystem s WHERE s.produit = :produit')
-            ->setParameter('produit', $produit)
+        $rateExists = $em->createQuery('SELECT s.id FROM EcommerceBundle:StarRatingSystem s WHERE s.produit = :produit AND s.rate = :rate')
+            ->setParameters(array('produit' => $produit, 'rate' => $rate))
             ->getResult();
 
         if ($rateExists != null) {
             $q = $em->createQuery('UPDATE EcommerceBundle:StarRatingSystem s SET s.rate = s.rate + '.$rate.', s.nbrrate = s.nbrrate + 1 WHERE s.produit = ?1')
                 ->setParameter(1, $produit);
             $q->execute();
-        } else {
+        }else {
             $newRate = new StarRatingSystem();
             $newRate->setProduit($produit);
             $newRate->setRate($rate);
