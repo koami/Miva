@@ -51,9 +51,9 @@
             <state relative-caret-position="567">
               <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
               <folding>
-                <marker date="1505226081624" expanded="true" signature="654:732" ph="SELECT s.id EcommerceBundle" />
-                <marker date="1505226081624" expanded="true" signature="881:1002" ph="UPDATE Ecomm... " />
-                <marker date="1505226081624" expanded="true" signature="1368:1459" ph="SELECT s.rat... EcommerceBundle" />
+                <marker date="1506139120571" expanded="true" signature="1140:1809" ph="{...}" />
+                <marker date="1506139120571" expanded="true" signature="1421:1512" ph="SELECT s.rat... EcommerceBundle" />
+                <marker date="1506139120571" expanded="true" signature="1542:1561" ph="..." />
               </folding>
             </state>
           </provider>
@@ -86,9 +86,10 @@
         <entry file="file://$PROJECT_DIR$/src/Ecommerce/EcommerceBundle/Resources/views/Default/produits/layout/produits.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="303">
-              <caret line="279" column="53" lean-forward="false" selection-start-line="279" selection-start-column="53" selection-end-line="279" selection-end-column="53" />
+              <caret line="279" column="73" lean-forward="false" selection-start-line="279" selection-start-column="73" selection-end-line="279" selection-end-column="73" />
               <folding>
                 <element signature="e#178#202#0#HTML" expanded="true" />
+                <element signature="e#13171#13192#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -902,12 +903,12 @@
       <workItem from="1504452656575" duration="1365000" />
       <workItem from="1505207743301" duration="758000" />
       <workItem from="1505211823875" duration="7928000" />
-      <workItem from="1506138238001" duration="864000" />
+      <workItem from="1506138238001" duration="1052000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="427023000" />
+    <option name="totallyTimeSpent" value="427211000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -1270,9 +1271,9 @@
         <state relative-caret-position="567">
           <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
           <folding>
-            <marker date="1505226081624" expanded="true" signature="654:732" ph="SELECT s.id EcommerceBundle" />
-            <marker date="1505226081624" expanded="true" signature="881:1002" ph="UPDATE Ecomm... " />
-            <marker date="1505226081624" expanded="true" signature="1368:1459" ph="SELECT s.rat... EcommerceBundle" />
+            <marker date="1506139120571" expanded="true" signature="1140:1809" ph="{...}" />
+            <marker date="1506139120571" expanded="true" signature="1421:1512" ph="SELECT s.rat... EcommerceBundle" />
+            <marker date="1506139120571" expanded="true" signature="1542:1561" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1291,9 +1292,10 @@
     <entry file="file://$PROJECT_DIR$/src/Ecommerce/EcommerceBundle/Resources/views/Default/produits/layout/produits.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
-          <caret line="279" column="53" lean-forward="false" selection-start-line="279" selection-start-column="53" selection-end-line="279" selection-end-column="53" />
+          <caret line="279" column="73" lean-forward="false" selection-start-line="279" selection-start-column="73" selection-end-line="279" selection-end-column="73" />
           <folding>
             <element signature="e#178#202#0#HTML" expanded="true" />
+            <element signature="e#13171#13192#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
