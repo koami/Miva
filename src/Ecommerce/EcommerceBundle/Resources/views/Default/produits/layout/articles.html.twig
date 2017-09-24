@@ -101,7 +101,7 @@
 
                 <!--Main column-->
                 <div class="col-lg-8">
-                    <div class="row">
+                    <div class="row" align="center">
                         <!--First columnn-->
                         {% if produits|length != 0 %}
                             {% for produit in produits %}
@@ -130,7 +130,7 @@
                                                 </div>
 
                                                 <div class="price">
-                                                    {{ produit.prix }} CFA
+                                                    {{ produit.prix }}F CFA
                                                 </div>
 
                                                 <img src="{{ asset('img/prod.png') }}" style="position:
@@ -167,19 +167,19 @@
                                                 </div>
 
                                                 <div class="icon" style="margin-top: 15px;margin-left: 130px;" id="rating">
-                                                    <p>{{ starBar(5, produit.id, 25)|raw }}</p>
+                                                    <p>{{ starBar(5, produit.id, 15)|raw }}</p>
                                                 </div>
 
                                             </div>
                                         </a>
                                     </div>
                                 </div>
+
                             {% endfor %}
 
                         {% else %}
-                            <h4 style="font-size: 100px">
-                                Aucun produit disponible. Merci de visiter une autres Categorie.
-                            </h4>
+                            Aucun produit
+
                         {% endif %}
                         <!--First columnn-->
 

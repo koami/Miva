@@ -83,13 +83,13 @@ class ProduitsController extends Controller
         $query = $em->createQuery('SELECT p FROM Ecommerce\EcommerceBundle\Entity\Categories p ')
             ->setMaxResults(1);
         $cat = $query->getResult();
-
         return $this->render('EcommerceBundle:Default:produits/layout/articles.html.twig',
             array(
                 'categorie' => $cat,
                 'produits' => $produits,
                 'panier' => $panier,
                 'rayons' => $rayons));
+
     }
 
     public function articlesAction(Categories $categorie)
