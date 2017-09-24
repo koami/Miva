@@ -1,37 +1,49 @@
 {% extends "::layout/defaultLayout.html.twig" %}
 
 {% block body %}
+    <main>
     <div class="container">
+        <h1>Livraison</h1>
         <div class="row">
-            <h2>Livraison</h2>
-            <div class="span4">
+            <div class="col-md-6 col-sm-6 col-xs-12">
                 {% if utilisateur.adresses|length != 0 %}
+
                     <form action="{{ path('validation') }}" method="POST">
 
                         <h4>Adresse de livraison</h4>
+                        <br>
                         {% for adresse in utilisateur.adresses %}
+                            <div class="well0">
                             <label class="radio">
-                                <input type="radio" name="livraison" value="{{ adresse.id }}" {% if loop.index0 == 0 %}
+                                <input style="transform: scale(4); margin-top: 30px; float: left" type="radio" name="livraison" value="{{ adresse.id }}" {% if loop.index0 == 0 %}
                                     checked="checked"{% endif %}>
-                                {{ adresse.adresse }}, {{ adresse.quartier }}
-                                <a href="{{ path('livraisonAdresseSuppression', { 'id' : adresse.id }) }}"><i class="fa fa-trash"></i></a>
-                                <br />{{ adresse.prenom }} {{ adresse.nom }}
+                                <div style="margin-left: 35px">
+                                    <span style="font-size: 15px">{{ adresse.adresse }}, {{ adresse.quartier }}
+                                <br /><strong>{{ adresse.prenom }} {{ adresse.nom }}</strong></span>
+                                <br>
+                                <a href="{{ path('livraisonAdresseSuppression', { 'id' : adresse.id }) }}"class="red badge" style="font-size: 15px"><i class="fa fa-trash"></i> Supprimer</a>
+                                </div>
+
                             </label>
+                            </div>
+                            <br>
                         {% endfor %}
 
-                        <button type="submit" class="btn miva">Valider l'adresse</button>
+                        <button type="submit" class="btn miva waves-effect waves-light">Valider l'adresse</button>
                     </form>
                 {% endif %}
             </div>
 
 
-            <div class="span4 offset2">
+            <div class="col-md-6 col-sm-6 col-xs-12 m-t-md">
                 <h4>Ajouter une nouvelle adresse</h4>
                 <form action="{{ path('livraison') }}" method="POST" >
+
                     {{ form_widget(form) }}
-                    <button class="btn miva" type="submit">Ajouter</button>
+                    <button class="btn miva waves-effect waves-light m-t-md" type="submit">Ajouter</button>
                 </form>
             </div>
         </div>
     </div>
+    </main>
 {% endblock %}

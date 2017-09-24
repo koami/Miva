@@ -42,6 +42,8 @@ class CommandesController extends Controller
 
             $commande['produit'][$produit->getId()] = array('reference' => $produit->getNom(),
                 'quantite' => $panier[$produit->getId()],
+                'reduction' => $produit->getReduction(),
+                'garantie' => $produit->getGarantie(),
                 'prixSR' => round($produit->getPrix(),2),
                 'prixRed' => round($produit->getPrix() * (1 - $reduction ),2));
         }
@@ -77,7 +79,7 @@ class CommandesController extends Controller
         $commande->setUtilisateur($this->container->get('security.context')->getToken()->getUser());
         $commande->setValider(0);
         $commande->setReference(0);
-		$commande->setKabba(false);
+        $commande->setKabba(false);
         $commande->setLivrer(0);
         $commande->setCommande($this->facture());
 
