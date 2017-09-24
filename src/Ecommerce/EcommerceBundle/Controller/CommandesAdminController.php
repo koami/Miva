@@ -17,19 +17,6 @@ class CommandesAdminController extends Controller
         
         return $this->render('EcommerceBundle:Administration:Commandes/layout/index.html.twig', array('commandes' => $commandes));
     }
-	
-	public function menuAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $qb = $em->createQueryBuilder();
-        $qb->select('count(c.id)');
-        $qb->from('EcommerceBundle:Commandes','c');
-        $qb->where('c.livrer = :livrer');
-        $qb->setParameter('livrer', 0);
-        $commandes = $qb->getQuery()->getSingleScalarResult();
-
-        return $this->render('EcommerceBundle:Administration:Commandes/modulesUsed/commande.html.twig', array('commandes' => $commandes));
-    }
     
     public function showFactureAction($id)
     {
@@ -47,18 +34,5 @@ class CommandesAdminController extends Controller
         $response->headers->set('Content-type' , 'application/pdf');
         
         return $response;
-    }
-
-    public function livrerAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $commande = $em->getRepository('EcommerceBundle:Commandes')->find($id);
-
-        $commande->setLivrer(1);
-        $em->persist($commande);
-        $em->flush();
-
-        $commandes = $em->getRepository('EcommerceBundle:Commandes')->findAll();
-        return $this->render('EcommerceBundle:Administration:Commandes/layout/index.html.twig', array('commandes' => $commandes));
     }
 }
