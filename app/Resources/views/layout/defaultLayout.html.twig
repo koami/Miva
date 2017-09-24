@@ -64,10 +64,13 @@
                             Articles
                         </a>
                     </li>
+                    <li>
+                        {% render(controller('EcommerceBundle:Produits:recherche')) %}
+                    </li>
 
                 </ul>
 
-                {% render(controller('EcommerceBundle:Produits:recherche')) %}
+
 
 
                 <ul class="navbar-nav mr-auto">
@@ -164,7 +167,7 @@
                 </ul>
             </div>
             <!--/.Second column-->
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-4 col-sm-6 m-t-md">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-4"><dd class="social"><i class="fa fa-facebook m-t-md"></i></dd></div>
                     <div class="col-md-4 col-sm-4 col-xs-4"><dd class="social"><i class="fa fa-google-plus m-t-md"></i></dd></div>

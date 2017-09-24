@@ -42,6 +42,8 @@ class CommandesController extends Controller
 
             $commande['produit'][$produit->getId()] = array('reference' => $produit->getNom(),
                 'quantite' => $panier[$produit->getId()],
+                'reduction' => $produit->getReduction(),
+                'garantie' => $produit->getGarantie(),
                 'prixSR' => round($produit->getPrix(),2),
                 'prixRed' => round($produit->getPrix() * (1 - $reduction ),2));
         }
@@ -65,7 +67,6 @@ class CommandesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
-        //$session = $this->container->get('session');
 
         if (!$session->has('commande')){
             $commande = new Commandes();
@@ -74,12 +75,12 @@ class CommandesController extends Controller
             $commande = $em->getRepository('EcommerceBundle:Commandes')->find($session->get('commande'));
         }
 
-        var_dump($commande);
-        die();
         $commande->setDate(new \DateTime());
         $commande->setUtilisateur($this->container->get('security.context')->getToken()->getUser());
         $commande->setValider(0);
         $commande->setReference(0);
+        $commande->setKabba(false);
+        $commande->setLivrer(0);
         $commande->setCommande($this->facture());
 
         if (!$session->has('commande')) {

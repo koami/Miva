@@ -1,148 +1,141 @@
 {% trans_default_domain 'FOSUserBundle' %}
 <!-- Inscription Layout -->
 
-<div class="container" xmlns="http://www.w3.org/1999/html">
-    <div class="row">
+<div align="center">
+    <article class="container-login">
 
-        <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" >
-            <div class="login-body" align="center">
-                <article class="container-login">
-                    <section>
+        <section>
 
-                        <ul id="top-bar" class="nav nav-tabs nav-justified">
-                            <li class="active"><a href="#">Inscription</a></li>
-                            <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
-                        </ul>
+            <ul id="top-bar" class="nav nav-tabs nav-justified">
+                <li class="active"><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+            </ul>
 
-                        <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="tab-content tabs-login1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                            <div id="login-access" class="tab-pane active in">
-                                <div class="row main">
-                                    <div class="main-login main-center">
-                                        <h5>Entrez vos informations pour la creation de compte</h5>
+                <div id="login-access" class="tab-pane active in">
+                    <div class="row main">
+                        <div class="main-login main-center">
+                            <h5>Entrez vos informations pour la creation de compte</h5>
+                            <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
 
-                                        <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }}
-                                              method="POST" class="fos_user_registration_register">
+                                <div class="form-group">
+                                    <div class="">
+                                        <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-users fa" aria-hidden="true">
+                                            </i>
+                                        </span>
 
-                                            <div class="form-group">
-                                                <div class="col-sm-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-users fa" aria-hidden="true">
-                                                            </i>
-                                                        </span>
-
-                                                        {{ form_widget(form.username,
-                                                        {'attr':{
-                                                            'class':'form-control',
-                                                            'type':'number',
-                                                            'placeholder':'Pseudo' }})
-                                                        }}
-                                                    </div>
-                                                </div>
-                                            </div></br></br>
-
-                                            <div class="form-group">
-                                                <div class="col-sm-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-envelope fa" aria-hidden="true">
-
-                                                            </i>
-                                                        </span>
-
-                                                        {{ form_widget(form.email,
-                                                        {'attr':{
-                                                            'class':'form-control',
-                                                            'type':'email',
-                                                            'placeholder':'Email' }})
-                                                        }}
-                                                    </div>
-                                                </div>
-                                            </div></br>
-
-                                            <div class="form-group">
-                                                <div class="col-sm-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-lock fa-lg" aria-hidden="true">
-
-                                                            </i>
-                                                        </span>
-
-                                                        {{ form_widget(form.plainPassword.first,
-                                                        {'attr':{
-                                                            'class':'form-control',
-                                                            'type':'password',
-                                                            'placeholder':'Mot de Passe' }})
-                                                        }}
-                                                    </div>
-                                                </div>
-                                            </div></br>
-
-                                            <div class="form-group">
-                                                <div class="col-sm-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-lock fa-lg" aria-hidden="true">
-
-                                                            </i>
-                                                        </span>
-
-                                                        {{ form_widget(form.plainPassword.second,
-                                                        {'attr':{
-                                                            'class':'form-control',
-                                                            'type':'password',
-                                                            'placeholder':'Confirmation' }})
-                                                        }}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {#<div class="form-group">
-                                                <label for="confirm" class="col-sm-2 control-label">
-                                                    Confirmer votre mot de passe
-                                                </label>
-
-                                                <div class="col-sm-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-lock fa-lg" aria-hidden="true">
-
-                                                            </i>
-                                                        </span>
-
-                                                        {{ form_widget(form.plainPassword.invalid,
-                                                            {'attr':{
-                                                                'class':'form-control',
-                                                                'invalid_message':'fos_user.password.mismatch',
-                                                                'type':'texte'}})
-                                                        }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            #}
-
-                                            <div class="form-group ">
-                                                <button target="_blank" type="submit" id="button"
-                                                        class="btn btn-large waves-effect waves-light btn-block login-button miva">
-                                                    VALIDER
-                                                </button>
-                                            </div>
-
-                                            {{ form_widget(form) }}
-                                        </form>
+                                            {{ form_widget(form.username,
+                                            {'attr':{
+                                                'class':'form-control',
+                                                'type':'number',
+                                                'placeholder':'Pseudo' }})
+                                            }}
+                                        </div>
                                     </div>
                                 </div>
 
-                            </div>
+                                <div class="form-group">
+                                    <div class="">
+                                        <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope fa" aria-hidden="true">
 
+                                            </i>
+                                        </span>
+
+                                            {{ form_widget(form.email,
+                                            {'attr':{
+                                                'class':'form-control',
+                                                'type':'email',
+                                                'placeholder':'Email' }})
+                                            }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="">
+                                        <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-lock fa-lg" aria-hidden="true">
+
+                                            </i>
+                                        </span>
+
+                                            {{ form_widget(form.plainPassword.first,
+                                            {'attr':{
+                                                'class':'form-control',
+                                                'type':'password',
+                                                'placeholder':'Mot de Passe' }})
+                                            }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <div class="">
+                                        <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-lock fa-lg" aria-hidden="true">
+
+                                            </i>
+                                        </span>
+
+                                            {{ form_widget(form.plainPassword.second,
+                                            {'attr':{
+                                                'class':'form-control',
+                                                'type':'password',
+                                                'placeholder':'Confirmation' }})
+                                            }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {#<div class="form-group">
+                                    <label for="confirm" class="col-sm-2 control-label">
+                                        Confirmer votre mot de passe
+                                    </label>
+
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-lock fa-lg" aria-hidden="true">
+
+                                                </i>
+                                            </span>
+
+                                            {{ form_widget(form.plainPassword.invalid,
+                                                {'attr':{
+                                                    'class':'form-control',
+                                                    'invalid_message':'fos_user.password.mismatch',
+                                                    'type':'texte'}})
+                                            }}
+                                        </div>
+                                    </div>
+                                </div>
+                                #}
+
+                                <div class="form-group ">
+                                    <button target="_blank" type="submit" id="button"
+                                            class="btn btn-large waves-effect waves-light btn-block login-button miva">
+                                        VALIDER
+                                    </button>
+                                </div>
+
+                                {{ form_widget(form) }}
+                            </form>
                         </div>
+                    </div>
 
-                    </section>
-                </article>
+                </div>
+
             </div>
-        </div>
-    </div>
+        </section>
+
+    </article>
 </div>
 <!--/.Inscription layout-->

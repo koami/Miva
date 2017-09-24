@@ -17,7 +17,7 @@ class UtilisateursAdressesType extends AbstractType
     {
         $this->em = $em;
     }*/
-    
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -31,12 +31,15 @@ class UtilisateursAdressesType extends AbstractType
             ->add('adresse')
             ->add('quartier', 'entity', array(
                 'class' => 'Ecommerce\EcommerceBundle\Entity\Quartiers',
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
             ))
             ->add('complement',null,array('required' => false))
             //->add('utilisateur')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
