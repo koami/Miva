@@ -57,7 +57,7 @@ class ProduitsController extends Controller
 
             return $this->render('EcommerceBundle:Default:produits/layout/articles.html.twig',
                 array(
-                    'cat' => $cat,
+                    'categorie' => $cat,
                     'produits' => $produits,
                     'panier' => $panier,
                     'rayons' => $rayons));
@@ -83,15 +83,13 @@ class ProduitsController extends Controller
         $query = $em->createQuery('SELECT p FROM Ecommerce\EcommerceBundle\Entity\Categories p ')
             ->setMaxResults(1);
         $cat = $query->getResult();
-        //$cat = $em->getRepository('EcommerceBundle:Categories')->getOneOrNullResult();
 
         return $this->render('EcommerceBundle:Default:produits/layout/articles.html.twig',
             array(
-                'cat' => $cat,
+                'categorie' => $cat,
                 'produits' => $produits,
                 'panier' => $panier,
                 'rayons' => $rayons));
-
     }
 
     public function articlesAction(Categories $categorie)
@@ -117,7 +115,7 @@ class ProduitsController extends Controller
 
         return $this->render('EcommerceBundle:Default:produits/layout/articles.html.twig',
             array(
-                'cat' => $cat,
+                'categorie' => $cat,
                 'produits' => $produits,
                 'panier' => $panier,
                 'rayons' => $rayons));
@@ -151,19 +149,16 @@ class ProduitsController extends Controller
 
     public function rechercheTraitementAction()
     {
-
-        $request = $this->getRequest();
+        $request = $this->container->get('request_stack')->getCurrentRequest();
         if ($request->isXmlHttpRequest()) {
             $chaine = $request->get('chaine');
             $em = $this->getDoctrine()->getManager();
             $produits = $em->getRepository('EcommerceBundle:Produits')->recherche($chaine);
 
         }
-
         else {
             throw $this->createNotFoundException('La page n\'existe pas.');
         }
-
 
         $response = new JsonResponse();
         if ($produits) {
