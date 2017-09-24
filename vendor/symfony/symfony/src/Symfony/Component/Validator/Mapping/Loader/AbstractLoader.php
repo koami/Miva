@@ -14,7 +14,6 @@ namespace Symfony\Component\Validator\Mapping\Loader;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\MappingException;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints\Doctrine\Bundle\CouchDBBundle\Validator\Constraints;
 
 /**
  * Base loader for validation metadata.

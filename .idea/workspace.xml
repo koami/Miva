@@ -100,11 +100,9 @@
       <file leaf-file-name="AbstractLoader.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Validator/Mapping/Loader/AbstractLoader.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="16" column="96" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="96" />
-              <folding>
-                <element signature="e#293#336#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="168">
+              <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -786,12 +784,12 @@
       <workItem from="1505211823875" duration="7928000" />
       <workItem from="1506138238001" duration="3792000" />
       <workItem from="1506191407530" duration="9753000" />
-      <workItem from="1506289788086" duration="837000" />
+      <workItem from="1506289788086" duration="982000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="440541000" />
+    <option name="totallyTimeSpent" value="440686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="952" y="0" width="976" height="1038" extended-state="0" />
@@ -1201,11 +1199,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Validator/Mapping/Loader/AbstractLoader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="16" column="96" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="96" />
-          <folding>
-            <element signature="e#293#336#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="168">
+          <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
