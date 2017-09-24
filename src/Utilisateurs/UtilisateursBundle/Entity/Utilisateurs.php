@@ -3,10 +3,13 @@ namespace Utilisateurs\UtilisateursBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="Utilisateurs\UtilisateursBundle\Repository\UtilisateursRepository")
  * @ORM\Table(name="utilisateurs")
+ * @UniqueEntity(fields="emailCanonical", errorPath="email", message="fos_user.email.already_used", groups={"Default", "Registration", "Profile"})
  */
 class Utilisateurs extends BaseUser
 {
@@ -26,9 +29,9 @@ class Utilisateurs extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->commandes = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->commandes = new ArrayCollection();
+        $this->adresses = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
     
     /**

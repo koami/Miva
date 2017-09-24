@@ -14,6 +14,7 @@ class PanierController extends Controller
 {
     public function menuAction()
     {
+        //$session = $this->getRequest()->getSession();
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
         if (!$session->has('panier'))
@@ -26,6 +27,7 @@ class PanierController extends Controller
 
     public function supprimerAction($id)
     {
+        //$session = $this->getRequest()->getSession();
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
         $panier = $session->get('panier');
@@ -42,6 +44,7 @@ class PanierController extends Controller
 
     public function ajouterAction($id)
     {
+        //$session = $this->getRequest()->getSession();
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
 
@@ -67,6 +70,8 @@ class PanierController extends Controller
 
     public function ajouterPanierAction($id)
     {
+        //$session = $this->getRequest()->getSession();
+        
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
 
@@ -93,11 +98,82 @@ class PanierController extends Controller
             'message' => 'Quantité modifié avec succès'
         ));
 
+        //return $this->render(controller('EcommerceBundle:Panier:menu'));
+
+        //return $this->redirect($request->headers->get('referer'));
         return $response;
     }
 
+    /* // The one for the js/JQuery and Ajax
+    public function ajouterPanierAction(Request $request)
+    {
+        $response = new JsonResponse();
+        $requestData = $request->request->all();
+        $productid = $requestData['product'];
+
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('EcommerceBundle:Produits')->find($productid);
+
+        //$session = $this->getRequest()->getSession();
+        $request = $this->container->get('request_stack')->getCurrentRequest();
+        $session = $request->getSession();
+
+        if (!$session->has('panier')) $session->set('panier',array());
+        $panier = $session->get('panier');
+
+        if (array_key_exists($productid, $panier)) {
+            if ($request->query->get('qte') != null) $panier[$productid] = $request->query->get('qte');
+            $this->get('session')->getFlashBag()->add('success','Quantité modifié avec succès');
+        } else {
+            if ($request->query->get('qte') != null)
+                $panier[$productid] = $request->query->get('qte');
+            else
+                $panier[$productid] = 1;
+
+            $this->get('session')->getFlashBag()->add('success','Article ajouté avec succès');
+        }
+
+        $response->setData(array(
+            'success' => true,
+            'message' => 'Quantité modifié avec succès',
+            'amount'  => $panier[ $productid ]
+        ));
+
+        $session->set('panier',$panier);
+
+        return $response;
+    }*/
+
+    /*public function addQuantityAction( Request $request ) {
+        $response = new JsonResponse();
+        $requestData = $request->request->all();
+        $productid     = $requestData['product'];
+        $quantity = $requestData['quantity'];
+
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('MpShopBundle:Product')->find($productid);
+        $qtyAvailable = $product->getStock();
+
+        $session = $this->getRequest()->getSession();
+        $cart = $session->get('cart', array());
+        if ( $qtyAvailable > $cart[ $productid ] ) {
+        $cart[ $productid ] = $cart[ $productid ] + 1;
+        $qtyAvailable = $qtyAvailable - 1;
+        $response->setData(array(
+            'success' => true,
+            'message' => 'Qunatity increased',
+            'amount'  => $cart[ $productid ]
+        ));
+        $session->set('cart', $cart);
+        } else {
+            $response->setData(array('success'=>false,'message'=>'Out of stock'));
+        }
+        return $response;
+    }*/
+
     public function panierAction()
     {
+        //$session = $this->getRequest()->getSession();
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
 
@@ -152,6 +228,7 @@ class PanierController extends Controller
 
     public function setLivraisonOnSession()
     {
+        //$session = $this->getRequest()->getSession();
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
 
@@ -164,6 +241,8 @@ class PanierController extends Controller
         } else {
             return $this->redirect($this->generateUrl('validation'));
         }
+        /*var_dump($adresse);
+        die();*/
 
         $session->set('adresse',$adresse);
         return $this->redirect($this->generateUrl('validation'));
@@ -176,7 +255,11 @@ class PanierController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $prepareCommande = $this->forward('EcommerceBundle:Commandes:prepareCommande');
+       /* var_dump($prepareCommande);
+        die();*/
         $commande = $em->getRepository('EcommerceBundle:Commandes')->find($prepareCommande->getContent());
+        /*var_dump($commande);
+        die();*/
 
         return $this->render('EcommerceBundle:Default:panier/layout/validation.html.twig', array('commande' => $commande));
     }

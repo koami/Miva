@@ -76,23 +76,25 @@
                 <!--Sidebar-->
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.2s">
 
-                    {#<div class="widget-wrapper">
-                        {% set cat = 0 %}
-                        <div class="list-group">
-                            {% for subCategorie in cat.subCategories %}
-                                {% if cat == 0 %}
-                                    <a href="#" class="list-group-item active">
-                                        {{ subCategorie.nom }}
-                                    </a>
-                                {% else %}
-                                    <a href="#" class="list-group-item">
-                                        {{ subCategorie.nom }}
-                                    </a>
-                                {% endif %}
-                                {% set cat = 1 %}
-                            {% endfor %}
+                    {% for cate in categorie %}
+                        <div class="widget-wrapper">
+                            {% set i = 0 %}
+                            <div class="list-group">
+                                {% for subCategorie in cate.subCategories %}
+                                    {% if i == 0 %}
+                                        <a href="#" class="list-group-item active">
+                                            {{ subCategorie.nom }}
+                                        </a>
+                                    {% else %}
+                                        <a href="#" class="list-group-item">
+                                            {{ subCategorie.nom }}
+                                        </a>
+                                    {% endif %}
+                                    {% set i = 1 %}
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>#}
+                    {% endfor %}
 
                 </div>
                 <!--/.Sidebar-->
