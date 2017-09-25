@@ -108,6 +108,7 @@ class CommandesController extends Controller
         $commande->setValider(1);
         $commande->setReference($this->container->get('setNewReference')->reference()); //Service
         $em->flush();
+        $this->quantitesUpdate();
 
         $session = $request->getSession();
         $session->remove('adresse');
@@ -128,5 +129,23 @@ class CommandesController extends Controller
 
         $this->get('session')->getFlashBag()->add('success','Votre commande est validé avec succès');
         return $this->redirect($this->generateUrl('factures'));
+    }
+
+    public function quantitesUpdate(){
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request_stack')->getCurrentRequest();
+        $session = $request->getSession();
+        $panier = $session->get('panier');
+        $produits = $em->getRepository('EcommerceBundle:Produits')->findArray(array_keys($session->get('panier')));
+
+        for ($i = 0; $i < count($produits); ++$i){
+            $quantite = $produits[$i]->getQuantite() - $panier[$produits[$i]->getId()];
+            $produits[$i]->setQuantite($quantite);
+            $em->persist($produits[$i]);
+        }
+
+        $em->flush();
+
+        return 0;
     }
 }
