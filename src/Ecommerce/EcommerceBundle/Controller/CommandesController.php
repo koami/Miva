@@ -117,8 +117,8 @@ class CommandesController extends Controller
 
         //Ici le mail de validation
         $message = \Swift_Message::newInstance()
-            ->setSubject('Validation de votre commande')
-            ->setFrom(array('devandclick@gmail.com' => "DevAndClick"))
+            ->setSubject('Commande Validation')
+            ->setFrom(array('ark@miva.tg' => "Miva"))
             ->setTo($commande->getUtilisateur()->getEmailCanonical())
             ->setCharset('utf-8')
             ->setContentType('text/html')

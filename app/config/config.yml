@@ -31,6 +31,17 @@ fos_user:
     from_email:
             address: "%mailer_user%"
             sender_name: "%mailer_user%"
+    registration:
+            confirmation:
+                enabled: true
+                from_email:
+                    address:        ark@miva.tg
+                    sender_name:    Miva Inscription
+    resetting:
+            email:
+                from_email:
+                    address:        ark@miva.tg
+                    sender_name:    Miva Password Reset
 
 # Twig Configuration
 twig:
@@ -107,20 +118,8 @@ swiftmailer:
     host:       "%mailer_host%"
     username:   "%mailer_user%"
     password:   "%mailer_password%"
+    port:       "%mailer_port%"
     spool:      { type: memory }
-
-# Swiftmailer Configuration
-#swiftmailer:
-#    transport: "%mailer_transport%"
-#    host:      "%mailer_host%"
-#    username:  "%mailer_user%"
-#    password:  "%mailer_password%"
-#    encryption: tls  "%mailer_encryption%"
-#    port:    587
-#    spool:     { type: memory }
-#    logging: true
-
-
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control

@@ -7,9 +7,10 @@ parameters:
     database_user: mivadmin
     database_password: pZaUVM2)=MIs
     mailer_transport: smtp
-    mailer_host: smtp.miva.tg
+    mailer_host: mail.miva.tg
     mailer_user: ark@miva.tg
     mailer_password: principia15&s
+    mailer_port: 587
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
 twig:
