@@ -8,11 +8,11 @@ $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 // Use APC for autoloading to improve performance.
 // Change 'sf2' to a unique prefix in order to prevent cache key conflicts
 // with other applications also using APC.
-/*
+
 $apcLoader = new ApcClassLoader('sf2', $loader);
 $loader->unregister();
 $apcLoader->register(true);
-*/
+
 
 /* Pour Debugger quand le app.php is blank
  * ini_set('display_errors', 1);
