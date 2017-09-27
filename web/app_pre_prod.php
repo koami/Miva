@@ -16,6 +16,7 @@ $apcLoader->register(true);
 
 ini_set('display_errors', 1);
 error_reporting(-1);
+$kernel = new AppKernel('pre_prod', false);
 ini_set('display_errors', 1);
 error_reporting(-1);
 
