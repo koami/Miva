@@ -5,7 +5,7 @@
 {% block fos_user_content %}
     {#<p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>#}
     <div align="center" class="m-t-md m-b-md">
-        <img class="img-responsive" src="{{ asset('img/ban.jpg') }}"/>
+        <img class="img-responsive" src="{{ asset('img/congrat.png') }}"/>
     </div>
     {% if app.session is not empty %}
         {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}

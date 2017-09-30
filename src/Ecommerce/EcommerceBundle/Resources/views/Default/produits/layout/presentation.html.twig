@@ -33,7 +33,9 @@
                             {% endfor %}
                         </div>
                     </div>
-
+                    <div align="center">
+                        <img class="img-responsive" src="{{ asset('img/miva-lay.jpg') }}"/>
+                    </div>
                 </div>
                 <!--/.Sidebar-->
 
@@ -43,7 +45,7 @@
                     <div class="row">
                         <div class="col-md-8 col-sm-8 col-xs-12">
                             <div class="">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12" style="z-index:1">
                                     <img class="img-responsive"
                                          src="{{ asset(produit.image.AssetPath) }}"
                                          alt="{{ produit.image.name }}"
@@ -142,7 +144,7 @@
             <!--Autres Produits de la meme sous Categorie-->
             <div class="zone m-t-lg">
                 <div >
-                    <h3>Autres articles</h3>
+
                 </div>
                 <!--Carousel Wrapper-->
                 <div >
@@ -154,15 +156,15 @@
                         <div class="active">
                             <div class="row">
                                 {% for produit in produit.subCategorie.produits %}
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 m-t-sm" style="border-left: 5px solid #">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 m-t-sm">
                                     <a href="">
                                         <div class="weater">
-                                            <div class="city-selected">
+                                            <div class="city-selected" style="border-left: 10px solid #ff9800">
                                                 <article>
 
                                                     <div class="info">
                                                         <div class="night">{{ produit.nom }}</div>
-
+                                                            <br><br>
                                                         <div class="temp">{{ produit.prix }}
                                                             <span style="font-size: 15px"></span>
                                                         </div>
