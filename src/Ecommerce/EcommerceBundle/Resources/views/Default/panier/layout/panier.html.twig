@@ -1,5 +1,4 @@
 {% extends "::layout/defaultLayout.html.twig" %}
-{% block titre %}MIVA | Panier{% endblock %}
 
 {% set totalHT = 0 %}
 {% set totalTTC = 0 %}
@@ -34,7 +33,10 @@
                             <th>Produit</th>
                             <th>Prix unitaire</th>
                             <th>Quantité</th>
+                            <th></th>
+                            <th></th>
                             <th>Montant</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <!--/Table head-->
@@ -74,6 +76,8 @@
                                     <td>
                                         {{ produit.prix }} F CFA
                                     </td>
+                                    <td></td>
+                                    <td></td>
 
                                     <td>
                                         <select name="qte" class="span1" onChange="this.form.submit()">

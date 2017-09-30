@@ -1,5 +1,5 @@
 {% extends "::layout/defaultLayout.html.twig" %}
-{% block titre %}MIVA | Valider Achat(s){% endblock %}
+
 
 {% block body %}
     <main>
@@ -36,6 +36,7 @@
                             <td>
                                 {{ produit.quantite }}
                             </td>
+
                             <td>{{ produit.prixRed }} F CFA</td>
                             <td>{{ produit.reduction }} %</td>
                             <td>{{ produit.garantie }}</td>
@@ -45,15 +46,23 @@
 
                 </tbody>
             </table>
+            
             <p class="pull-right">
                 <dt>Total : <span style="font-weight:600;font-size:35px" class="red-text text-darken-4">{{ commande.commande.prixRed }}</span> F CFA</dt>
                 
-                {#{% for key, reduction in commande.commande.reduction %}
-                    <dt>Reduction {{ key }} :</dt><dd>{{ reduction }} F CFA</dd>
+                {% for key, reduction in commande.commande.reduction %}
+                    <dt>Reduction {{ key }} :</dt><dd>{{ reduction }} €</dd>
                 {% endfor %}
 
                 <dt>Total TTC :</dt><dd>{{ commande.commande.prixRed }} F CFA</dd>#}
             </p>
+            
+            <div class="span3 pull-left">
+                <dl class="pull-left">
+                    <dt><h4>Adresse de livraison</h4></dt>
+                    <dt>{{ commande.commande.livraison.prenom }} {{ commande.commande.livraison.nom }}</dt>
+                    <dt>{{ commande.commande.livraison.adresse }}</dt>
+                </dl>
             </div>
 
             <div class="clearfix"></div>
