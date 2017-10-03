@@ -1,0 +1,33 @@
+{% extends "::layout/defaultLayout.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+    <div class="col-md-4 col-sm-6">
+        <h5 class="white-text">Nous contacter</h5>
+        <p class="grey-text text-lighten-1">
+            Ravi de recevoir
+            vos messages.
+        </p>
+
+        <div class="span4 offset2">
+            <form action="{{ path('contactUs') }}" method="POST" {{ form_enctype(form) }} >
+                {#{{ form_errors(form) }}#}
+
+                {{ form_row(form.name) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.sujet) }}
+                {{ form_row(form.message) }}
+
+                {#{{ form_rest(form) }}#}
+
+                {{ form_widget(form) }}
+                <button class="btn miva" type="submit">Envoyer</button>
+            </form>
+        </div>
+
+    </div>
+    </div>
+</div>
+
+{% endblock %}
