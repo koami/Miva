@@ -94,11 +94,11 @@
 
                                 <br>
 
-                                <form class="m-t-n-lg" action="{{ path('ajouter', { 'id' : produit.id }) }}"
+                                <form class="m-t-n-lg formul" action="{{ path('ajouterPanier', { 'id' : produit.id }) }}"
                                       method="get">
                                     {% if panier[produit.id] is not defined %}
                                         <label>Quantité:</label>
-                                        <select name="qte" class="form-control">
+                                        <select name="qte" class="form-control qte">
                                             {% set quantite = produit.quantite %}
                                             {% for i in 1..quantite %}
                                                 <option value="{{ i }}">{{ i }}</option>
@@ -124,7 +124,7 @@
                                     </ul>
 
                                     {% if panier[produit.id] is not defined %}
-                                        <button class="btn miva btn-lg" type="submit">
+                                        <button class="btn miva btn-lg produitAjax" id="pro{{ produit.id }}" type="submit">
                                             AJOUTER AU PANIER
                                         </button>
                                     {% endif %}
@@ -202,8 +202,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <!-- Panier -->
-    <script src="{{ asset('js/panier.js') }}"></script>
 
     <script>
         //$("#zoom_01").elevateZoom();
