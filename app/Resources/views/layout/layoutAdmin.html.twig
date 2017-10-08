@@ -15,8 +15,7 @@
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
         <!-- For the Rating stars -->
         <link rel="stylesheet" href="{{ asset('bundles/dcsrating/css/rating.css') }}" />
-        <!-- List core JavaScript -->
-        <script type="text/javascript" src="{{ asset('js/List.js') }}"> </script>
+
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -205,8 +204,10 @@
 
         <script type="text/javascript"
             src="{{ asset('bundles/fosjsrouting/js/router.js') }}">
-
         </script>
+
+        <!-- List core JavaScript -->
+        <script type="text/javascript" src="{{ asset('js/List.js') }}"> </script>
 
         <script type="text/javascript"
             src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}">
