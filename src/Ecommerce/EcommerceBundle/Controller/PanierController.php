@@ -36,7 +36,30 @@ class PanierController extends Controller
         {
             unset($panier[$id]);
             $session->set('panier',$panier);
-            $this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
+            //$this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
+        }
+
+        $response = new JsonResponse();
+        $response->setData(array(
+            'articles' => count($session->get('panier')),
+            'success' => 'Article supprimé avec succès'
+        ));
+
+        return $response;
+    }
+
+    public function viderAction()
+    {
+        //$session = $this->getRequest()->getSession();
+        $request = $this->container->get('request_stack')->getCurrentRequest();
+        $session = $request->getSession();
+        $panier = $session->get('panier');
+
+        if ($panier)
+        {
+            unset($panier);
+            $session->set('panier',array());
+            $this->get('session')->getFlashBag()->add('success','Votre panier a bien été vider');
         }
 
         return $this->redirect($this->generateUrl('panier'));
@@ -98,78 +121,8 @@ class PanierController extends Controller
             'message' => 'Quantité modifié avec succès'
         ));
 
-        //return $this->render(controller('EcommerceBundle:Panier:menu'));
-
-        //return $this->redirect($request->headers->get('referer'));
         return $response;
     }
-
-    /* // The one for the js/JQuery and Ajax
-    public function ajouterPanierAction(Request $request)
-    {
-        $response = new JsonResponse();
-        $requestData = $request->request->all();
-        $productid = $requestData['product'];
-
-        $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('EcommerceBundle:Produits')->find($productid);
-
-        //$session = $this->getRequest()->getSession();
-        $request = $this->container->get('request_stack')->getCurrentRequest();
-        $session = $request->getSession();
-
-        if (!$session->has('panier')) $session->set('panier',array());
-        $panier = $session->get('panier');
-
-        if (array_key_exists($productid, $panier)) {
-            if ($request->query->get('qte') != null) $panier[$productid] = $request->query->get('qte');
-            $this->get('session')->getFlashBag()->add('success','Quantité modifié avec succès');
-        } else {
-            if ($request->query->get('qte') != null)
-                $panier[$productid] = $request->query->get('qte');
-            else
-                $panier[$productid] = 1;
-
-            $this->get('session')->getFlashBag()->add('success','Article ajouté avec succès');
-        }
-
-        $response->setData(array(
-            'success' => true,
-            'message' => 'Quantité modifié avec succès',
-            'amount'  => $panier[ $productid ]
-        ));
-
-        $session->set('panier',$panier);
-
-        return $response;
-    }*/
-
-    /*public function addQuantityAction( Request $request ) {
-        $response = new JsonResponse();
-        $requestData = $request->request->all();
-        $productid     = $requestData['product'];
-        $quantity = $requestData['quantity'];
-
-        $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('MpShopBundle:Product')->find($productid);
-        $qtyAvailable = $product->getStock();
-
-        $session = $this->getRequest()->getSession();
-        $cart = $session->get('cart', array());
-        if ( $qtyAvailable > $cart[ $productid ] ) {
-        $cart[ $productid ] = $cart[ $productid ] + 1;
-        $qtyAvailable = $qtyAvailable - 1;
-        $response->setData(array(
-            'success' => true,
-            'message' => 'Qunatity increased',
-            'amount'  => $cart[ $productid ]
-        ));
-        $session->set('cart', $cart);
-        } else {
-            $response->setData(array('success'=>false,'message'=>'Out of stock'));
-        }
-        return $response;
-    }*/
 
     public function panierAction()
     {
