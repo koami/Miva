@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="{{ asset('css/style_rating.css') }}" />
     <!-- For the Rating stars -->
     <link rel="stylesheet" href="{{ asset('bundles/dcsrating/css/rating.css') }}" />
-    <!-- List core JavaScript -->
-    <script type="text/javascript" src="{{ asset('js/List.js') }}"> </script>
 
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -295,6 +293,11 @@
         src="{{ asset('js/elevatezoom/jquery.elevatezoom.js') }}"></script>
 
 <script src="{{ asset('bundles/dcsrating/js/rating.js') }}"></script>
+
+<script src="{{ asset('js/panier.js') }}"></script>
+
+<!-- List core JavaScript -->
+<script type="text/javascript" src="{{ asset('js/List.js') }}"> </script>
 
 <script>
     var loader = "{{ asset('img/loader-small.gif') }}"; //link to the animated loader-small.gif
