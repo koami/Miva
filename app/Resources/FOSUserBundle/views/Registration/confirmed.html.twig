@@ -4,6 +4,9 @@
 
 {% block fos_user_content %}
     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    <div align="center" class="m-t-md m-b-md">
+        <img class="img-responsive" src="{{ asset('img/congrat.png') }}"/>
+    </div>
     {% if targetUrl %}
     <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
     {% endif %}

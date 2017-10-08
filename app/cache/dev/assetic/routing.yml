@@ -2,4 +2,4 @@ _assetic:
     resource: .
     type: assetic
 _app:
-    resource: 'C:\Users\Koami\Documents\GitHub\Miva\app/config/routing_dev.yml'
+    resource: 'C:\wamp64\www\Miva\app/config/routing_dev.yml'

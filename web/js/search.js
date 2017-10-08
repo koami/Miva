@@ -30,6 +30,8 @@ $('document').ready(function(){
 				}
 			});
 			return false;
+		} else {
+            $(".aja").remove();
 		}
 		else{
 			$(".aja").empty();

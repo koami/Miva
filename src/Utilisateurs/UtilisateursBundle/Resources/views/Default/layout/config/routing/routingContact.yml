@@ -1,0 +1,7 @@
+contactUs:
+    pattern: /
+    defaults: { _controller: UtilisateursBundle:Contact:contact }
+
+sendMail:
+    pattern: /Mail_Envoye
+    defaults: { _controller: UtilisateursBundle:Contact:sendMail }

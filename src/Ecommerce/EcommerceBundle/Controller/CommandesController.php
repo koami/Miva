@@ -42,6 +42,8 @@ class CommandesController extends Controller
 
             $commande['produit'][$produit->getId()] = array('reference' => $produit->getNom(),
                 'quantite' => $panier[$produit->getId()],
+                'reduction' => $produit->getReduction(),
+                'garantie' => $produit->getGarantie(),
                 'prixSR' => round($produit->getPrix(),2),
                 'prixRed' => round($produit->getPrix() * (1 - $reduction ),2));
         }
@@ -65,7 +67,6 @@ class CommandesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
-        //$session = $this->container->get('session');
 
         if (!$session->has('commande')){
             $commande = new Commandes();
@@ -74,12 +75,12 @@ class CommandesController extends Controller
             $commande = $em->getRepository('EcommerceBundle:Commandes')->find($session->get('commande'));
         }
 
-        var_dump($commande);
-        die();
         $commande->setDate(new \DateTime());
         $commande->setUtilisateur($this->container->get('security.context')->getToken()->getUser());
         $commande->setValider(0);
         $commande->setReference(0);
+        $commande->setKabba(false);
+        $commande->setLivrer(0);
         $commande->setCommande($this->facture());
 
         if (!$session->has('commande')) {
@@ -107,6 +108,7 @@ class CommandesController extends Controller
         $commande->setValider(1);
         $commande->setReference($this->container->get('setNewReference')->reference()); //Service
         $em->flush();
+        $this->quantitesUpdate();
 
         $session = $request->getSession();
         $session->remove('adresse');
@@ -115,8 +117,8 @@ class CommandesController extends Controller
 
         //Ici le mail de validation
         $message = \Swift_Message::newInstance()
-            ->setSubject('Validation de votre commande')
-            ->setFrom(array('devandclick@gmail.com' => "DevAndClick"))
+            ->setSubject('Commande Validation')
+            ->setFrom(array('ark@miva.tg' => "Miva"))
             ->setTo($commande->getUtilisateur()->getEmailCanonical())
             ->setCharset('utf-8')
             ->setContentType('text/html')
@@ -127,5 +129,23 @@ class CommandesController extends Controller
 
         $this->get('session')->getFlashBag()->add('success','Votre commande est validé avec succès');
         return $this->redirect($this->generateUrl('factures'));
+    }
+
+    public function quantitesUpdate(){
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request_stack')->getCurrentRequest();
+        $session = $request->getSession();
+        $panier = $session->get('panier');
+        $produits = $em->getRepository('EcommerceBundle:Produits')->findArray(array_keys($session->get('panier')));
+
+        for ($i = 0; $i < count($produits); ++$i){
+            $quantite = $produits[$i]->getQuantite() - $panier[$produits[$i]->getId()];
+            $produits[$i]->setQuantite($quantite);
+            $em->persist($produits[$i]);
+        }
+
+        $em->flush();
+
+        return 0;
     }
 }

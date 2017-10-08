@@ -1,0 +1,30 @@
+{% extends "::layout/defaultLayout.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+    <div class="col-md-4 col-sm-6">
+        <h5 class="white-text">Message Envoye</h5>
+        <p class="grey-text text-lighten-1">
+            Merci pour votre mail, nous vous revenons le plus tot possible.
+
+            Equipe MIVA.
+        </p>
+
+        {% if contact != null %}
+            <h2>{{ contact.sujet }}</h2>
+            <div class="row">
+                <ul>
+                    <li>Message de {{ contact.sujet }}</li>
+                    <li>{{ contact.message }}</li>
+                </ul>
+
+            </div>
+        {% endif %}
+
+
+    </div>
+    </div>
+</div>
+
+{% endblock %}

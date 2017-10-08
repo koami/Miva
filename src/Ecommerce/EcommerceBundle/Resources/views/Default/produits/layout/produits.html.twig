@@ -6,7 +6,7 @@
     <img class="img-responsive" src="{{ asset('img/ban.jpg') }}">
 </div>
     
-<main>
+<main style="margin-top: 20px">
 
     <!--Main layout-->
     <div class="container">
@@ -91,6 +91,9 @@
 
                         </div>
                     </div>
+                </div>
+                <div align="center">
+                    <img class="img-responsive" src="{{ asset('img/miva-lay.jpg') }}"/>
                 </div>
 
             </div>
@@ -224,8 +227,7 @@
                                                 {{ produit.prix }}F CFA
                                             </div>
 
-                                            <img src="{{ asset('img/prod.png') }}" style="position:
-                                                 absolute;width: 75px; margin-left:153px;margin-top: -15px; z-index: 1"/>
+                                            <img src="{{ asset('img/prod.png') }}" class="pos"/>
 
                                             <div class="card-block">
 
@@ -275,9 +277,9 @@
                     <!--First columnn-->
 
                 </div>
-                <div class="row miva">
-                    <a class="btn btn-large waves-effect waves-light miva"
-                       href="{{ path('voirPlus') }}">
+                <div class="row m-t-md">
+                    <a class="red-text text-darken-4 btn-large waves-effect waves-light"
+                       href="{{ path('voirPlus') }}" style="display:block"> <i class="fa fa-arrow-right"></i> TOUS LES ARTICLES
                     </a>
                 </div>
                 <!--/.Second row-->

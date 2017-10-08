@@ -8,12 +8,11 @@
     <meta name="description" content="{% block description %}{% endblock %}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
     <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style_rating.css') }}" />
     <!-- For the Rating stars -->
     <link rel="stylesheet" href="{{ asset('bundles/dcsrating/css/rating.css') }}" />
@@ -25,7 +24,6 @@
 </head>
 
 <body>
-
 <header>
     <nav class="navbar navbar-toggleable-md navbar-dark">
         <div class="container">
@@ -62,14 +60,17 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ path('voirPlus') }}">
                             Articles
                         </a>
+                    </li>
+                    <li>
+                        {% render(controller('EcommerceBundle:Produits:recherche')) %}
                     </li>
 
                 </ul>
 
-                {% render(controller('EcommerceBundle:Produits:recherche')) %}
+
 
 
                 <ul class="navbar-nav mr-auto">
@@ -156,15 +157,23 @@
                         <i class="icon-print"></i>
                         &nbsp;Fax: {{ fax }}
                     </li>
+                    <li>
+                        <p class="grey-text text-lighten-1 m-t-md">
+                            Ravi de recevoir
+                            vos messages.
+                        </p>
+                        <a class="btn miva" href="{{ path('contactUs') }}"><i class="fa fa-envelope"></i> ENVOYER MAIL</a>
+                    </li>
                 </ul>
             </div>
             <!--/.Second column-->
-            <div class="col-md-4 col-sm-6">
-                <h5 class="white-text">Nous contacter</h5>
-                <p class="grey-text text-lighten-1">
-                    Ravi de recevoir
-                    vos messages.
-                </p>
+            <div class="col-md-4 col-sm-6 m-t-md">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"><dd class="social"><i class="fa fa-facebook m-t-md"></i></dd></a></div>
+                    <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"><dd class="social"><i class="fa fa-google-plus m-t-md"></i></dd></a></div>
+                    <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"><dd class="social"><i class="fa fa-twitter m-t-md"></i></dd></a></div>
+                </div>
+
                 <form role="form" id="form-contact" autocomplete="off" method="post" action="">
                     <div class="row">
                         <div class="input-field col-md-6 col-sm-12">

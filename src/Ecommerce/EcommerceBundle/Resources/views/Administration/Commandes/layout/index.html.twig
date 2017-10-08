@@ -21,16 +21,16 @@
                 <td>{{ commande.reference }}</td>
                 <td>{{ commande.utilisateur.username }}</td>
                 <td>
-                    <a href="{{ path('adminShowFacture', { 'id' : commande.id }) }}">
-                        <i class="fa fa-book"></i>
+                    <a class="badge blue" href="{{ path('adminShowFacture', { 'id' : commande.id }) }}">
+                        <i style="font-size: 1.3em" class="fa fa-book"></i>
                     </a>
                 </td>
                 <td>
                     {% if commande.livrer %}
                         <i class="fa fa-check-circle"></i> Livrer
                     {% else %}
-                        <a href="{{ path('adminLivrer', { 'id' : commande.id }) }}">
-                            <i class="fa fa-bus"></i>
+                        <a class="badge blue" href="{{ path('adminLivrer', { 'id' : commande.id }) }}">
+                            <i style="font-size: 1.3em" class="fa fa-bus"></i>
                         </a>
                     {% endif %}
                 </td>

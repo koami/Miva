@@ -262,10 +262,19 @@
     opacity: 0.5;
     font-weight: 500;
 }
+.social{
+    height: 50px;
+    width: 50px;
+    background-color: darkred;
+    border: 1px solid transparent;
+    border-radius:25px;
+    text-align: center;
+    font-size: 1.5em;
+}
 
 main {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
+    padding-top: 3em;
+    padding-bottom:2rem;
 }
 
 .bg{
@@ -276,6 +285,13 @@ main {
     border: 1px solid transparent;
     border-radius: 10px;
     background-color: #f4f9ea;
+}
+.well0{
+    padding: 10px 30px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: #f4f9ea;
+    font-size: 15px;
 }
 .widget-wrapper {
     padding-bottom: 2rem;
@@ -299,7 +315,6 @@ main {
 footer.page-footer {
     padding: 30px 10px 0;
     background-color: #5E0F0F;
-    margin-top: 2rem;
     color: white;
 }
 .pos{
@@ -467,13 +482,9 @@ article {
     margin-left: 112px;
 
 }
-.cadre{
-    border:1px solid #dedede;
-
-}
 
 .temp {
-    font-size: 73px;
+    font-size: 35px;
     display: block;
     position: relative;
     font-weight: bold;
@@ -1683,7 +1694,7 @@ span.input-group-addon i {
 .zone{
     color: white;
     background-color: #c9c9c9;
-    padding: 30px 100px;
+    padding: 30px 50px;
     font-weight: 500;
     margin-top: 20px;
 }

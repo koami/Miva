@@ -12,15 +12,15 @@
 }
 
 .resultats ul li a{
-    color: #000;
+    color: #ccc;
     text-decoration: none;
     width: 200px; 
     height: 30px;
     display: block;
     text-align: center;
-    border: 1px solid #000;
+    border: 1px solid #5f1b06;
     border-top: 0px;
-    background-color: #ccc;
+    background-color: #4c0401;
 }
 
 .resultats{
