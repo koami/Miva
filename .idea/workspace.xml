@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fdde49f4-628d-45df-983b-72ca71af404f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Utilisateurs/UtilisateursBundle/Controller/ContactController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Utilisateurs/UtilisateursBundle/Entity/Contact.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Utilisateurs/UtilisateursBundle/Form/ContactType.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Utilisateurs/UtilisateursBundle/Repository/ContactRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Utilisateurs/UtilisateursBundle/Resources/config/routing/routingContact.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/webServers.xml" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/confirmed.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/confirmed.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/layout/defaultLayout.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/layout/defaultLayout.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Utilisateurs/UtilisateursBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/Utilisateurs/UtilisateursBundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app_dev.php" afterPath="$PROJECT_DIR$/web/app_dev.php" />
-    </list>
+    <list default="true" id="fdde49f4-628d-45df-983b-72ca71af404f" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -805,12 +793,12 @@
       <workItem from="1506777045719" duration="1445000" />
       <workItem from="1506794360050" duration="4536000" />
       <workItem from="1506874061777" duration="32000" />
-      <workItem from="1507026899129" duration="980000" />
+      <workItem from="1507026899129" duration="1571000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="476273000" />
+    <option name="totallyTimeSpent" value="476864000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="952" y="0" width="976" height="1038" extended-state="0" />
