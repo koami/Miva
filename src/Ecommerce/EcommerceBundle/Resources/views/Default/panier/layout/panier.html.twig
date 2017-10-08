@@ -14,13 +14,6 @@
 
         <!--Main layout-->
         <div class="container">
-            <div class="message alert alert-success">
-                {% for flashMessage in app.session.flashbag.get('success') %}
-                    <div class="">
-                        {{ flashMessage }}
-                    </div>
-                {% endfor %}
-            </div>
             <h1 style="font-weight: 700">Mon panier</h1>
             <p>Visualisez et confirmez vos achats</p>
             <div class="well">
