@@ -30,10 +30,7 @@ $('document').ready(function(){
 				}
 			});
 			return false;
-		} else {
-            $(".aja").remove();
-		}
-		else{
+		}else{
 			$(".aja").empty();
 		}
 		
