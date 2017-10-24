@@ -14,10 +14,8 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class ProduitsController extends Controller
-{
-    public function produitsAction(SubCategories $subCategorie = null)
-    {
+class ProduitsController extends Controller{
+    public function produitsAction(SubCategories $subCategorie = null){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
@@ -64,8 +62,7 @@ class ProduitsController extends Controller
         }
     }
 
-    public function plusAction()
-    {
+    public function plusAction(){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
@@ -92,8 +89,7 @@ class ProduitsController extends Controller
 
     }
 
-    public function articlesAction(Categories $categorie)
-    {
+    public function articlesAction(Categories $categorie){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
@@ -121,8 +117,7 @@ class ProduitsController extends Controller
                 'rayons' => $rayons));
     }
 
-    public function presentationAction($id)
-    {
+    public function presentationAction($id){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
@@ -141,14 +136,12 @@ class ProduitsController extends Controller
                 'panier' => $panier));
     }
 
-    public function rechercheAction()
-    {
+    public function rechercheAction(){
         $form = $this->createForm(new RechercheType());
         return $this->render('EcommerceBundle:Default:Recherche/modulesUsed/recherche.html.twig', array('form' => $form->createView()));
     }
 
-    public function rechercheTraitementAction()
-    {
+    public function rechercheTraitementAction(){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         if ($request->isXmlHttpRequest()) {
             $chaine = $request->get('chaine');

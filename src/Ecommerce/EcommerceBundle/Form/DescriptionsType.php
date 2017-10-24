@@ -7,14 +7,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ecommerce\EcommerceBundle\Form\MediaType;
 
-class DescriptionsType extends AbstractType
-{
+class DescriptionsType extends AbstractType{
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
             ->add('description')
         ;
@@ -23,8 +21,7 @@ class DescriptionsType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver){
         $resolver->setDefaults(array(
             'data_class' => 'Ecommerce\EcommerceBundle\Entity\Descriptions'
         ));
@@ -33,8 +30,7 @@ class DescriptionsType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
-    {
+    public function getName(){
         return 'ecommerce_ecommercebundle_descriptions';
     }
 }

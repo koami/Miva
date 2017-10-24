@@ -10,8 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table("commandes")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\CommandesRepository")
  */
-class Commandes
-{
+class Commandes{
     /**
      * @var integer
      *
@@ -87,10 +86,8 @@ class Commandes
      * @param boolean $valider
      * @return Commandes
      */
-    public function setValider($valider)
-    {
+    public function setValider($valider){
         $this->valider = $valider;
-
         return $this;
     }
 
@@ -99,8 +96,7 @@ class Commandes
      *
      * @return boolean 
      */
-    public function getValider()
-    {
+    public function getValider(){
         return $this->valider;
     }
 
@@ -110,10 +106,8 @@ class Commandes
      * @param \DateTime $date
      * @return Commandes
      */
-    public function setDate($date)
-    {
+    public function setDate($date){
         $this->date = $date;
-
         return $this;
     }
 
@@ -122,8 +116,7 @@ class Commandes
      *
      * @return \DateTime 
      */
-    public function getDate()
-    {
+    public function getDate(){
         return $this->date;
     }
 
@@ -133,10 +126,8 @@ class Commandes
      * @param integer $reference
      * @return Commandes
      */
-    public function setReference($reference)
-    {
+    public function setReference($reference){
         $this->reference = $reference;
-
         return $this;
     }
 
@@ -145,8 +136,7 @@ class Commandes
      *
      * @return integer 
      */
-    public function getReference()
-    {
+    public function getReference(){
         return $this->reference;
     }
 
@@ -156,10 +146,8 @@ class Commandes
      * @param array $commande
      * @return Commandes
      */
-    public function setCommande($commande)
-    {
+    public function setCommande($commande){
         $this->commande = $commande;
-
         return $this;
     }
 
@@ -168,40 +156,35 @@ class Commandes
      *
      * @return array 
      */
-    public function getCommande()
-    {
+    public function getCommande(){
         return $this->commande;
     }
 
     /**
      * @return bool
      */
-    public function isKabba()
-    {
+    public function isKabba(){
         return $this->kabba;
     }
 
     /**
      * @param bool $kabba
      */
-    public function setKabba($kabba)
-    {
+    public function setKabba($kabba){
         $this->kabba = $kabba;
     }
 
     /**
      * @return bool
      */
-    public function isLivrer()
-    {
+    public function isLivrer(){
         return $this->livrer;
     }
 
     /**
      * @param bool $livrer
      */
-    public function setLivrer($livrer)
-    {
+    public function setLivrer($livrer){
         $this->livrer = $livrer;
     }
 
@@ -211,10 +194,8 @@ class Commandes
      * @param \Utilisateurs\UtilisateursBundle\Entity\Utilisateurs $utilisateur
      * @return Commandes
      */
-    public function setUtilisateur(\Utilisateurs\UtilisateursBundle\Entity\Utilisateurs $utilisateur = null)
-    {
+    public function setUtilisateur(\Utilisateurs\UtilisateursBundle\Entity\Utilisateurs $utilisateur = null){
         $this->utilisateur = $utilisateur;
-
         return $this;
     }
 
@@ -223,8 +204,7 @@ class Commandes
      *
      * @return \Utilisateurs\UtilisateursBundle\Entity\Utilisateurs 
      */
-    public function getUtilisateur()
-    {
+    public function getUtilisateur(){
         return $this->utilisateur;
     }
 }

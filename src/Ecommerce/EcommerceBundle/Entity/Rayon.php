@@ -10,8 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table("rayon")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\RayonRepository")
  */
-class Rayon
-{
+class Rayon{
     /**
      * @var integer
      *
@@ -45,8 +44,7 @@ class Rayon
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId(){
         return $this->id;
     }
 
@@ -56,10 +54,8 @@ class Rayon
      * @param string $nom
      * @return Rayon
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom){
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -68,8 +64,7 @@ class Rayon
      *
      * @return string 
      */
-    public function getNom()
-    {
+    public function getNom(){
         return $this->nom;
     }
 
@@ -79,10 +74,8 @@ class Rayon
      * @param string $icon
      * @return Rayon
      */
-    public function setIcon($icon)
-    {
+    public function setIcon($icon){
         $this->icon = $icon;
-
         return $this;
     }
 
@@ -91,15 +84,13 @@ class Rayon
      *
      * @return string 
      */
-    public function getIcon()
-    {
+    public function getIcon(){
         return $this->icon;
     }
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -109,10 +100,8 @@ class Rayon
      * @param \Ecommerce\EcommerceBundle\Entity\Media $image
      * @return Rayon
      */
-    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image)
-    {
+    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image){
         $this->image = $image;
-
         return $this;
     }
 
@@ -121,8 +110,7 @@ class Rayon
      *
      * @return \Ecommerce\EcommerceBundle\Entity\Media 
      */
-    public function getImage()
-    {
+    public function getImage(){
         return $this->image;
     }
 
@@ -132,10 +120,8 @@ class Rayon
      * @param \Ecommerce\EcommerceBundle\Entity\Categories $categories
      * @return Rayon
      */
-    public function addCategory(\Ecommerce\EcommerceBundle\Entity\Categories $categories)
-    {
+    public function addCategory(\Ecommerce\EcommerceBundle\Entity\Categories $categories){
         $this->categories[] = $categories;
-
         return $this;
     }
 
@@ -144,8 +130,7 @@ class Rayon
      *
      * @param \Ecommerce\EcommerceBundle\Entity\Categories $categories
      */
-    public function removeCategory(\Ecommerce\EcommerceBundle\Entity\Categories $categories)
-    {
+    public function removeCategory(\Ecommerce\EcommerceBundle\Entity\Categories $categories){
         $this->categories->removeElement($categories);
     }
 
@@ -154,8 +139,7 @@ class Rayon
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getCategories()
-    {
+    public function getCategories(){
         return $this->categories;
     }
     

@@ -10,8 +10,7 @@ use Ecommerce\EcommerceBundle\Entity\Produits;
 
 class CommandesAdminController extends Controller
 {
-    public function commandesAction()
-    {
+    public function commandesAction(){
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
         $qb->select('c');
@@ -19,13 +18,11 @@ class CommandesAdminController extends Controller
         $qb->where('c.valider = :valider');
         $qb->setParameter('valider', 1);
         $commandes = $qb->getQuery()->getResult();
-        //$commandes = $em->getRepository('EcommerceBundle:Commandes')->findAll();
 
         return $this->render('EcommerceBundle:Administration:Commandes/layout/index.html.twig', array('commandes' => $commandes));
     }
 
-    public function menuAction()
-    {
+    public function menuAction(){
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
         $qb->select('count(c.id)');
@@ -39,8 +36,7 @@ class CommandesAdminController extends Controller
         return $this->render('EcommerceBundle:Administration:Commandes/modulesUsed/commande.html.twig', array('commandes' => $commandes));
     }
 
-    public function showFactureAction($id)
-    {
+    public function showFactureAction($id){
         $em = $this->getDoctrine()->getManager();
         $facture = $em->getRepository('EcommerceBundle:Commandes')->find($id);
 
@@ -57,8 +53,7 @@ class CommandesAdminController extends Controller
         return $response;
     }
 
-    public function livrerAction($id)
-    {
+    public function livrerAction($id){
         $em = $this->getDoctrine()->getManager();
         $commande = $em->getRepository('EcommerceBundle:Commandes')->find($id);
 

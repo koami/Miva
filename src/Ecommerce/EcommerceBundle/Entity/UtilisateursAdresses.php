@@ -11,8 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table("utilisateursadresses")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\UtilisateursAdressesRepository")
  */
-class UtilisateursAdresses
-{
+class UtilisateursAdresses{
     /**
      * @var integer
      *
@@ -71,14 +70,12 @@ class UtilisateursAdresses
      */
     private $complement;
 
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId(){
         return $this->id;
     }
 
@@ -88,10 +85,8 @@ class UtilisateursAdresses
      * @param string $nom
      * @return UtilisateursAdresses
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom){
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -100,8 +95,7 @@ class UtilisateursAdresses
      *
      * @return string 
      */
-    public function getNom()
-    {
+    public function getNom(){
         return $this->nom;
     }
 
@@ -111,10 +105,8 @@ class UtilisateursAdresses
      * @param string $prenom
      * @return UtilisateursAdresses
      */
-    public function setPrenom($prenom)
-    {
+    public function setPrenom($prenom){
         $this->prenom = $prenom;
-
         return $this;
     }
 
@@ -123,8 +115,7 @@ class UtilisateursAdresses
      *
      * @return string 
      */
-    public function getPrenom()
-    {
+    public function getPrenom(){
         return $this->prenom;
     }
 
@@ -134,10 +125,8 @@ class UtilisateursAdresses
      * @param string $telephone
      * @return UtilisateursAdresses
      */
-    public function setTelephone($telephone)
-    {
+    public function setTelephone($telephone){
         $this->telephone = $telephone;
-
         return $this;
     }
 
@@ -146,8 +135,7 @@ class UtilisateursAdresses
      *
      * @return string 
      */
-    public function getTelephone()
-    {
+    public function getTelephone(){
         return $this->telephone;
     }
 
@@ -157,10 +145,8 @@ class UtilisateursAdresses
      * @param string $adresse
      * @return UtilisateursAdresses
      */
-    public function setAdresse($adresse)
-    {
+    public function setAdresse($adresse){
         $this->adresse = $adresse;
-
         return $this;
     }
 
@@ -169,8 +155,7 @@ class UtilisateursAdresses
      *
      * @return string 
      */
-    public function getAdresse()
-    {
+    public function getAdresse(){
         return $this->adresse;
     }
 
@@ -180,10 +165,8 @@ class UtilisateursAdresses
      * @param string $quartier
      * @return UtilisateursAdresses
      */
-    public function setQuartier($quartier)
-    {
+    public function setQuartier($quartier){
         $this->quartier = $quartier;
-
         return $this;
     }
 
@@ -192,8 +175,7 @@ class UtilisateursAdresses
      *
      * @return string 
      */
-    public function getQuartier()
-    {
+    public function getQuartier(){
         return $this->quartier;
     }
 
@@ -203,10 +185,8 @@ class UtilisateursAdresses
      * @param string $complement
      * @return UtilisateursAdresses
      */
-    public function setComplement($complement)
-    {
+    public function setComplement($complement){
         $this->complement = $complement;
-
         return $this;
     }
 
@@ -215,8 +195,7 @@ class UtilisateursAdresses
      *
      * @return string 
      */
-    public function getComplement()
-    {
+    public function getComplement(){
         return $this->complement;
     }
 
@@ -226,10 +205,8 @@ class UtilisateursAdresses
      * @param \Utilisateurs\UtilisateursBundle\Entity\Utilisateurs $utilisateur
      * @return UtilisateursAdresses
      */
-    public function setUtilisateur(\Utilisateurs\UtilisateursBundle\Entity\Utilisateurs $utilisateur = null)
-    {
+    public function setUtilisateur(\Utilisateurs\UtilisateursBundle\Entity\Utilisateurs $utilisateur = null){
         $this->utilisateur = $utilisateur;
-
         return $this;
     }
 
@@ -238,8 +215,7 @@ class UtilisateursAdresses
      *
      * @return \Utilisateurs\UtilisateursBundle\Entity\Utilisateurs 
      */
-    public function getUtilisateur()
-    {
+    public function getUtilisateur(){
         return $this->utilisateur;
     }
 }

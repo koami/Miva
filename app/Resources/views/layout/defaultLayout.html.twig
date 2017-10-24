@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style_rating.css') }}" />
-    <!-- For the Rating stars -->
-    <link rel="stylesheet" href="{{ asset('bundles/dcsrating/css/rating.css') }}" />
 
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -68,9 +66,6 @@
 
                 </ul>
 
-
-
-
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item dropdown btn-group">
@@ -106,11 +101,6 @@
 
 
             </div>
-
-            {#<a class="brand" href="{{ path('produits') }}">Miva</a>
-            <div class="nav-collapse collapse">
-                {% render(controller('EcommerceBundle:Produits:recherche')) %}
-            </div>#}
         </div>
     </nav>
 
@@ -124,25 +114,19 @@
 
 {% block body %}{% endblock %}
 
-<!--Footer-->
-<footer class="page-footer center-on-small-only">
 
-    <!--Footer Links-->
+<footer class="page-footer center-on-small-only">
     <div class="container">
         <div class="row">
-
-            <!--First column-->
             <div class="col-md-4 col-sm-6">
                 <h5 class="title">A propos</h5>
                 <p>Nous sommes a votre service pour vous fournir
                     les meilleurs produits a des prix defiants toutes
                     concurrences.</p>
             </div>
-            <!--/.First column-->
 
             <hr class="hidden-md-up">
 
-            <!--Second column-->
             <div class="col-md-4 col-sm-6">
                 <h5 class="title">Nous contacter</h5>
                 <ul>
@@ -164,7 +148,6 @@
                     </li>
                 </ul>
             </div>
-            <!--/.Second column-->
             <div class="col-md-4 col-sm-6 m-t-md">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"><dd class="social"><i class="fa fa-facebook m-t-md"></i></dd></a></div>
@@ -203,9 +186,7 @@
             </div>
         </div>
     </div>
-    <!--/.Footer Links-->
 
-    <!--Copyright-->
     <center>
         <div class="footer-copyright"
              style="background-color: #3b0a0a;
@@ -215,56 +196,38 @@
             </div>
         </div>
     </center>
-    <!--/.Copyright-->
 </footer>
-<!--/.Footer-->
 
-<!-- SCRIPTS -->
-
-<!-- JQuery -->
 <script type="text/javascript"
         src="{{ asset('js/jquery-2.2.3.min.js') }}">
 
 </script>
 
-<!-- Bootstrap tooltips -->
 <script type="text/javascript"
         src="{{ asset('js/tether.min.js') }}">
 
 </script>
 
-<!-- Bootstrap core JavaScript -->
 <script type="text/javascript"
         src="{{ asset('js/bootstrap.min.js') }}">
 
 </script>
 
-<!-- recherche core JavaScript -->
 <script type="text/javascript" src="{{ asset('js/search.js') }}"></script>
 
-<!-- MDB core JavaScript -->
 <script type="text/javascript"
-        src="{{ asset('js/mdb.min.js') }}">
-
-</script>
-
-<!-- Rating Stars -->
-<script src="{{ asset('bundles/dcsrating/js/rating.js') }}">
-
-</script>
+        src="{{ asset('js/mdb.min.js') }}"> </script>
 
 <script>
-    // Initialize collapse button
     $(".button-collapse").sideNav();
-    // Initialize collapsible (uncomment the line below if you use the dropdown variation)
     $('.collapsible').collapsible();
 </script>
 
 <script>
     $('.button-collapse').sideNav({
-            menuWidth: 300, // Default is 240
-            edge: 'right', // Choose the horizontal origin
-            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            menuWidth: 300,
+            edge: 'right',
+            closeOnClick: true
         }
     );
 </script>
@@ -300,8 +263,8 @@
 <script type="text/javascript" src="{{ asset('js/List.js') }}"> </script>
 
 <script>
-    var loader = "{{ asset('img/loader-small.gif') }}"; //link to the animated loader-small.gif
-    var ROOT_URL = "{{ url('produits')}}"; //your root URL, used in autocomplete-countries.js file
+    var loader = "{{ asset('img/loader-small.gif') }}";
+    var ROOT_URL = "{{ url('produits')}}";
 </script>
 
 {% block javascripts %}{% endblock %}

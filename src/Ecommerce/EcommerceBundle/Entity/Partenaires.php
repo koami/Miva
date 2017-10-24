@@ -10,8 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table("partenaires")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\PartenairesRepository")
  */
-class Partenaires
-{
+class Partenaires{
     /**
      * @var integer
      *
@@ -49,15 +48,12 @@ class Partenaires
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
         $this->garanties = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    function __toString()
-    {
-        // TODO: Implement __toString() method.
+    function __toString(){
         return $this->getNom();
     }
 
@@ -66,8 +62,7 @@ class Partenaires
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId(){
         return $this->id;
     }
 
@@ -77,10 +72,8 @@ class Partenaires
      * @param string $nom
      * @return Partenaires
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom){
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -89,8 +82,7 @@ class Partenaires
      *
      * @return string 
      */
-    public function getNom()
-    {
+    public function getNom(){
         return $this->nom;
     }
 
@@ -100,10 +92,8 @@ class Partenaires
      * @param \Ecommerce\EcommerceBundle\Entity\Produits $produits
      * @return Partenaires
      */
-    public function addProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produits)
-    {
+    public function addProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produits){
         $this->produits[] = $produits;
-
         return $this;
     }
 
@@ -112,8 +102,7 @@ class Partenaires
      *
      * @param \Ecommerce\EcommerceBundle\Entity\Produits $produits
      */
-    public function removeProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produits)
-    {
+    public function removeProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produits){
         $this->produits->removeElement($produits);
     }
 
@@ -122,8 +111,7 @@ class Partenaires
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getProduits()
-    {
+    public function getProduits(){
         return $this->produits;
     }
 
@@ -133,10 +121,8 @@ class Partenaires
      * @param \Ecommerce\EcommerceBundle\Entity\Garanties $garanties
      * @return Partenaires
      */
-    public function addGaranty(\Ecommerce\EcommerceBundle\Entity\Garanties $garanties)
-    {
+    public function addGaranty(\Ecommerce\EcommerceBundle\Entity\Garanties $garanties){
         $this->garanties[] = $garanties;
-
         return $this;
     }
 
@@ -145,8 +131,7 @@ class Partenaires
      *
      * @param \Ecommerce\EcommerceBundle\Entity\Garanties $garanties
      */
-    public function removeGaranty(\Ecommerce\EcommerceBundle\Entity\Garanties $garanties)
-    {
+    public function removeGaranty(\Ecommerce\EcommerceBundle\Entity\Garanties $garanties){
         $this->garanties->removeElement($garanties);
     }
 
@@ -155,8 +140,7 @@ class Partenaires
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getGaranties()
-    {
+    public function getGaranties(){
         return $this->garanties;
     }
 
@@ -166,10 +150,8 @@ class Partenaires
      * @param \Ecommerce\EcommerceBundle\Entity\Media $image
      * @return Partenaires
      */
-    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image = null)
-    {
+    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image = null){
         $this->image = $image;
-
         return $this;
     }
 
@@ -178,8 +160,7 @@ class Partenaires
      *
      * @return \Ecommerce\EcommerceBundle\Entity\Media 
      */
-    public function getImage()
-    {
+    public function getImage(){
         return $this->image;
     }
 }

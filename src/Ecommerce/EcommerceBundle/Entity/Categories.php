@@ -10,8 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table("categories")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\CategoriesRepository")
  */
-class Categories
-{
+class Categories{
     /**
      * @var integer
      *
@@ -53,8 +52,7 @@ class Categories
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId(){
         return $this->id;
     }
 
@@ -64,8 +62,7 @@ class Categories
      * @param string $nom
      * @return Categories
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom){
         $this->nom = $nom;
 
         return $this;
@@ -76,8 +73,7 @@ class Categories
      *
      * @return string 
      */
-    public function getNom()
-    {
+    public function getNom(){
         return $this->nom;
     }
 
@@ -87,8 +83,7 @@ class Categories
      * @param \Ecommerce\EcommerceBundle\Entity\Media $image
      * @return Categories
      */
-    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image = null)
-    {
+    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image = null){
         $this->image = $image;
 
         return $this;
@@ -99,21 +94,18 @@ class Categories
      *
      * @return \Ecommerce\EcommerceBundle\Entity\Media 
      */
-    public function getImage()
-    {
+    public function getImage(){
         return $this->image;
     }
     
-    public function __toString()
-    {
+    public function __toString(){
         return $this->getNom();
     }
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->subCategories = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -123,8 +115,7 @@ class Categories
      * @param \Ecommerce\EcommerceBundle\Entity\SubCategpries $subCategories
      * @return Categories
      */
-    public function addSubCategory(\Ecommerce\EcommerceBundle\Entity\SubCategories $subCategories)
-    {
+    public function addSubCategory(\Ecommerce\EcommerceBundle\Entity\SubCategories $subCategories){
         $this->subCategories[] = $subCategories;
 
         return $this;
@@ -135,8 +126,7 @@ class Categories
      *
      * @param \Ecommerce\EcommerceBundle\Entity\SubCategpries $subCategories
      */
-    public function removeSubCategory(\Ecommerce\EcommerceBundle\Entity\SubCategories $subCategories)
-    {
+    public function removeSubCategory(\Ecommerce\EcommerceBundle\Entity\SubCategories $subCategories){
         $this->subCategories->removeElement($subCategories);
     }
 
@@ -145,8 +135,7 @@ class Categories
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getSubCategories()
-    {
+    public function getSubCategories(){
         return $this->subCategories;
     }
 
@@ -156,8 +145,7 @@ class Categories
      * @param \Ecommerce\EcommerceBundle\Entity\Rayon $rayon
      * @return Categories
      */
-    public function setRayon(\Ecommerce\EcommerceBundle\Entity\Rayon $rayon)
-    {
+    public function setRayon(\Ecommerce\EcommerceBundle\Entity\Rayon $rayon){
         $this->rayon = $rayon;
 
         return $this;
@@ -168,8 +156,7 @@ class Categories
      *
      * @return \Ecommerce\EcommerceBundle\Entity\Rayon 
      */
-    public function getRayon()
-    {
+    public function getRayon(){
         return $this->rayon;
     }
 }

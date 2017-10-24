@@ -9,21 +9,12 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class UtilisateursAdressesType extends AbstractType
-{
-    /*private $em;
-    
-    public function __construct($em) 
-    {
-        $this->em = $em;
-    }*/
-
+class UtilisateursAdressesType extends AbstractType{
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
             ->add('nom')
             ->add('prenom')
@@ -36,15 +27,13 @@ class UtilisateursAdressesType extends AbstractType
                 ),
             ))
             ->add('complement',null,array('required' => false))
-            //->add('utilisateur')
         ;
     }
 
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver){
         $resolver->setDefaults(array(
             'data_class' => 'Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses'
         ));
@@ -53,8 +42,7 @@ class UtilisateursAdressesType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
-    {
+    public function getName(){
         return 'ecommerce_ecommercebundle_utilisateursadresses';
     }
 }

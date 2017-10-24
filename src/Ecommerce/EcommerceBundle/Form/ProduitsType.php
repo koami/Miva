@@ -9,14 +9,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ecommerce\EcommerceBundle\Form\MediaType;
 use Ecommerce\EcommerceBundle\Entity\Media;
 
-class ProduitsType extends AbstractType
-{
+class ProduitsType extends AbstractType{
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
             ->add('nom')
             ->add('prix', 'integer', array(
@@ -49,30 +47,12 @@ class ProduitsType extends AbstractType
                 'by_reference' => false,
             ))
         ;
-
-        /*->add('partenaire', 'entity', array('class' => 'Ecommerce\EcommerceBundle\Entity\Partenaires'))
-            ->add('garantie', 'entity', array(
-                'class' => 'Ecommerce\EcommerceBundle\Entity\Garanties',
-                'label' => 'Garantie'))
-            ->add('subCategorie', 'entity', array(
-                'class' => 'Ecommerce\EcommerceBundle\Entity\SubCategories',
-                'label' => 'Sous-Categorie',
-            ))*/
-        /*$builder->add('descriptions', 'collection', array(
-            'type' => new DescriptionsType(),
-            'options' => array('data_class' => Descriptions::class),
-            'allow_add' => true,
-            'allow_delete' => true,
-            'label' => 'Description',
-            'by_reference' => false,
-        ));*/
     }
     
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver){
         $resolver->setDefaults(array(
             'data_class' => 'Ecommerce\EcommerceBundle\Entity\Produits'
         ));
@@ -81,8 +61,7 @@ class ProduitsType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
-    {
+    public function getName(){
         return 'ecommerce_ecommercebundle_produits';
     }
 }

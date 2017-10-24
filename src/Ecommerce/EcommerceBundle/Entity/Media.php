@@ -12,8 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Media
-{
+class Media{
     /**
      * @var integer
      *
@@ -33,8 +32,7 @@ class Media
     /**
      * @ORM\PostLoad()
      */
-    public function postLoad()
-    {
+    public function postLoad(){
         $this->updateAt = new \DateTime();
     }
 
@@ -48,21 +46,17 @@ class Media
      * @ORM\Column(type="string",length=255, nullable=true)
      */
     private $path;
-
     public $file;
 
-    public function getUploadRootDir()
-    {
+    public function getUploadRootDir(){
         return __dir__.'/../../../../web/uploads';
     }
 
-    public function getAbsolutePath()
-    {
+    public function getAbsolutePath(){
         return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
     }
 
-    public function getAssetPath()
-    {
+    public function getAssetPath(){
         return 'uploads/'.$this->path;
     }
 
@@ -70,12 +64,10 @@ class Media
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function preUpload()
-    {
+    public function preUpload(){
         $this->tempFile = $this->getAbsolutePath();
         $this->oldFile = $this->getPath();
         $this->updateAt = new \DateTime();
-
         if (null !== $this->file)
             $this->path = sha1(uniqid(mt_rand(),true)).'.'.$this->file->guessClientExtension();
     }
@@ -84,12 +76,10 @@ class Media
      * @ORM\PostPersist()
      * @ORM\PostUpdate()
      */
-    public function upload()
-    {
+    public function upload(){
         if (null !== $this->file) {
             $this->file->move($this->getUploadRootDir(),$this->path);
             unset($this->file);
-
             if ($this->oldFile != null) unlink($this->tempFile);
         }
     }
@@ -97,16 +87,14 @@ class Media
     /**
      * @ORM\PreRemove()
      */
-    public function preRemoveUpload()
-    {
+    public function preRemoveUpload(){
         $this->tempFile = $this->getAbsolutePath();
     }
 
     /**
      * @ORM\PostRemove()
      */
-    public function removeUpload()
-    {
+    public function removeUpload(){
         if (file_exists($this->tempFile)) unlink($this->tempFile);
     }
 
@@ -115,18 +103,15 @@ class Media
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId(){
         return $this->id;
     }
 
-    public function getPath()
-    {
+    public function getPath(){
         return $this->path;
     }
 
-    public function getName()
-    {
+    public function getName(){
         return $this->name;
     }
 
@@ -137,7 +122,6 @@ class Media
      */
     public function setName($name){
         $this->name = $name;
-
         return $this;
     }
 }

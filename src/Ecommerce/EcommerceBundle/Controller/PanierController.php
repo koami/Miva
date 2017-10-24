@@ -10,11 +10,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Ecommerce\EcommerceBundle\Form\UtilisateursAdressesType;
 use Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses;
 
-class PanierController extends Controller
-{
-    public function menuAction()
-    {
-        //$session = $this->getRequest()->getSession();
+class PanierController extends Controller{
+    public function menuAction(){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
         if (!$session->has('panier'))
@@ -25,18 +22,14 @@ class PanierController extends Controller
         return $this->render('EcommerceBundle:Default:panier/modulesUsed/panier.html.twig', array('articles' => $articles));
     }
 
-    public function supprimerAction($id)
-    {
-        //$session = $this->getRequest()->getSession();
+    public function supprimerAction($id){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
         $panier = $session->get('panier');
 
-        if (array_key_exists($id, $panier))
-        {
+        if (array_key_exists($id, $panier)) {
             unset($panier[$id]);
             $session->set('panier',$panier);
-            //$this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
         }
 
         $response = new JsonResponse();
@@ -48,15 +41,12 @@ class PanierController extends Controller
         return $response;
     }
 
-    public function viderAction()
-    {
-        //$session = $this->getRequest()->getSession();
+    public function viderAction(){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
         $panier = $session->get('panier');
 
-        if ($panier)
-        {
+        if ($panier) {
             unset($panier);
             $session->set('panier',array());
             $this->get('session')->getFlashBag()->add('success','Votre panier a bien été vider');
@@ -65,9 +55,7 @@ class PanierController extends Controller
         return $this->redirect($this->generateUrl('panier'));
     }
 
-    public function ajouterAction($id)
-    {
-        //$session = $this->getRequest()->getSession();
+    public function ajouterAction($id){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
 
@@ -91,10 +79,7 @@ class PanierController extends Controller
         return $this->redirect($this->generateUrl('panier'));
     }
 
-    public function ajouterPanierAction($id)
-    {
-        //$session = $this->getRequest()->getSession();
-        
+    public function ajouterPanierAction($id){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
 
@@ -114,7 +99,6 @@ class PanierController extends Controller
         }
 
         $session->set('panier',$panier);
-
         $response = new JsonResponse();
         $response->setData(array(
             'articles' => count($session->get('panier')),
@@ -124,9 +108,7 @@ class PanierController extends Controller
         return $response;
     }
 
-    public function panierAction()
-    {
-        //$session = $this->getRequest()->getSession();
+    public function panierAction(){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
 
@@ -139,8 +121,7 @@ class PanierController extends Controller
             'panier' => $session->get('panier')));
     }
 
-    public function adresseSuppressionAction($id)
-    {
+    public function adresseSuppressionAction($id){
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('EcommerceBundle:UtilisateursAdresses')->find($id);
 
@@ -153,16 +134,14 @@ class PanierController extends Controller
         return $this->redirect ($this->generateUrl ('livraison'));
     }
 
-    public function livraisonAction()
-    {
+    public function livraisonAction(){
         $em = $this->getDoctrine()->getManager();
         $utilisateur = $this->container->get('security.context')->getToken()->getUser();
         $entity = new UtilisateursAdresses();
         $form = $this->createForm(new UtilisateursAdressesType($em), $entity);
         $request = $this->container->get('request_stack')->getCurrentRequest();
 
-        if ($this->get('request')->getMethod() == 'POST')
-        {
+        if ($this->get('request')->getMethod() == 'POST') {
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -179,40 +158,29 @@ class PanierController extends Controller
             'form' => $form->createView()));
     }
 
-    public function setLivraisonOnSession()
-    {
-        //$session = $this->getRequest()->getSession();
+    public function setLivraisonOnSession(){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
 
         if (!$session->has('adresse')) $session->set('adresse',array());
         $adresse = $session->get('adresse');
 
-        if ($request->request->get('livraison') != null)
-        {
+        if ($request->request->get('livraison') != null) {
             $adresse['livraison'] = $request->request->get('livraison');
         } else {
             return $this->redirect($this->generateUrl('validation'));
         }
-        /*var_dump($adresse);
-        die();*/
-
         $session->set('adresse',$adresse);
         return $this->redirect($this->generateUrl('validation'));
     }
 
-    public function validationAction()
-    {
+    public function validationAction(){
         if ($this->get('request')->getMethod() == 'POST')
             $this->setLivraisonOnSession();
 
         $em = $this->getDoctrine()->getManager();
         $prepareCommande = $this->forward('EcommerceBundle:Commandes:prepareCommande');
-       /* var_dump($prepareCommande);
-        die();*/
         $commande = $em->getRepository('EcommerceBundle:Commandes')->find($prepareCommande->getContent());
-        /*var_dump($commande);
-        die();*/
 
         return $this->render('EcommerceBundle:Default:panier/layout/validation.html.twig', array('commande' => $commande));
     }

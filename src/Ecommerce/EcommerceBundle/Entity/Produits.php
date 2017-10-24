@@ -10,8 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table("produits")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\ProduitsRepository")
  */
-class Produits
-{
+class Produits{
     /**
      * @var integer
      *
@@ -88,8 +87,7 @@ class Produits
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->descriptions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -99,8 +97,7 @@ class Produits
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId(){
         return $this->id;
     }
 
@@ -110,10 +107,8 @@ class Produits
      * @param string $nom
      * @return Produits
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom){
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -122,8 +117,7 @@ class Produits
      *
      * @return string 
      */
-    public function getNom()
-    {
+    public function getNom(){
         return $this->nom;
     }
 
@@ -133,10 +127,8 @@ class Produits
      * @param float $prix
      * @return Produits
      */
-    public function setPrix($prix)
-    {
+    public function setPrix($prix){
         $this->prix = $prix;
-
         return $this;
     }
 
@@ -145,8 +137,7 @@ class Produits
      *
      * @return float 
      */
-    public function getPrix()
-    {
+    public function getPrix(){
         return $this->prix;
     }
 
@@ -156,10 +147,8 @@ class Produits
      * @param integer $quantite
      * @return Produits
      */
-    public function setQuantite($quantite)
-    {
+    public function setQuantite($quantite){
         $this->quantite= $quantite;
-
         return $this;
     }
 
@@ -168,8 +157,7 @@ class Produits
      *
      * @return integer
      */
-    public function getQuantite()
-    {
+    public function getQuantite(){
         return $this->quantite;
     }
 
@@ -179,10 +167,8 @@ class Produits
      * @param \Ecommerce\EcommerceBundle\Entity\Media $image
      * @return Produits
      */
-    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image)
-    {
+    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image){
         $this->image = $image;
-
         return $this;
     }
 
@@ -191,8 +177,7 @@ class Produits
      *
      * @return \Ecommerce\EcommerceBundle\Entity\Media 
      */
-    public function getImage()
-    {
+    public function getImage(){
         return $this->image;
     }
 
@@ -202,10 +187,8 @@ class Produits
      * @param \Ecommerce\EcommerceBundle\Entity\SubCategories $subCategorie
      * @return Produits
      */
-    public function setSubCategorie(\Ecommerce\EcommerceBundle\Entity\SubCategories $subCategorie)
-    {
+    public function setSubCategorie(\Ecommerce\EcommerceBundle\Entity\SubCategories $subCategorie){
         $this->subCategorie = $subCategorie;
-
         return $this;
     }
 
@@ -214,72 +197,63 @@ class Produits
      *
      * @return \Ecommerce\EcommerceBundle\Entity\SubCategories 
      */
-    public function getSubCategorie()
-    {
+    public function getSubCategorie(){
         return $this->subCategorie;
     }
 
     /**
      * @return mixed
      */
-    public function getGarantie()
-    {
+    public function getGarantie(){
         return $this->garantie;
     }
 
     /**
      * @return mixed
      */
-    public function getPartenaire()
-    {
+    public function getPartenaire(){
         return $this->partenaire;
     }
 
     /**
      * @param mixed $partenaire
      */
-    public function setPartenaire($partenaire)
-    {
+    public function setPartenaire($partenaire){
         $this->partenaire = $partenaire;
     }
 
     /**
      * @return mixed
      */
-    public function getDescriptions()
-    {
+    public function getDescriptions(){
         return $this->descriptions;
     }
 
     /**
      * @param mixed $descriptions
      */
-    public function setDescriptions($descriptions)
-    {
+    public function setDescriptions($descriptions){
         $this->descriptions = $descriptions;
     }
 
     /**
      * @return mixed
      */
-    public function getCommentaires()
-    {
+    public function getCommentaires(){
         return $this->commentaires;
     }
 
     /**
      * @param mixed $commentaires
      */
-    public function setCommentaires($commentaires)
-    {
+    public function setCommentaires($commentaires){
         $this->commentaires = $commentaires;
     }
 
     /**
      * @param mixed $garantie
      */
-    public function setGarantie($garantie)
-    {
+    public function setGarantie($garantie){
         $this->garantie = $garantie;
     }
 
@@ -289,11 +263,9 @@ class Produits
      * @param \Ecommerce\EcommerceBundle\Entity\Descriptions $description
      * @return Produits
      */
-    public function addDescription(\Ecommerce\EcommerceBundle\Entity\Descriptions $description)
-    {
+    public function addDescription(\Ecommerce\EcommerceBundle\Entity\Descriptions $description){
         $description->setProduit($this);
         $this->descriptions->add($description);
-
         return $this;
     }
 
@@ -302,8 +274,7 @@ class Produits
      *
      * @param \Ecommerce\EcommerceBundle\Entity\Descriptions $description
      */
-    public function removeDescription(\Ecommerce\EcommerceBundle\Entity\Descriptions $description)
-    {
+    public function removeDescription(\Ecommerce\EcommerceBundle\Entity\Descriptions $description){
         $this->descriptions->removeElement($description);
     }
 
@@ -313,10 +284,8 @@ class Produits
      * @param \Ecommerce\EcommerceBundle\Entity\Commentaires $commentaires
      * @return Produits
      */
-    public function addCommentaire(\Ecommerce\EcommerceBundle\Entity\Commentaires $commentaires)
-    {
+    public function addCommentaire(\Ecommerce\EcommerceBundle\Entity\Commentaires $commentaires){
         $this->commentaires[] = $commentaires;
-
         return $this;
     }
 
@@ -325,23 +294,20 @@ class Produits
      *
      * @param \Ecommerce\EcommerceBundle\Entity\Commentaires $commentaires
      */
-    public function removeCommentaire(\Ecommerce\EcommerceBundle\Entity\Commentaires $commentaires)
-    {
+    public function removeCommentaire(\Ecommerce\EcommerceBundle\Entity\Commentaires $commentaires){
         $this->commentaires->removeElement($commentaires);
     }
     /**
      * @return int
      */
-    public function getReduction()
-    {
+    public function getReduction(){
         return $this->reduction;
     }
 
     /**
      * @param int $reduction
      */
-    public function setReduction($reduction)
-    {
+    public function setReduction($reduction){
         $this->reduction = $reduction;
     }
 }

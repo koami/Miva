@@ -12,15 +12,13 @@ use Ecommerce\EcommerceBundle\Form\PartenairesType;
  * Partenaires controller.
  *
  */
-class PartenairesAdminController extends Controller
-{
+class PartenairesAdminController extends Controller{
 
     /**
      * Lists all Partenaires entities.
      *
      */
-    public function indexAction()
-    {
+    public function indexAction(){
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('EcommerceBundle:Partenaires')->findAll();
@@ -29,12 +27,12 @@ class PartenairesAdminController extends Controller
             'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new Partenaires entity.
      *
      */
-    public function createAction(Request $request)
-    {
+    public function createAction(Request $request){
         $entity = new Partenaires();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -60,8 +58,7 @@ class PartenairesAdminController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Partenaires $entity)
-    {
+    private function createCreateForm(Partenaires $entity){
         $form = $this->createForm(new PartenairesType(), $entity, array(
             'action' => $this->generateUrl('adminPartenaires_create'),
             'method' => 'POST',
@@ -76,8 +73,7 @@ class PartenairesAdminController extends Controller
      * Displays a form to create a new Partenaires entity.
      *
      */
-    public function newAction()
-    {
+    public function newAction(){
         $entity = new Partenaires();
         $form   = $this->createCreateForm($entity);
 
@@ -91,8 +87,7 @@ class PartenairesAdminController extends Controller
      * Finds and displays a Partenaires entity.
      *
      */
-    public function showAction($id)
-    {
+    public function showAction($id){
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('EcommerceBundle:Partenaires')->find($id);
@@ -112,8 +107,7 @@ class PartenairesAdminController extends Controller
      * Displays a form to edit an existing Partenaires entity.
      *
      */
-    public function editAction($id)
-    {
+    public function editAction($id){
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('EcommerceBundle:Partenaires')->find($id);
@@ -139,23 +133,21 @@ class PartenairesAdminController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Partenaires $entity)
-    {
+    private function createEditForm(Partenaires $entity){
         $form = $this->createForm(new PartenairesType(), $entity, array(
             'action' => $this->generateUrl('adminPartenaires_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
         $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
+
     /**
      * Edits an existing Partenaires entity.
      *
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('EcommerceBundle:Partenaires')->find($id);
@@ -180,12 +172,12 @@ class PartenairesAdminController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Partenaires entity.
      *
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id){
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
@@ -196,7 +188,6 @@ class PartenairesAdminController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Partenaires entity.');
             }
-
             $em->remove($entity);
             $em->flush();
         }
@@ -211,8 +202,7 @@ class PartenairesAdminController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id){
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('adminPartenaires_delete', array('id' => $id)))
             ->setMethod('DELETE')
