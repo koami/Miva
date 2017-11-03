@@ -10,7 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table("commentaires")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\CommentairesRepository")
  */
-class Commentaires{
+class Commentaires
+{
     /**
      * @var integer
      *
@@ -39,12 +40,14 @@ class Commentaires{
      */
     private $commentaire;
 
+
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -54,8 +57,10 @@ class Commentaires{
      * @param string $commentaire
      * @return Commentaires
      */
-    public function setCommentaire($commentaire){
+    public function setCommentaire($commentaire)
+    {
         $this->commentaire = $commentaire;
+
         return $this;
     }
 
@@ -64,7 +69,8 @@ class Commentaires{
      *
      * @return string 
      */
-    public function getCommentaire(){
+    public function getCommentaire()
+    {
         return $this->commentaire;
     }
 
@@ -74,8 +80,10 @@ class Commentaires{
      * @param \Ecommerce\EcommerceBundle\Entity\Produits $produit
      * @return Commentaires
      */
-    public function setProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produit){
+    public function setProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produit)
+    {
         $this->produit = $produit;
+
         return $this;
     }
 
@@ -84,7 +92,8 @@ class Commentaires{
      *
      * @return \Ecommerce\EcommerceBundle\Entity\Produits 
      */
-    public function getProduit(){
+    public function getProduit()
+    {
         return $this->produit;
     }
 
@@ -94,8 +103,10 @@ class Commentaires{
      * @param \Utilisateurs\UtilisateursBundle\Entity\Utilisateurs $utilisateur
      * @return Commentaires
      */
-    public function setUtilisateur(\Utilisateurs\UtilisateursBundle\Entity\Utilisateurs $utilisateur){
+    public function setUtilisateur(\Utilisateurs\UtilisateursBundle\Entity\Utilisateurs $utilisateur)
+    {
         $this->utilisateur = $utilisateur;
+
         return $this;
     }
 
@@ -104,7 +115,8 @@ class Commentaires{
      *
      * @return \Utilisateurs\UtilisateursBundle\Entity\Utilisateurs 
      */
-    public function getUtilisateur(){
+    public function getUtilisateur()
+    {
         return $this->utilisateur;
     }
 }

@@ -133,6 +133,7 @@ class appDevDebugProjectContainer extends Container
             'fos_user.change_password.form.factory' => 'getFosUser_ChangePassword_Form_FactoryService',
             'fos_user.change_password.form.type' => 'getFosUser_ChangePassword_Form_TypeService',
             'fos_user.listener.authentication' => 'getFosUser_Listener_AuthenticationService',
+            'fos_user.listener.email_confirmation' => 'getFosUser_Listener_EmailConfirmationService',
             'fos_user.listener.flash' => 'getFosUser_Listener_FlashService',
             'fos_user.listener.resetting' => 'getFosUser_Listener_ResettingService',
             'fos_user.mailer' => 'getFosUser_MailerService',
@@ -359,6 +360,7 @@ class appDevDebugProjectContainer extends Container
             'doctrine.orm.entity_manager' => 'doctrine.orm.default_entity_manager',
             'event_dispatcher' => 'debug.event_dispatcher',
             'fos_user.util.username_canonicalizer' => 'fos_user.util.email_canonicalizer',
+            'knp\\component\\pager\\paginatorinterface' => 'knp_paginator',
             'mailer' => 'swiftmailer.mailer.default',
             'security.user_checker.secured_area' => 'security.user_checker.main',
             'sensio.distribution.webconfigurator' => 'sensio_distribution.webconfigurator',
@@ -684,6 +686,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addSubscriberService('fos_user.security.interactive_login_listener', 'FOS\\UserBundle\\EventListener\\LastLoginListener');
         $instance->addSubscriberService('fos_user.listener.authentication', 'FOS\\UserBundle\\EventListener\\AuthenticationListener');
         $instance->addSubscriberService('fos_user.listener.flash', 'FOS\\UserBundle\\EventListener\\FlashListener');
+        $instance->addSubscriberService('fos_user.listener.email_confirmation', 'FOS\\UserBundle\\EventListener\\EmailConfirmationListener');
         $instance->addSubscriberService('fos_user.listener.resetting', 'FOS\\UserBundle\\EventListener\\ResettingListener');
         $instance->addSubscriberService('web_profiler.debug_toolbar', 'Symfony\\Bundle\\WebProfilerBundle\\EventListener\\WebDebugToolbarListener');
         $instance->addSubscriberService('knp_paginator.subscriber.paginate', 'Knp\\Component\\Pager\\Event\\Subscriber\\Paginate\\PaginationSubscriber');
@@ -866,7 +869,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['doctrine_cache.providers.doctrine.orm.default_metadata_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
 
-        $instance->setNamespace('sf2orm_default_c16d052531afe81b2f91d24cfdc2d886352fc635828f1d3769daaf99ce01c144');
+        $instance->setNamespace('sf_orm_default_8d3416ab6966c733cd3005a8286379435c69bebba568e09556ff5f99dcc34470');
 
         return $instance;
     }
@@ -880,7 +883,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['doctrine_cache.providers.doctrine.orm.default_query_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
 
-        $instance->setNamespace('sf2orm_default_c16d052531afe81b2f91d24cfdc2d886352fc635828f1d3769daaf99ce01c144');
+        $instance->setNamespace('sf_orm_default_8d3416ab6966c733cd3005a8286379435c69bebba568e09556ff5f99dcc34470');
 
         return $instance;
     }
@@ -894,7 +897,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['doctrine_cache.providers.doctrine.orm.default_result_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
 
-        $instance->setNamespace('sf2orm_default_c16d052531afe81b2f91d24cfdc2d886352fc635828f1d3769daaf99ce01c144');
+        $instance->setNamespace('sf_orm_default_8d3416ab6966c733cd3005a8286379435c69bebba568e09556ff5f99dcc34470');
 
         return $instance;
     }
@@ -1434,6 +1437,16 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the public 'fos_user.listener.email_confirmation' shared service.
+     *
+     * @return \FOS\UserBundle\EventListener\EmailConfirmationListener
+     */
+    protected function getFosUser_Listener_EmailConfirmationService()
+    {
+        return $this->services['fos_user.listener.email_confirmation'] = new \FOS\UserBundle\EventListener\EmailConfirmationListener($this->get('fos_user.mailer'), $this->get('fos_user.util.token_generator'), $this->get('router'), $this->get('session'));
+    }
+
+    /**
      * Gets the public 'fos_user.listener.flash' shared service.
      *
      * @return \FOS\UserBundle\EventListener\FlashListener
@@ -1460,7 +1473,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getFosUser_MailerService()
     {
-        return $this->services['fos_user.mailer'] = new \FOS\UserBundle\Mailer\Mailer($this->get('swiftmailer.mailer.default'), $this->get('router'), $this->get('templating'), array('confirmation.template' => '@FOSUser/Registration/email.txt.twig', 'resetting.template' => '@FOSUser/Resetting/email.txt.twig', 'from_email' => array('confirmation' => array('ark@miva.tg' => 'ark@miva.tg'), 'resetting' => array('ark@miva.tg' => 'ark@miva.tg'))));
+        return $this->services['fos_user.mailer'] = new \FOS\UserBundle\Mailer\Mailer($this->get('swiftmailer.mailer.default'), $this->get('router'), $this->get('templating'), array('confirmation.template' => '@FOSUser/Registration/email.txt.twig', 'resetting.template' => '@FOSUser/Resetting/email.txt.twig', 'from_email' => array('confirmation' => array('ark@miva.tg' => 'Miva Inscription'), 'resetting' => array('ark@miva.tg' => 'Miva Password Reset'))));
     }
 
     /**
@@ -1872,7 +1885,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getKnpPaginator_Subscriber_SlidingPaginationService()
     {
-        return $this->services['knp_paginator.subscriber.sliding_pagination'] = new \Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber(array('defaultPaginationTemplate' => 'KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig', 'defaultSortableTemplate' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig', 'defaultFiltrationTemplate' => 'KnpPaginatorBundle:Pagination:filtration.html.twig', 'defaultPageRange' => 5));
+        return $this->services['knp_paginator.subscriber.sliding_pagination'] = new \Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber(array('defaultPaginationTemplate' => 'KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig', 'defaultSortableTemplate' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig', 'defaultFiltrationTemplate' => '@KnpPaginator/Pagination/filtration.html.twig', 'defaultPageRange' => 5));
     }
 
     /**
@@ -2743,7 +2756,7 @@ class appDevDebugProjectContainer extends Container
         $i = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array(), $b);
         $i->setOptions(array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_provider.username_email')), 'main', $b, $c), 2 => $g, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $f, $this->get('security.authentication.session_strategy'), $d, 'main', $h, $i, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $b, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '59cf253a539c03.72238100', $b, $f), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/login', false), NULL, NULL, $b, false));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_provider.username_email')), 'main', $b, $c), 2 => $g, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $f, $this->get('security.authentication.session_strategy'), $d, 'main', $h, $i, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $b, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '59d98745f17153.72378557', $b, $f), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/login', false), NULL, NULL, $b, false));
     }
 
     /**
@@ -3133,8 +3146,8 @@ class appDevDebugProjectContainer extends Container
 
         $this->services['swiftmailer.mailer.default.transport.real'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => $a), $this->get('swiftmailer.mailer.default.transport.eventdispatcher'));
 
-        $instance->setHost('smtp.miva.tg');
-        $instance->setPort(25);
+        $instance->setHost('mail.miva.tg');
+        $instance->setPort(587);
         $instance->setEncryption('tls');
         $instance->setTimeout(30);
         $instance->setSourceIp(NULL);
@@ -3975,7 +3988,7 @@ class appDevDebugProjectContainer extends Container
         $b = $this->get('security.user_checker.main');
         $c = $this->get('security.encoder_factory');
 
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'main', $c, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('59cf253a539c03.72238100'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'secured_area', $c, true)), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'main', $c, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('59d98745f17153.72378557'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'secured_area', $c, true)), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -4280,11 +4293,12 @@ class appDevDebugProjectContainer extends Container
             'database_user' => 'root',
             'database_password' => NULL,
             'mailer_transport' => 'smtp',
-            'mailer_host' => 'smtp.miva.tg',
+            'mailer_host' => 'mail.miva.tg',
             'mailer_user' => 'ark@miva.tg',
             'mailer_password' => 'principia15&s',
             'locale' => 'fr',
             'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'mailer_port' => 587,
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
             'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
             'response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',
@@ -4624,8 +4638,8 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.data_collector.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\DataCollector\\MessageDataCollector',
             'swiftmailer.mailer.default.transport.name' => 'smtp',
             'swiftmailer.mailer.default.transport.smtp.encryption' => 'tls',
-            'swiftmailer.mailer.default.transport.smtp.port' => 25,
-            'swiftmailer.mailer.default.transport.smtp.host' => 'smtp.miva.tg',
+            'swiftmailer.mailer.default.transport.smtp.port' => 587,
+            'swiftmailer.mailer.default.transport.smtp.host' => 'mail.miva.tg',
             'swiftmailer.mailer.default.transport.smtp.username' => 'ark@miva.tg',
             'swiftmailer.mailer.default.transport.smtp.password' => 'principia15&s',
             'swiftmailer.mailer.default.transport.smtp.auth_mode' => NULL,
@@ -4828,9 +4842,9 @@ class appDevDebugProjectContainer extends Container
                 1 => 'Default',
             ),
             'fos_user.registration.confirmation.from_email' => array(
-                'ark@miva.tg' => 'ark@miva.tg',
+                'ark@miva.tg' => 'Miva Inscription',
             ),
-            'fos_user.registration.confirmation.enabled' => false,
+            'fos_user.registration.confirmation.enabled' => true,
             'fos_user.registration.form.type' => 'FOS\\UserBundle\\Form\\Type\\RegistrationFormType',
             'fos_user.registration.form.name' => 'fos_user_registration_form',
             'fos_user.registration.form.validation_groups' => array(
@@ -4844,7 +4858,7 @@ class appDevDebugProjectContainer extends Container
                 1 => 'Default',
             ),
             'fos_user.resetting.email.from_email' => array(
-                'ark@miva.tg' => 'ark@miva.tg',
+                'ark@miva.tg' => 'Miva Password Reset',
             ),
             'fos_user.resetting.retry_ttl' => 7200,
             'fos_user.resetting.token_ttl' => 86400,
@@ -4857,7 +4871,7 @@ class appDevDebugProjectContainer extends Container
             'knp_paginator.class' => 'Knp\\Component\\Pager\\Paginator',
             'knp_paginator.helper.processor.class' => 'Knp\\Bundle\\PaginatorBundle\\Helper\\Processor',
             'knp_paginator.template.pagination' => 'KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig',
-            'knp_paginator.template.filtration' => 'KnpPaginatorBundle:Pagination:filtration.html.twig',
+            'knp_paginator.template.filtration' => '@KnpPaginator/Pagination/filtration.html.twig',
             'knp_paginator.template.sortable' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig',
             'knp_paginator.page_range' => 5,
             'liip_imagine.filter.configuration.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\FilterConfiguration',

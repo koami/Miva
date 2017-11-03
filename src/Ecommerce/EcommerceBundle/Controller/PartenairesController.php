@@ -4,8 +4,10 @@ namespace Ecommerce\EcommerceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class PartenairesController extends Controller{
-    public function menuAction(){
+class PartenairesController extends Controller
+{
+    public function menuAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $partenaires = $em->getRepository('EcommerceBundle:Partenaires')->findAll();
         

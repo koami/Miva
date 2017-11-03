@@ -10,7 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table("subcategories")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\SubCategoriesRepository")
  */
-class SubCategories{
+class SubCategories
+{
     /**
      * @var integer
      *
@@ -52,12 +53,14 @@ class SubCategories{
      */
     private $specificite;
 
+
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -67,8 +70,10 @@ class SubCategories{
      * @param string $nom
      * @return SubCategories
      */
-    public function setNom($nom){
+    public function setNom($nom)
+    {
         $this->nom = $nom;
+
         return $this;
     }
 
@@ -77,7 +82,8 @@ class SubCategories{
      *
      * @return string 
      */
-    public function getNom(){
+    public function getNom()
+    {
         return $this->nom;
     }
 
@@ -87,8 +93,10 @@ class SubCategories{
      * @param \Ecommerce\EcommerceBundle\Entity\Media $image
      * @return SubCategories
      */
-    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image){
+    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image)
+    {
         $this->image = $image;
+
         return $this;
     }
 
@@ -97,7 +105,8 @@ class SubCategories{
      *
      * @return \Ecommerce\EcommerceBundle\Entity\Media 
      */
-    public function getImage(){
+    public function getImage()
+    {
         return $this->image;
     }
 
@@ -107,8 +116,10 @@ class SubCategories{
      * @param \Ecommerce\EcommerceBundle\Entity\Categories $categorie
      * @return SubCategories
      */
-    public function setCategorie(\Ecommerce\EcommerceBundle\Entity\Categories $categorie){
+    public function setCategorie(\Ecommerce\EcommerceBundle\Entity\Categories $categorie)
+    {
         $this->categorie = $categorie;
+
         return $this;
     }
 
@@ -117,18 +128,19 @@ class SubCategories{
      *
      * @return \Ecommerce\EcommerceBundle\Entity\Categories 
      */
-    public function getCategorie(){
+    public function getCategorie()
+    {
         return $this->categorie;
     }
     
     public function __toString() {
         return $this->getNom();
     }
-
     /**
      * Constructor
      */
-    public function __construct(){
+    public function __construct()
+    {
         $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -138,8 +150,10 @@ class SubCategories{
      * @param string $specificite
      * @return SubCategories
      */
-    public function setSpecificite($specificite){
+    public function setSpecificite($specificite)
+    {
         $this->specificite = $specificite;
+
         return $this;
     }
 
@@ -148,7 +162,8 @@ class SubCategories{
      *
      * @return string 
      */
-    public function getSpecificite(){
+    public function getSpecificite()
+    {
         return $this->specificite;
     }
 
@@ -158,8 +173,10 @@ class SubCategories{
      * @param \Ecommerce\EcommerceBundle\Entity\Produits $produits
      * @return SubCategories
      */
-    public function addProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produits){
+    public function addProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produits)
+    {
         $this->produits[] = $produits;
+
         return $this;
     }
 
@@ -168,7 +185,8 @@ class SubCategories{
      *
      * @param \Ecommerce\EcommerceBundle\Entity\Produits $produits
      */
-    public function removeProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produits){
+    public function removeProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produits)
+    {
         $this->produits->removeElement($produits);
     }
 
@@ -177,7 +195,8 @@ class SubCategories{
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getProduits(){
+    public function getProduits()
+    {
         return $this->produits;
     }
 }

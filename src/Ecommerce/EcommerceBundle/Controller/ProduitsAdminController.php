@@ -12,26 +12,29 @@ use Ecommerce\EcommerceBundle\Form\ProduitsType;
  * Produits controller.
  *
  */
-class ProduitsAdminController extends Controller{
+class ProduitsAdminController extends Controller
+{
 
     /**
      * Lists all Produits entities.
      *
      */
-    public function indexAction(){
+    public function indexAction()
+    {
         $em = $this->getDoctrine()->getManager();
+
         $entities = $em->getRepository('EcommerceBundle:Produits')->findAll();
 
         return $this->render('EcommerceBundle:Administration:Produits/layout/index.html.twig', array(
             'entities' => $entities,
         ));
     }
-
     /**
      * Creates a new Produits entity.
      *
      */
-    public function createAction(Request $request){
+    public function createAction(Request $request)
+    {
         $entity = new Produits();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -57,8 +60,10 @@ class ProduitsAdminController extends Controller{
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Produits $entity){
+    private function createCreateForm(Produits $entity)
+    {
         $form = $this->createForm(new ProduitsType(), $entity);
+
         $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
@@ -68,7 +73,8 @@ class ProduitsAdminController extends Controller{
      * Displays a form to create a new Produits entity.
      *
      */
-    public function newAction(){
+    public function newAction()
+    {
         $entity = new Produits();
         $form   = $this->createCreateForm($entity);
 
@@ -82,8 +88,10 @@ class ProduitsAdminController extends Controller{
      * Finds and displays a Produits entity.
      *
      */
-    public function showAction($id){
+    public function showAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
+
         $entity = $em->getRepository('EcommerceBundle:Produits')->find($id);
 
         if (!$entity) {
@@ -101,13 +109,16 @@ class ProduitsAdminController extends Controller{
      * Displays a form to edit an existing Produits entity.
      *
      */
-    public function editAction($id){
+    public function editAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
+
         $entity = $em->getRepository('EcommerceBundle:Produits')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Produits entity.');
         }
+
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
@@ -125,24 +136,28 @@ class ProduitsAdminController extends Controller{
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createEditForm(Produits $entity){
+    private function createEditForm(Produits $entity)
+    {
         $form = $this->createForm(new ProduitsType(), $entity);
+
         $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
-
     /**
      * Edits an existing Produits entity.
      *
      */
-    public function updateAction(Request $request, $id){
+    public function updateAction(Request $request, $id)
+    {
         $em = $this->getDoctrine()->getManager();
+
         $entity = $em->getRepository('EcommerceBundle:Produits')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Produits entity.');
         }
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
@@ -159,12 +174,12 @@ class ProduitsAdminController extends Controller{
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
      * Deletes a Produits entity.
      *
      */
-    public function deleteAction(Request $request, $id){
+    public function deleteAction(Request $request, $id)
+    {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
@@ -190,7 +205,8 @@ class ProduitsAdminController extends Controller{
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id){
+    private function createDeleteForm($id)
+    {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('adminProduits_delete', array('id' => $id)))
             ->setMethod('DELETE')

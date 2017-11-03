@@ -4,8 +4,10 @@ namespace Ecommerce\EcommerceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DescriptionsController extends Controller{
-    public function menuAction(){
+class DescriptionsController extends Controller
+{
+    public function menuAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $descriptions = $em->getRepository('EcommerceBundle:Descriptions')->findAll();
         

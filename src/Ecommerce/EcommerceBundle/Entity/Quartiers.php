@@ -11,7 +11,8 @@ use Symfony\Component\validator\Constraints as Assert;
  * @ORM\Table("quartiers")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\QuartiersRepository")
  */
-class Quartiers{
+class Quartiers
+{
     /**
      * @var integer
      *
@@ -44,42 +45,48 @@ class Quartiers{
     /**
      * @return mixed
      */
-    public function getNom(){
+    public function getNom()
+    {
         return $this->nom;
     }
 
     /**
      * @param mixed $nom
      */
-    public function setNom($nom){
+    public function setNom($nom)
+    {
         $this->nom = $nom;
     }
 
     /**
      * @return string
      */
-    public function getAbrege(){
+    public function getAbrege()
+    {
         return $this->abrege;
     }
 
     /**
      * @param string $abrege
      */
-    public function setAbrege($abrege){
+    public function setAbrege($abrege)
+    {
         $this->abrege = $abrege;
     }
 
     /**
      * @return int
      */
-    public function getArrondissement(){
+    public function getArrondissement()
+    {
         return $this->arrondissement;
     }
 
     /**
      * @param int $arrondissement
      */
-    public function setArrondissement($arrondissement){
+    public function setArrondissement($arrondissement)
+    {
         $this->arrondissement = $arrondissement;
     }
 
@@ -88,11 +95,13 @@ class Quartiers{
      *
      * @return integer
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
-    function __toString(){
+    function __toString()
+    {
         return $this->nom;
     }
 

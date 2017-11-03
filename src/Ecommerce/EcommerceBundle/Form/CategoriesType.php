@@ -8,12 +8,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ecommerce\EcommerceBundle\Form\MediaType;
 use Ecommerce\EcommerceBundle\Entity\Media;
 
-class CategoriesType extends AbstractType{
+class CategoriesType extends AbstractType
+{
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
         $builder
             ->add('nom')
             ->add('rayon')
@@ -26,7 +28,8 @@ class CategoriesType extends AbstractType{
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver){
+    public function configureOptions(OptionsResolver $resolver)
+    {
         $resolver->setDefaults(array(
             'data_class' => 'Ecommerce\EcommerceBundle\Entity\Categories'
         ));
@@ -35,7 +38,8 @@ class CategoriesType extends AbstractType{
     /**
      * @return string
      */
-    public function getName(){
+    public function getName()
+    {
         return 'ecommerce_ecommercebundle_categories';
     }
 }

@@ -250,7 +250,7 @@
                                                 {% if panier[produit.id] is not defined %}
                                                     <a class="btn btn-large waves-effect waves-light miva produitAjax"
                                                        style="float: left;" id="pro{{ produit.id }}"
-                                                       data-path="{{ path('ajouterPanier', { 'id' : produit.id }) }}" >
+                                                       data-path="{{ path('ajouterPanier', { 'id' : produit.id }) }}">
                                                         <i class="fa fa-shopping-cart"></i>
                                                     </a>
 
@@ -403,4 +403,10 @@
 
 </main>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Panier -->
+    <script src="{{ asset('js/panier.js') }}"></script>
 {% endblock %}

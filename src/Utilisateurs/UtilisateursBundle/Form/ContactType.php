@@ -17,7 +17,7 @@ class ContactType extends AbstractType
         $builder
             ->add('name', null, array(
                 'attr' => array(
-                    'class' => 'validate'
+                    'class' => 'validate',
                 )
             ))
             ->add('email','email', array(

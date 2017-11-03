@@ -1,11 +1,76 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-    <div>
-        <label for="username">{{ 'resetting.request.username'|trans }}</label>
-        <input type="text" id="username" name="username" required="required" />
+<main>
+
+    <!--Main layout-->
+    <div class="container">
+
+
+        <h1 style="font-weight: 700">Mot de passe perdu !</h1>
+        <p>Désireux de le récupérer ?</p>
+        <div class="well">
+
+            <em>Merci de remplir le formulaire. <br/> Un E-mail vous sera envoyé
+                avec la procédure à suivre pour récuoérer le mot de passe.
+            </em>
+            <br/><br/><br/>
+
+            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                        <div class="md-form">
+                            <i class="fa fa-user prefix"></i>
+                            <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                            <input type="text" id="username" name="username" required="required" />
+                            <br />
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                    </div>
+                </div>
+                <button class="btn btn-large miva waves-effect waves-light"
+                        type="submit" value="{{ 'resetting.request.submit'|trans }}">
+                    Mettre à jour
+                </button>
+            </form>
+        </div>
+
     </div>
-    <div>
-        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+    <!--/.Main layout-->
+
+</main>
+
+{#s<main>
+    <!--Main layout-->
+    <div class="container">
+        <div class="span12">
+            <h2>Mot de passe perdu</h2>
+            <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                    <div class="span4">
+                        <h4>Vous avez perdu votre mot de passe ?</h4>
+                        <em>
+                            Compléter le formulaire, un email vous seras envoyé.<br />
+                            Il contiendra la procèdure à suivre pour récupérer votre mot de passe.
+                        </em>
+                    </div>
+
+                    <div class="span4 offset2">
+                        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                            <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                            <input type="text" id="username" name="username" required="required" />
+                            <br />
+                            <input class="btn btn-primary" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</form>
+</main>#}
+
+

@@ -10,7 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table("descriptions")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\DescriptionsRepository")
  */
-class Descriptions{
+class Descriptions
+{
     /**
      * @var integer
      *
@@ -33,12 +34,14 @@ class Descriptions{
      */
     private $description;
 
+
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -48,8 +51,10 @@ class Descriptions{
      * @param string $description
      * @return Descriptions
      */
-    public function setDescription($description){
+    public function setDescription($description)
+    {
         $this->description = $description;
+
         return $this;
     }
 
@@ -58,7 +63,8 @@ class Descriptions{
      *
      * @return string 
      */
-    public function getDescription(){
+    public function getDescription()
+    {
         return $this->description;
     }
 
@@ -68,8 +74,10 @@ class Descriptions{
      * @param \Ecommerce\EcommerceBundle\Entity\Produits $produit
      * @return Descriptions
      */
-    public function setProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produit){
+    public function setProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produit)
+    {
         $this->produit = $produit;
+
         return $this;
     }
 
@@ -78,7 +86,8 @@ class Descriptions{
      *
      * @return \Ecommerce\EcommerceBundle\Entity\Produits 
      */
-    public function getProduit(){
+    public function getProduit()
+    {
         return $this->produit;
     }
 }

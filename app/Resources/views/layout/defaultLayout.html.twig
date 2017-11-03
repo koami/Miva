@@ -14,10 +14,13 @@
     <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style_rating.css') }}" />
+    <!-- For the Rating stars -->
+    <link rel="stylesheet" href="{{ asset('bundles/dcsrating/css/rating.css') }}" />
 
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
+
 
 <body>
 <header>
@@ -66,6 +69,9 @@
 
                 </ul>
 
+
+
+
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item dropdown btn-group">
@@ -101,6 +107,11 @@
 
 
             </div>
+
+            {#<a class="brand" href="{{ path('produits') }}">Miva</a>
+            <div class="nav-collapse collapse">
+                {% render(controller('EcommerceBundle:Produits:recherche')) %}
+            </div>#}
         </div>
     </nav>
 
@@ -114,19 +125,25 @@
 
 {% block body %}{% endblock %}
 
-
+<!--Footer-->
 <footer class="page-footer center-on-small-only">
+
+    <!--Footer Links-->
     <div class="container">
         <div class="row">
+
+            <!--First column-->
             <div class="col-md-4 col-sm-6">
                 <h5 class="title">A propos</h5>
                 <p>Nous sommes a votre service pour vous fournir
                     les meilleurs produits a des prix defiants toutes
                     concurrences.</p>
             </div>
+            <!--/.First column-->
 
             <hr class="hidden-md-up">
 
+            <!--Second column-->
             <div class="col-md-4 col-sm-6">
                 <h5 class="title">Nous contacter</h5>
                 <ul>
@@ -144,10 +161,11 @@
                             Ravi de recevoir
                             vos messages.
                         </p>
-                        <a class="btn miva" href="{{ path('contactUs') }}"><i class="fa fa-envelope"></i> ENVOYER MAIL</a>
+                        <a class="btn miva waves-effect waves-light m-b-lg" href="{{ path('contactUs') }}"><i class="fa fa-envelope"></i> ENVOYER MAIL</a>
                     </li>
                 </ul>
             </div>
+            <!--/.Second column-->
             <div class="col-md-4 col-sm-6 m-t-md">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"><dd class="social"><i class="fa fa-facebook m-t-md"></i></dd></a></div>
@@ -155,38 +173,14 @@
                     <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"><dd class="social"><i class="fa fa-twitter m-t-md"></i></dd></a></div>
                 </div>
 
-                <form role="form" id="form-contact" autocomplete="off" method="post" action="">
-                    <div class="row">
-                        <div class="input-field col-md-6 col-sm-12">
-                            <input name="name" type="text" class="validate" required="true">
-                            <label for="name" style="left: 0.75rem;">Nom</label>
-                        </div>
-                        <div class="input-field col-md-6 col-sm-12">
-                            <input name="email" type="email" class="validate" required="true">
-                            <label for="email" style="left: 0.75rem;">Email</label>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="input-field col-md-12 col-sm-12">
-                            <textarea name="message" rows="5" class="validate materialize-textarea" style="border:0 solid #000;border-bottom:1px solid #999;height: 50px"> </textarea>
-                            <label for="message" style="left: 0.75rem;">Message</label>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <button type="submit" title="Se connecter" class="btn miva m-b-lg" data-style="slide-right" id="valid_mail">
-                            <span class="ladda-label">Envoyer &nbsp;&nbsp;<i class="mdi-content-send" style="font-size: 1rem;"></i></span>
-                            <span class="ladda-spinner"></span>
-                        </button>
-                        <button type="reset" id="reset_mail" class="m-b-lg"> <i class="fa fa-eraser"></i> </button>
-                    </div>
-                </form>
 
             </div>
         </div>
     </div>
+    <!--/.Footer Links-->
 
+    <!--Copyright-->
     <center>
         <div class="footer-copyright"
              style="background-color: #3b0a0a;
@@ -196,38 +190,56 @@
             </div>
         </div>
     </center>
+    <!--/.Copyright-->
 </footer>
+<!--/.Footer-->
 
+<!-- SCRIPTS -->
+
+<!-- JQuery -->
 <script type="text/javascript"
         src="{{ asset('js/jquery-2.2.3.min.js') }}">
 
 </script>
 
+<!-- Bootstrap tooltips -->
 <script type="text/javascript"
         src="{{ asset('js/tether.min.js') }}">
 
 </script>
 
+<!-- Bootstrap core JavaScript -->
 <script type="text/javascript"
         src="{{ asset('js/bootstrap.min.js') }}">
 
 </script>
 
+<!-- recherche core JavaScript -->
 <script type="text/javascript" src="{{ asset('js/search.js') }}"></script>
 
+<!-- MDB core JavaScript -->
 <script type="text/javascript"
-        src="{{ asset('js/mdb.min.js') }}"> </script>
+        src="{{ asset('js/mdb.min.js') }}">
+
+</script>
+
+<!-- Rating Stars -->
+<script src="{{ asset('bundles/dcsrating/js/rating.js') }}">
+
+</script>
 
 <script>
+    // Initialize collapse button
     $(".button-collapse").sideNav();
+    // Initialize collapsible (uncomment the line below if you use the dropdown variation)
     $('.collapsible').collapsible();
 </script>
 
 <script>
     $('.button-collapse').sideNav({
-            menuWidth: 300,
-            edge: 'right',
-            closeOnClick: true
+            menuWidth: 300, // Default is 240
+            edge: 'right', // Choose the horizontal origin
+            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
         }
     );
 </script>
@@ -257,14 +269,9 @@
 
 <script src="{{ asset('bundles/dcsrating/js/rating.js') }}"></script>
 
-<script src="{{ asset('js/panier.js') }}"></script>
-
-<!-- List core JavaScript -->
-<script type="text/javascript" src="{{ asset('js/List.js') }}"> </script>
-
 <script>
-    var loader = "{{ asset('img/loader-small.gif') }}";
-    var ROOT_URL = "{{ url('produits')}}";
+    var loader = "{{ asset('img/loader-small.gif') }}"; //link to the animated loader-small.gif
+    var ROOT_URL = "{{ url('produits')}}"; //your root URL, used in autocomplete-countries.js file
 </script>
 
 {% block javascripts %}{% endblock %}
