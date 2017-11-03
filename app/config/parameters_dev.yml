@@ -2,10 +2,10 @@
 parameters:
     database_driver: pdo_mysql
     database_host: localhost
-    database_port: null
-    database_name: ecommerce_final
-    database_user: root
-    database_password: null
+    database_port: 2083
+    database_name: mivadmin_ecommerce_final
+    database_user: mivadmin
+    database_password: pZaUVM2)=MIs
     mailer_transport: smtp
     mailer_host: mail.miva.tg
     mailer_user: ark@miva.tg
