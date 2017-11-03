@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+        <!-- For the Rating stars -->
+        <link rel="stylesheet" href="{{ asset('bundles/dcsrating/css/rating.css') }}" />
 
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -83,6 +85,11 @@
 
 
             </div>
+
+            {#<a class="brand" href="{{ path('produits') }}">Miva</a>
+            <div class="nav-collapse collapse">
+                {% render(controller('EcommerceBundle:Produits:recherche')) %}
+            </div>#}
         </div>
         </nav>
         </header>
@@ -92,17 +99,25 @@
         </div>
         </div>
 
+        <!--Footer-->
         <footer class="page-footer center-on-small-only">
 
+        <!--Footer Links-->
         <div class="container-fluid">
             <div class="row">
+
+                <!--First column-->
                 <div class="col-md-3 offset-lg-1 hidden-lg-down">
                     <h5 class="title">ABOUT</h5>
                     <p>Nous sommes a votre service pour vous fournir
                         les meilleurs produits a des prix defiants toutes
                         concurrences.</p>
                 </div>
+                <!--/.First column-->
+
                 <hr class="hidden-md-up">
+
+                <!--Second column-->
                 <div class="col-lg-2 col-md-4 offset-lg-1">
                     <h5 class="title">Nous contacter</h5>
                     <ul>
@@ -117,9 +132,13 @@
                         </li>
                     </ul>
                 </div>
+                <!--/.Second column-->
+
             </div>
         </div>
+        <!--/.Footer Links-->
 
+        <!--Copyright-->
         <center>
             <div class="footer-copyright"
                  style="background-color: #3b0a0a;
@@ -129,24 +148,39 @@
                 </div>
             </div>
         </center>
+        <!--/.Copyright-->
+
         </footer>
+        <!--/.Footer-->
+
+        <!-- SCRIPTS -->
+
+        <!-- JQuery -->
         <script type="text/javascript"
             src="{{ asset('js/jquery-2.2.3.min.js') }}">
 
         </script>
 
+        <!-- Bootstrap tooltips -->
         <script type="text/javascript"
             src="{{ asset('js/tether.min.js') }}">
 
         </script>
 
+        <!-- Bootstrap core JavaScript -->
         <script type="text/javascript"
             src="{{ asset('js/bootstrap.min.js') }}">
 
         </script>
 
+        <!-- MDB core JavaScript -->
         <script type="text/javascript"
             src="{{ asset('js/mdb.min.js') }}">
+
+        </script>
+
+        <!-- Rating Stars -->
+        <script src="{{ asset('bundles/dcsrating/js/rating.js') }}">
 
         </script>
 
@@ -157,9 +191,9 @@
 
         <script>
         $('.button-collapse').sideNav({
-                menuWidth: 300,
-                edge: 'right',
-                closeOnClick: true
+                menuWidth: 300, // Default is 240
+                edge: 'right', // Choose the horizontal origin
+                closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
             }
         );
         </script>
@@ -170,10 +204,8 @@
 
         <script type="text/javascript"
             src="{{ asset('bundles/fosjsrouting/js/router.js') }}">
-        </script>
 
-        <!-- List core JavaScript -->
-        <script type="text/javascript" src="{{ asset('js/List.js') }}"> </script>
+        </script>
 
         <script type="text/javascript"
             src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}">

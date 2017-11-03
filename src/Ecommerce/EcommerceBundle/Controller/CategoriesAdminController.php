@@ -12,13 +12,15 @@ use Ecommerce\EcommerceBundle\Form\CategoriesType;
  * Categories controller.
  *
  */
-class CategoriesAdminController extends Controller{
+class CategoriesAdminController extends Controller
+{
 
     /**
      * Lists all Categories entities.
      *
      */
-    public function indexAction(){
+    public function indexAction()
+    {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('EcommerceBundle:Categories')->findAll();
@@ -31,7 +33,8 @@ class CategoriesAdminController extends Controller{
      * Creates a new Categories entity.
      *
      */
-    public function createAction(Request $request){
+    public function createAction(Request $request)
+    {
         $entity = new Categories();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -57,7 +60,8 @@ class CategoriesAdminController extends Controller{
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Categories $entity){
+    private function createCreateForm(Categories $entity)
+    {
         $form = $this->createForm(new CategoriesType(), $entity, array(
             'action' => $this->generateUrl('adminCategories_create'),
             'method' => 'POST',
@@ -72,7 +76,8 @@ class CategoriesAdminController extends Controller{
      * Displays a form to create a new Categories entity.
      *
      */
-    public function newAction(){
+    public function newAction()
+    {
         $entity = new Categories();
         $form   = $this->createCreateForm($entity);
 
@@ -86,7 +91,8 @@ class CategoriesAdminController extends Controller{
      * Finds and displays a Categories entity.
      *
      */
-    public function showAction($id){
+    public function showAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('EcommerceBundle:Categories')->find($id);
@@ -106,7 +112,8 @@ class CategoriesAdminController extends Controller{
      * Displays a form to edit an existing Categories entity.
      *
      */
-    public function editAction($id){
+    public function editAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('EcommerceBundle:Categories')->find($id);
@@ -132,7 +139,8 @@ class CategoriesAdminController extends Controller{
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Categories $entity){
+    private function createEditForm(Categories $entity)
+    {
         $form = $this->createForm(new CategoriesType(), $entity, array(
             'action' => $this->generateUrl('adminCategories_update', array('id' => $entity->getId())),
             'method' => 'PUT',
@@ -146,7 +154,8 @@ class CategoriesAdminController extends Controller{
      * Edits an existing Categories entity.
      *
      */
-    public function updateAction(Request $request, $id){
+    public function updateAction(Request $request, $id)
+    {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('EcommerceBundle:Categories')->find($id);
@@ -175,7 +184,8 @@ class CategoriesAdminController extends Controller{
      * Deletes a Categories entity.
      *
      */
-    public function deleteAction(Request $request, $id){
+    public function deleteAction(Request $request, $id)
+    {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
@@ -201,7 +211,8 @@ class CategoriesAdminController extends Controller{
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id){
+    private function createDeleteForm($id)
+    {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('adminCategories_delete', array('id' => $id)))
             ->setMethod('DELETE')

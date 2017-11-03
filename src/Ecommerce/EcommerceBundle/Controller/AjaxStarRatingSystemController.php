@@ -9,8 +9,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Cookie;
 use Ecommerce\EcommerceBundle\Entity\StarRatingSystem;
 
-class AjaxStarRatingSystemController extends Controller{
-    public function updateDataAction(Request $request){
+class AjaxStarRatingSystemController extends Controller
+{
+    public function updateDataAction(Request $request)
+    {
         $produit = $request->get('produit');
         $rate = $request->get('rate');
         

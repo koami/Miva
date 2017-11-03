@@ -12,25 +12,29 @@ use Ecommerce\EcommerceBundle\Form\RayonType;
  * Rayon controller.
  *
  */
-class RayonAdminController extends Controller{
+class RayonAdminController extends Controller
+{
+
     /**
      * Lists all Rayon entities.
      *
      */
-    public function indexAction(){
+    public function indexAction()
+    {
         $em = $this->getDoctrine()->getManager();
+
         $entities = $em->getRepository('EcommerceBundle:Rayon')->findAll();
 
         return $this->render('EcommerceBundle:Administration:Rayon/layout/index.html.twig', array(
             'entities' => $entities,
         ));
     }
-
     /**
      * Creates a new Rayon entity.
      *
      */
-    public function createAction(Request $request){
+    public function createAction(Request $request)
+    {
         $entity = new Rayon();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -56,11 +60,13 @@ class RayonAdminController extends Controller{
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Rayon $entity){
+    private function createCreateForm(Rayon $entity)
+    {
         $form = $this->createForm(new RayonType(), $entity, array(
             'action' => $this->generateUrl('adminRayon_create'),
             'method' => 'POST',
         ));
+
         $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
@@ -70,7 +76,8 @@ class RayonAdminController extends Controller{
      * Displays a form to create a new Rayon entity.
      *
      */
-    public function newAction(){
+    public function newAction()
+    {
         $entity = new Rayon();
         $form   = $this->createCreateForm($entity);
 
@@ -84,13 +91,16 @@ class RayonAdminController extends Controller{
      * Finds and displays a Rayon entity.
      *
      */
-    public function showAction($id){
+    public function showAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
+
         $entity = $em->getRepository('EcommerceBundle:Rayon')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Rayon entity.');
         }
+
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('EcommerceBundle:Administration:Rayon/layout/show.html.twig', array(
@@ -102,13 +112,16 @@ class RayonAdminController extends Controller{
      * Displays a form to edit an existing Rayon entity.
      *
      */
-    public function editAction($id){
+    public function editAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
+
         $entity = $em->getRepository('EcommerceBundle:Rayon')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Rayon entity.');
         }
+
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
@@ -126,27 +139,31 @@ class RayonAdminController extends Controller{
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Rayon $entity){
+    private function createEditForm(Rayon $entity)
+    {
         $form = $this->createForm(new RayonType(), $entity, array(
             'action' => $this->generateUrl('adminRayon_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
+
         $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
-
     /**
      * Edits an existing Rayon entity.
      *
      */
-    public function updateAction(Request $request, $id){
+    public function updateAction(Request $request, $id)
+    {
         $em = $this->getDoctrine()->getManager();
+
         $entity = $em->getRepository('EcommerceBundle:Rayon')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Rayon entity.');
         }
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
@@ -163,12 +180,12 @@ class RayonAdminController extends Controller{
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
      * Deletes a Rayon entity.
      *
      */
-    public function deleteAction(Request $request, $id){
+    public function deleteAction(Request $request, $id)
+    {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
@@ -179,6 +196,7 @@ class RayonAdminController extends Controller{
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Rayon entity.');
             }
+
             $em->remove($entity);
             $em->flush();
         }
@@ -193,7 +211,8 @@ class RayonAdminController extends Controller{
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id){
+    private function createDeleteForm($id)
+    {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('adminRayon_delete', array('id' => $id)))
             ->setMethod('DELETE')

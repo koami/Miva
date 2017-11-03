@@ -10,7 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table("garanties")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\GarantiesRepository")
  */
-class Garanties{
+class Garanties
+{
     /**
      * @var integer
      *
@@ -56,14 +57,16 @@ class Garanties{
     /**
      * @return mixed
      */
-    public function getProduits(){
+    public function getProduits()
+    {
         return $this->produits;
     }
 
     /**
      * @param mixed $produits
      */
-    public function setProduits($produits){
+    public function setProduits($produits)
+    {
         $this->produits = $produits;
     }
 
@@ -72,7 +75,8 @@ class Garanties{
      *
      * @return integer 
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -82,8 +86,10 @@ class Garanties{
      * @param string $periode
      * @return Garanties
      */
-    public function setPeriode($periode){
+    public function setPeriode($periode)
+    {
         $this->periode = $periode;
+
         return $this;
     }
 
@@ -92,7 +98,8 @@ class Garanties{
      *
      * @return string
      */
-    public function getPeriode(){
+    public function getPeriode()
+    {
         return $this->periode;
     }
 
@@ -102,8 +109,10 @@ class Garanties{
      * @param string $nom
      * @return Garanties
      */
-    public function setNom($nom){
+    public function setNom($nom)
+    {
         $this->nom = $nom;
+
         return $this;
     }
 
@@ -112,7 +121,8 @@ class Garanties{
      *
      * @return string 
      */
-    public function getNom(){
+    public function getNom()
+    {
         return $this->nom;
     }
 
@@ -122,8 +132,10 @@ class Garanties{
      * @param \Ecommerce\EcommerceBundle\Entity\Partenaires $partenaire
      * @return Garanties
      */
-    public function setPartenaire(\Ecommerce\EcommerceBundle\Entity\Partenaires $partenaire){
+    public function setPartenaire(\Ecommerce\EcommerceBundle\Entity\Partenaires $partenaire)
+    {
         $this->partenaire = $partenaire;
+
         return $this;
     }
 
@@ -132,7 +144,8 @@ class Garanties{
      *
      * @return \Ecommerce\EcommerceBundle\Entity\Partenaires 
      */
-    public function getPartenaire(){
+    public function getPartenaire()
+    {
         return $this->partenaire;
     }
 
@@ -140,14 +153,16 @@ class Garanties{
     /**
      * @return int
      */
-    public function getValeur(){
+    public function getValeur()
+    {
         return $this->valeur;
     }
 
     /**
      * @param int $valeur
      */
-    public function setValeur($valeur){
+    public function setValeur($valeur)
+    {
         $this->valeur = $valeur;
     }
 
@@ -157,9 +172,11 @@ class Garanties{
      * @param \Ecommerce\EcommerceBundle\Entity\Produits $produit
      * @return Garanties
      */
-    public function addProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produit){
+    public function addProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produit)
+    {
         $produit->setGarantie($this);
         $this->produits->add($produit);
+
         return $this;
     }
 
@@ -168,11 +185,14 @@ class Garanties{
      *
      * @param \Ecommerce\EcommerceBundle\Entity\Produits $produit
      */
-    public function removeProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produit){
+    public function removeProduit(\Ecommerce\EcommerceBundle\Entity\Produits $produit)
+    {
         $this->produits->removeElement($produit);
     }
 
-    function __toString(){
+    function __toString()
+    {
+        // TODO: Implement __toString() method.
         return $this->getNom();
     }
 }

@@ -2,27 +2,28 @@
 
 {% block body %}
 <div class="container">
-    <div class="row">
-    <div class="col-md-4 col-sm-6">
+    <div class="row m-b-lg">
+    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
         <h5 class="white-text">Nous contacter</h5>
         <p class="grey-text text-lighten-1">
-            Ravi de recevoir
-            vos messages.
+            Ravi de recevoir vos messages.
         </p>
 
-        <div class="span4 offset2">
+        <div class="">
             <form action="{{ path('contactUs') }}" method="POST" {{ form_enctype(form) }} >
                 {#{{ form_errors(form) }}#}
 
                 {{ form_row(form.name) }}
                 {{ form_row(form.email) }}
                 {{ form_row(form.sujet) }}
+                <div class="m-t-lg">
                 {{ form_row(form.message) }}
+                </div>
 
                 {#{{ form_rest(form) }}#}
 
                 {{ form_widget(form) }}
-                <button class="btn miva" type="submit">Envoyer</button>
+                <button class="btn miva waves-effect waves-light m-t-md" type="submit">Envoyer</button>
             </form>
         </div>
 

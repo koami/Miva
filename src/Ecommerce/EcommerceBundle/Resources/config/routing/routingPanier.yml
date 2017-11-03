@@ -2,10 +2,6 @@ supprimer:
     pattern:  /supprimer/{id}
     defaults: { _controller: EcommerceBundle:Panier:supprimer }
 
-vider:
-    pattern:  /vider/
-    defaults: { _controller: EcommerceBundle:Panier:vider }
-
 ajouter:
     pattern:  /ajouter/{id}
     defaults: { _controller: EcommerceBundle:Panier:ajouter }

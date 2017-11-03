@@ -2,64 +2,87 @@ $(document).ready(function () {
 	$('.produitAjax').click(function() {
 		var id = $(this).attr('id');
 		var path = $(this).attr('data-path');
-		if (!path) {
-			var path = $('.formul').attr('action');
-			var qte = $('.qte').val();
-			var data = {qte : qte};
-		}
-
 		$.ajax({
-			type: 'get',
+			type: 'POST',
 			url: path,
-			data: data,
-			beforeSend: function(){
-				$('#'+id).empty().html('<img src="' + window.loader + '" alt="" />');
-			},
 			success: function (data) {
 				$('.produitRefersh').empty().html(data.articles);
-				$('#'+id).hide();;
+				$('#'+id).hide();
+				console.log(data);
 			}
 		});
 		return false;
 	});
-
-	/** Suppression des produits dans le panier**/
-
-        var options = {
-          valueNames: [ 'id', 'nom', 'prix', 'quantite' ]
-        };
-
-        // Init list
-        var panierList = new List('paniers', options);
-
-        var removeBtns = $('.remove-item-btn');
-
-        // Sets callbacks to the buttons in the list
-        refreshCallbacks();
-
-        function refreshCallbacks() {
-          // Needed to add new buttons to jQuery-extended object
-          	removeBtns = $(removeBtns.selector);
-          
-          	removeBtns.click(function() {
-          		var path = $(this).attr('data-path');
-          		var id = $(this).attr('id');
-          		var itemId = $(this).closest('tr').find('.id').text();
-	          	$.ajax({
-					type: 'get',
-					url: path,
-					beforeSend: function(){
-						$('#'+id).empty().html('<img src="' + window.loader + '" alt="" />');
-					},
-					success: function (data) {
-						$('.produitRefersh').empty().html(data.articles);
-						$('.message').empty().html(data.success);
-            			console.log(itemId);
-            			panierList.remove('id', itemId);
-					}
-				});
-				return false;
-     		});
-        }
-
 });
+
+angular.module('MyApp')
+
+	.controller('AppCtrl', function($scope, $mdToast, $document) {
+		var last = {
+			bottom: false,
+			top: true,
+			left: false,
+			right: true
+		};
+
+		$scope.toastPosition = angular.extend({},last);
+
+		$scope.getToastPosition = function() {
+			sanitizePosition();
+
+			return Object.keys($scope.toastPosition)
+				.filter(function(pos) { return $scope.toastPosition[pos]; })
+				.join(' ');
+		};
+
+		function sanitizePosition() {
+			var current = $scope.toastPosition;
+
+			if ( current.bottom && last.top ) current.top = false;
+			if ( current.top && last.bottom ) current.bottom = false;
+			if ( current.right && last.left ) current.left = false;
+			if ( current.left && last.right ) current.right = false;
+
+			last = angular.extend({},current);
+		}
+
+		$scope.showCustomToast = function() {
+			$mdToast.show({
+				controller: 'ToastCtrl',
+				templateUrl: 'toast-template.html',
+				parent : $document[0].querySelector('#toastBounds'),
+				hideDelay: 6000,
+				position: $scope.getToastPosition()
+			});
+		};
+
+		$scope.showSimpleToast = function() {
+			$mdToast.show(
+				$mdToast.simple()
+					.content('Simple Toast!')
+					.position($scope.getToastPosition())
+					.hideDelay(3000)
+			);
+		};
+
+		$scope.showActionToast = function() {
+			var toast = $mdToast.simple()
+				.content('Action Toast!')
+				.action('OK')
+				.highlightAction(false)
+				.position($scope.getToastPosition());
+
+			$mdToast.show(toast).then(function(response) {
+				if ( response == 'ok' ) {
+					alert('You clicked \'OK\'.');
+				}
+			});
+		};
+
+	})
+
+	.controller('ToastCtrl', function($scope, $mdToast) {
+		$scope.closeToast = function() {
+			$mdToast.hide();
+		};
+	});

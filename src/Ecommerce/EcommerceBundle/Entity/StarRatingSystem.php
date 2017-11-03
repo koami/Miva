@@ -11,7 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="star_rating")
  * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\StarRatingSystemRepository")
  */
-class StarRatingSystem{
+class StarRatingSystem
+{
     /**
      * @var int
      *
@@ -28,6 +29,7 @@ class StarRatingSystem{
      */
     private $produit;
 
+
     /**
      * @var integer
      *
@@ -42,12 +44,14 @@ class StarRatingSystem{
      */
     private $nbrrate;
 
+
     /**
      * Get id
      *
      * @return int
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -55,7 +59,8 @@ class StarRatingSystem{
      * Get produit
      * @return integer
      */
-    public function getProduit(){
+    public function getProduit()
+    {
         return $this->produit;
     }
 
@@ -64,7 +69,8 @@ class StarRatingSystem{
      * @param integer $produit
      * @return StarRatingSystem
      */
-    public function setProduit($produit){
+    public function setProduit($produit)
+    {
         $this->produit = $produit;
     }
 
@@ -75,8 +81,10 @@ class StarRatingSystem{
      *
      * @return starratingsystem
      */
-    public function setRate($rate){
+    public function setRate($rate)
+    {
         $this->rate = $rate;
+
         return $this;
     }
 
@@ -85,7 +93,8 @@ class StarRatingSystem{
      *
      * @return integer
      */
-    public function getRate(){
+    public function getRate()
+    {
         return $this->rate;
     }
 
@@ -96,8 +105,10 @@ class StarRatingSystem{
      *
      * @return starratingsystem
      */
-    public function setNbrrate($nbrrate){
+    public function setNbrrate($nbrrate)
+    {
         $this->nbrrate = $nbrrate;
+
         return $this;
     }
 
@@ -106,7 +117,8 @@ class StarRatingSystem{
      *
      * @return integer
      */
-    public function getNbrrate(){
+    public function getNbrrate()
+    {
         return $this->nbrrate;
     }
 }

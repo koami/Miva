@@ -343,6 +343,23 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_fos_user_change_password:
 
+        if (0 === strpos($pathinfo, '/contact')) {
+            // contactUs
+            if (rtrim($pathinfo, '/') === '/contact') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'contactUs');
+                }
+
+                return array (  '_controller' => 'Utilisateurs\\UtilisateursBundle\\Controller\\ContactController::contactAction',  '_route' => 'contactUs',);
+            }
+
+            // sendMail
+            if ($pathinfo === '/contact/Mail_Envoye') {
+                return array (  '_controller' => 'Utilisateurs\\UtilisateursBundle\\Controller\\ContactController::sendMailAction',  '_route' => 'sendMail',);
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/admin/pages')) {
             // adminPages
             if (rtrim($pathinfo, '/') === '/admin/pages') {

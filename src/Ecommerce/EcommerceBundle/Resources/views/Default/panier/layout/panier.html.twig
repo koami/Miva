@@ -14,18 +14,25 @@
 
         <!--Main layout-->
         <div class="container">
+
+            {#{% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}#}
+
             <h1 style="font-weight: 700">Mon panier</h1>
             <p>Visualisez et confirmez vos achats</p>
             <div class="well">
-                <div id="paniers" class="table-responsive">
+                <div class="table-responsive">
                     <table class="table product-table">
                         <!--Table head-->
                         <thead>
                         <tr>
                             <th></th>
-                            <th class="sort" data-sort="nom">Produit</th>
-                            <th class="sort" data-sort="prix">Prix unitaire</th>
-                            <th class="sort" data-sort="quantite">Quantité</th>
+                            <th>Produit</th>
+                            <th>Prix unitaire</th>
+                            <th>Quantité</th>
                             <th></th>
                             <th></th>
                             <th>Montant</th>
@@ -35,7 +42,7 @@
                         <!--/Table head-->
 
                         <!--Table body-->
-                        <tbody class="list">
+                        <tbody>
 
                         {% if produits|length == 0 %}
                             <tr>
@@ -54,7 +61,6 @@
                                 <form action="{{ path('ajouter', { 'id' : produit.id }) }}" method="get">
 
                                     <th scope="row">
-                                        <p class="id" style="display:none;">{{ produit.id }}</p>
                                         <a href="{{ path('presentation', { 'id' : produit.id }) }}" >
                                             <img
                                                 src="{{ produit.image.AssetPath|imagine_filter('produitThumb') }}"
@@ -63,17 +69,17 @@
                                         </a>
                                     </th>
 
-                                    <td class="nom">
+                                    <td>
                                         <h5><strong>{{ produit.nom }}</strong></h5>
                                     </td>
 
-                                    <td class="prix">
+                                    <td>
                                         {{ produit.prix }} F CFA
                                     </td>
                                     <td></td>
                                     <td></td>
 
-                                    <td class="quantite">
+                                    <td>
                                         <select name="qte" class="span1" onChange="this.form.submit()">
                                             {% set quantite = produit.quantite %}
                                             {% for i in 1..quantite %}
@@ -88,13 +94,13 @@
                                         {{ produit.prix * panier[produit.id] }} F CFA
                                     </td>
 
-                                    <td class="remove">
+                                    <td>
                                         <a type="button"
-                                           class="btn btn-sm miva waves-effect waves-light fa fa-trash remove-item-btn" id="btn{{ produit.id }}"
+                                           class="btn btn-sm miva waves-effect waves-light fa fa-trash"
                                            data-toggle="tooltip"
                                            data-placement="top"
-                                           title="Remove item" data-path="{{ path('supprimer', { 'id' : produit.id }) }}"
-                                            >
+                                           title="Remove item"
+                                           href="{{ path('supprimer', { 'id' : produit.id }) }}" >
                                         </a>
                                     </td>
 
@@ -109,13 +115,12 @@
                             <!--Resume row-->
                             <tr>
                                 <td colspan="3">
-                                    <a class="btn miva waves-effect waves-light"
-                                        href="{{ path('vider') }}" >
-                                        Vider votre panier 
-                                        <i class="fa fa-trash"></i>
+                                    <a class="btn red waves-effect waves-light"
+                                       href="{{ path('livraison') }}">
+                                        Vider le panier
                                     </a>
-                                </td>
 
+                                </td>
                                 <td>
                                     <h4>
                                         <strong>
@@ -132,11 +137,15 @@
                                         F CFA
                                     </h4>
                                 </td>
-                                
+
                                 <td colspan="3">
-                                    <a class="btn miva waves-effect waves-light"
+                                    <a style="display: block" class="btn miva waves-effect waves-light"
                                        href="{{ path('livraison') }}">
                                         Confirmer la commande
+                                    </a>
+                                    <a style="display: block" class="btn green waves-effect waves-light m-t-md"
+                                       href="{{ path('livraison') }}">
+                                         Aller aux articles
                                     </a>
                                 </td>
                             </tr>
@@ -155,3 +164,78 @@
     </main>
 
 {% endblock %}
+
+{# 
+<div class="container">
+    <div class="row">
+        
+        <div class="span3">
+            {% include '::modulesUsed/navigation.html.twig' %}
+        </div>
+        
+        <div class="span9">
+            
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            
+            <h2>Votre panier</h2>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Références</th>
+                        <th>Quantité</th>
+                        <th>Prix unitaire</th>
+                        <th>Total HT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if produits|length == 0 %}
+                        <tr>
+                            <td colspan="4"><center>Aucun articles dans votre panier</center></td>
+                        </tr>
+                    {% endif %}
+                    
+                    {% for produit in produits %}
+                    <tr>
+                        <form action="{{ path('ajouter', { 'id' : produit.id }) }}" method="get">
+                            <td>{{ produit.nom }}</td>
+                            <td>
+                                <select name="qte" class="span1" onChange="this.form.submit()">
+                                    {% for i in 1..10 %}
+                                        <option value="{{ i }}" {% if i == panier[produit.id] %} selected="selected" {% endif %}>{{ i }}</option>
+                                    {% endfor %}
+                                </select>&nbsp;
+                                <a href="{{ path('supprimer', { 'id' : produit.id }) }}"><i class="icon-trash"></i></a>
+                            </td>
+                            <td>{{ produit.prix }} €</td>
+                            <td>{{ produit.prix * panier[produit.id] }} €</td>
+                        </form>
+                    </tr>
+                    {% set totalHT = totalHT + (produit.prix * panier[produit.id]) %}
+                    {% set totalTTC = totalTTC + (produit.prix * panier[produit.id])|tva(produit.tva.multiplicate) %}
+                    {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + ( produit.prix * panier[produit.id])|montantTva(produit.tva.multiplicate) }) %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if produits|length != 0 %}
+            <dl class="dl-horizontal pull-right">
+                <dt>Total HT :</dt><dd>{{ totalHT }} €</dd>
+                
+                {% for key, tva in refTva %}
+                    <dt>TVA {{ key }} :</dt><dd>{{ tva }} €</dd>
+                {% endfor %}
+
+                <dt>Total TTC :</dt><dd>{{ totalTTC }} €</dd>
+            </dl>
+            <div class="clearfix"></div>
+            <a href="{{ path('livraison') }}" class="btn btn-success pull-right">Valider mon panier</a>
+            {% endif %}
+            <a href="{{ path('produits') }}" class="btn btn-primary">Continuer mes achats</a>
+        </div>
+
+    </div>
+</div>
+ #}

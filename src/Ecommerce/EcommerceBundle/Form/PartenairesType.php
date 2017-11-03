@@ -8,12 +8,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ecommerce\EcommerceBundle\Form\MediaType;
 use Ecommerce\EcommerceBundle\Entity\Media;
 
-class PartenairesType extends AbstractType{
+class PartenairesType extends AbstractType
+{
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
         $builder
             ->add('nom')
             ->add('image', new MediaType(), array(
@@ -25,7 +27,8 @@ class PartenairesType extends AbstractType{
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver){
+    public function configureOptions(OptionsResolver $resolver)
+    {
         $resolver->setDefaults(array(
             'data_class' => 'Ecommerce\EcommerceBundle\Entity\Partenaires'
         ));
@@ -34,7 +37,8 @@ class PartenairesType extends AbstractType{
     /**
      * @return string
      */
-    public function getName(){
+    public function getName()
+    {
         return 'ecommerce_ecommercebundle_partenaires';
     }
 }

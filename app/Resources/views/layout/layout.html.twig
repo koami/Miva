@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block titre %}MIVA | Home{% endblock %}</title>
+        <meta name="keywords" content="{% block motsCles %}{% endblock %}" />
+        <meta name="description" content="{% block description %}{% endblock %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        
+        <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+        <!-- For the Rating stars -->
+        <link rel="stylesheet" href="{{ asset('bundles/dcsrating/css/rating.css') }}" />
+
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    
+    <body>
+        
+        <header>
+            <nav class="navbar navbar-toggleable-md navbar-dark">
+                <div class="container">
+                    <button class="navbar-toggler navbar-toggler-right" 
+                            type="button" data-toggle="collapse" 
+                            data-target="#navbarNav1" aria-controls="navbarNav1" 
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="{{ path('produits') }}">
+                        <div id="logo" class="logo"></div>
+                    </a>
+                        
+                    <div class="collapse navbar-collapse" id="navbarNav1">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ path('produits') }}">
+                                    Accueil 
+                                    <span class="sr-only"></span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Hommes
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Dames
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Articles
+                                </a>
+                            </li>
+                        </ul>
+                                    
+                        <form class="form-inline waves-effect waves-light">
+                            <input class="form-control" type="text" 
+                                   placeholder="Search">
+                        </form>
+
+                        <ul class="navbar-nav mr-auto">
+                            
+                            <li class="nav-item dropdown btn-group">
+                                
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    {% include 'UtilisateursBundle:Default:modulesUsed/utilisateursConnecte.html.twig' %}   
+                                {% else %}
+                                    <a class="nav-link" 
+                                       href="{{ path('fos_user_security_login') }}" >
+                                        <i class="fa fa-user"></i>
+                                        Connexion
+                                    </a>
+                                {% endif %}
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="{{ path('panier') }}"> 
+                                    <i class="fa fa-shopping-cart"></i> Panier
+                                    {% render(controller('EcommerceBundle:Panier:menu')) %}
+                                </a>
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+                    {#<a class="brand" href="{{ path('produits') }}">Miva</a>
+                    <div class="nav-collapse collapse">
+                        {% render(controller('EcommerceBundle:Produits:recherche')) %}
+                    </div>#}
+                </div>
+            </nav>
+        </header>
+
+        {% block body %}{% endblock %}
+        
+       <!--Footer-->
+        <footer class="page-footer center-on-small-only">
+        
+            <!--Footer Links-->
+            <div class="container-fluid">
+                <div class="row">
+                    
+                    <!--First column-->
+                    <div class="col-md-3 offset-lg-1 hidden-lg-down">
+                        <h5 class="title">ABOUT</h5>
+                        <p>Nous sommes a votre service pour vous fournir
+                        les meilleurs produits a des prix defiants toutes
+                        concurrences.</p>
+                    </div>
+                    <!--/.First column-->
+                    
+                    <hr class="hidden-md-up">
+                    
+                    <!--Second column-->
+                    <div class="col-lg-2 col-md-4 offset-lg-1">
+                        <h5 class="title">Nous contacter</h5>
+                        <ul>
+                            <li>
+                                <i class="icon-phone"></i>
+                                &nbsp;Tel: {{ telephone }}
+                            </li>
+                            
+                            <li>
+                                <i class="icon-print"></i>
+                                &nbsp;Fax: {{ fax }}
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.Second column-->
+
+                </div>
+            </div>
+            <!--/.Footer Links-->
+                            
+            <!--Copyright-->
+            <center>
+                <div class="footer-copyright" 
+                     style="background-color: #3b0a0a;
+                     margin-left: -15px;margin-right: -15px">
+                    <div class="container-fluid">
+                        <p>&copy; {{ "now"|date('Y') }} Copyright | Miva</p>
+                    </div>
+                </div>
+            </center>
+            <!--/.Copyright-->
+        </footer>
+        <!--/.Footer-->
+                    
+        <!-- SCRIPTS -->
+
+        <!-- JQuery -->
+        <script type="text/javascript"
+                src="{{ asset('js/jquery-2.2.3.min.js') }}">
+
+        </script>
+
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript"
+                src="{{ asset('js/tether.min.js') }}">
+
+        </script>
+
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript"
+                src="{{ asset('js/bootstrap.min.js') }}">
+
+        </script>
+
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript"
+                src="{{ asset('js/mdb.min.js') }}">
+
+        </script>
+
+        <!-- Rating Stars -->
+        <script src="{{ asset('bundles/dcsrating/js/rating.js') }}">
+
+        </script>
+
+        <script>
+            // Initialize collapse button
+            $(".button-collapse").sideNav();
+            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+            $('.collapsible').collapsible();
+        </script>
+
+        <script>
+            $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 240
+                    edge: 'right', // Choose the horizontal origin
+                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                }
+            );
+        </script>
+
+        <script>
+        new WOW().init();
+        </script>
+        
+        <script type="text/javascript"
+                src="{{ asset('bundles/fosjsrouting/js/router.js') }}">
+
+        </script>
+
+        <script type="text/javascript"
+                src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}">
+
+        </script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

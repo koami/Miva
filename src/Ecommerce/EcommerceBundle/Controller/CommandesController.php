@@ -9,8 +9,10 @@ use Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses;
 use Ecommerce\EcommerceBundle\Entity\Commandes;
 use Ecommerce\EcommerceBundle\Entity\Produits;
 
-class CommandesController extends Controller{
-    public function facture(){
+class CommandesController extends Controller
+{
+    public function facture()
+    {
         $em = $this->getDoctrine()->getManager();
         $generator = $this->container->get('security.secure_random');
         $request = $this->container->get('request_stack')->getCurrentRequest();
@@ -24,7 +26,8 @@ class CommandesController extends Controller{
         $livraison = $em->getRepository('EcommerceBundle:UtilisateursAdresses')->find($adresse['livraison']);
         $produits = $em->getRepository('EcommerceBundle:Produits')->findArray(array_keys($session->get('panier')));
 
-        foreach($produits as $produit) {
+        foreach($produits as $produit)
+        {
             $prixSR = ($produit->getPrix() * $panier[$produit->getId()]);
             $reduction = ($produit->getReduction() / 100);
             $prixRed = ( ($produit->getPrix() * $panier[$produit->getId()]) * (1 - $reduction ) );
@@ -59,7 +62,8 @@ class CommandesController extends Controller{
         return $commande;
     }
 
-    public function prepareCommandeAction(){
+    public function prepareCommandeAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
@@ -92,7 +96,8 @@ class CommandesController extends Controller{
     /*
      * Cette methode remplace l'api banque.
      */
-    public function validationCommandeAction($id){
+    public function validationCommandeAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
         $commande = $em->getRepository('EcommerceBundle:Commandes')->find($id);
         $request = $this->container->get('request_stack')->getCurrentRequest();

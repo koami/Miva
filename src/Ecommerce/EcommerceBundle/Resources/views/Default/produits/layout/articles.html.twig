@@ -200,3 +200,9 @@
     </main>
 
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Panier -->
+    <script src="{{ asset('js/panier.js') }}"></script>
+{% endblock %}
