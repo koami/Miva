@@ -15,56 +15,59 @@ class ProduitsRepository extends EntityRepository
     public function findArray($array)
     {
         $qb = $this->createQueryBuilder('u')
-                ->Select('u')
-                ->Where('u.id IN (:array)')
-                ->setParameter('array', $array);
+            ->Select('u')
+            ->Where('u.id IN (:array)')
+            ->setParameter('array', $array);
         return $qb->getQuery()->getResult();
     }
-    
+
     public function bySubCategorie($subCategorie)
     {
-         $qb = $this->createQueryBuilder('u')
-                    ->select('u')
-                    ->where('u.subCategorie = :subCategorie')
-                    ->andWhere('u.quantite > 1')
-                    ->orderBy('u.id')
-                    ->setParameter('subCategorie', $subCategorie);
+        $qb = $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.subCategorie = :subCategorie')
+            ->andWhere('u.quantite > 1')
+            ->orderBy('u.id')
+            ->setParameter('subCategorie', $subCategorie);
         return $qb->getQuery()->getResult();
     }
-    
+
     public function recherche($chaine)
     {
-         $qb = $this->createQueryBuilder('u')
-                    ->select('u')
-                    //->from('EcommerceBundle:Descriptions d')
-                    //->innerJoin('d.produit', 'u')
-                    ->where('u.nom like :chaine')
-                    //->orWhere('d.description like :chaine')                  
-                    ->andWhere('u.quantite > 1')
-                    ->orderBy('u.id')
-                    ->setParameter('chaine', '%'.$chaine.'%')
-                    /*->select('n.titre, c.contenu') // On sélectionne le titre de la news et les commentaires associés.
+        $qb = $this->createQueryBuilder('u')
+            //->select('u')
+            //->from('EcommerceBundle:Descriptions d')
+            //->innerJoin('d.produit', 'u')
+            ->join('u.descriptions', 'd', 'WITH')
+            ->addSelect('d')
+            ->where('u.nom like :chaine')
+            ->orWhere('d.description like :chaine')
+            ->andWhere('u.quantite > 1')
+            ->orderBy('u.id')
+            ->setMaxResults(10)
+            ->setParameter('chaine', '%'.$chaine.'%')
+            /*->select('n.titre, c.contenu') // On sélectionne le titre de la news et les commentaires associés.
 
-        ->from('news n')
+->from('news n')
 
-        ->leftJoin('n.commentaires c') // On joint les deux tables.
+->leftJoin('n.commentaires c') // On joint les deux tables.
 
-        ->execute(); // Et enfin, on exécute la requête.*/
-                    
+->execute(); // Et enfin, on exécute la requête.*/
+
         ;
         return $qb->getQuery()->getResult();
     }
 
     public function rechercheCategorie($chaine, $subCategorie)
     {
-         $qb = $this->createQueryBuilder('u')
-                    ->select('u')
-                    ->where('u.nom like :chaine')
-                    ->andWhere('u.subCategorie = :subCategorie')
-                    ->andWhere('u.quantite > 1')
-                    ->orderBy('u.id')   
-                    ->setParameters(
-                        array('chaine' => '%'.$chaine.'%','subCategorie' => $subCategorie))           
+        $qb = $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.nom like :chaine')
+            ->andWhere('u.subCategorie = :subCategorie')
+            ->andWhere('u.quantite > 1')
+            ->orderBy('u.id')
+            ->setParameters(
+                array('chaine' => '%'.$chaine.'%','subCategorie' => $subCategorie))
         ;
         return $qb->getQuery()->getResult();
     }

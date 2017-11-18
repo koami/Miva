@@ -62,12 +62,11 @@ class CommandesController extends Controller
         return $commande;
     }
 
-    public function prepareCommandeAction()
-    {
+    public function prepareCommandeAction(){
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
-
+        $kaba = $session->get('kaba'); // recuperation de la session kaba
         if (!$session->has('commande')){
             $commande = new Commandes();
         }
@@ -75,11 +74,21 @@ class CommandesController extends Controller
             $commande = $em->getRepository('EcommerceBundle:Commandes')->find($session->get('commande'));
         }
 
+        // attribution des valeur à la variable kabba
+        if ($kaba['kaba'] != null) {
+            $kabba = $kaba['kaba'];
+        }else{
+            $kabba = 0;
+        }
+
+        /*var_dump($kabba);
+        die();*/
+
         $commande->setDate(new \DateTime());
         $commande->setUtilisateur($this->container->get('security.context')->getToken()->getUser());
         $commande->setValider(0);
         $commande->setReference(0);
-        $commande->setKabba(false);
+        $commande->setKabba($kabba);
         $commande->setLivrer(0);
         $commande->setCommande($this->facture());
 
@@ -89,9 +98,12 @@ class CommandesController extends Controller
         }
 
         $em->flush();
+        $session->remove('commande'); //Supperssion de la session kaba
+
 
         return new Response($commande->getId());
     }
+
 
     /*
      * Cette methode remplace l'api banque.

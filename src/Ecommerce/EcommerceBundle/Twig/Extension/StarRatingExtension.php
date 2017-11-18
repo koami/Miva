@@ -28,11 +28,22 @@ class StarRatingExtension extends \Twig_Extension
 
         $nbrPixelsInDiv = $numStar * $starWidth; // Calculate the DIV width in pixel
 
-        $query = $this->doctrine->getRepository('EcommerceBundle:StarRatingSystem')->findOneBy(array('produit' => $produit));
+        $query = $this->doctrine->getRepository('EcommerceBundle:StarRatingSystem')->findBy(array('produit' => $produit));
 
-        if (isset($query)) {
-            $average = round($query->getRate()/$query->getNbrrate(), 2);
-            $nbrRate = $query->getNbrrate();
+        if ($query != null) {
+
+            $rateTotal = 0;
+            $nbrrateTotal = 0;
+
+            foreach ($query as $rating)
+            {
+                $rateTotal += $rating->getRate() * $rating->getNbrrate();
+                $nbrrateTotal += $rating->getNbrrate();
+            }
+            $average = round($rateTotal/$nbrrateTotal, 2);
+            $nbrRate = $nbrrateTotal;
+            //$average = round($query->getRate()/$query->getNbrrate(), 2);
+            //$nbrRate = $query->getNbrrate();
         } else {
             $average = 0;
             $nbrRate = 0;
@@ -55,7 +66,13 @@ class StarRatingExtension extends \Twig_Extension
         $starBar .= '</div>';
         $starBar .= '<div class="resultMedia'.$produit.'" style="font-size: small; color: grey">'; // We show the rate score and number of rates
         if (!isset($query)) $starBar .= '';
-        else $starBar .= 'Rating: ' . $average . '/' . $numStar . ' (' . $nbrRate . ' votes)';
+        else {
+            $starBar .= $average . '/' . $numStar . '('. $nbrRate .' vote';
+            if ($nbrRate > 1 ) {
+                $starBar .= 's';
+            }
+            $starBar .= ')';
+        }
         $starBar .= '</div>';
         $starBar .= '<div class="box'.$produit.'"></div>';
         $starBar .= '</div>';

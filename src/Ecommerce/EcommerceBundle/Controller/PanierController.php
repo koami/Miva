@@ -226,25 +226,26 @@ class PanierController extends Controller
             'form' => $form->createView()));
     }
 
-    public function setLivraisonOnSession()
-    {
-        //$session = $this->getRequest()->getSession();
+    public function setLivraisonOnSession(){
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $session = $request->getSession();
 
-        if (!$session->has('adresse')) $session->set('adresse',array());
+        if (!$session->has('adresse')){
+            $session->set('adresse',array());
+            $session->set('kaba', array()); //creation de la session de kaba
+        }
         $adresse = $session->get('adresse');
+        $kaba = $session->get('kaba');
 
-        if ($request->request->get('livraison') != null)
-        {
+        if ($request->request->get('livraison') != null) {
             $adresse['livraison'] = $request->request->get('livraison');
+            $kaba['kaba'] = $request->request->get('kaba'); // recuperation de la valeur du formulaire
         } else {
             return $this->redirect($this->generateUrl('validation'));
         }
-        /*var_dump($adresse);
-        die();*/
-
         $session->set('adresse',$adresse);
+        $session->set('kaba',$kaba); // mise à jour de la session kaba
+
         return $this->redirect($this->generateUrl('validation'));
     }
 

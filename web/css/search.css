@@ -14,8 +14,8 @@
 .resultats ul li a{
     color: #ccc;
     text-decoration: none;
-    width: 200px; 
-    height: 30px;
+    width: 220px;
+    height: 40px;
     display: block;
     text-align: center;
     border: 1px solid #5f1b06;
@@ -23,10 +23,17 @@
     background-color: #4c0401;
 }
 
+.resultats ul li a img {
+    height: 35px;
+    width: 35px;
+    /*margin: 5px 15px;*/
+    float: right;
+}
+
 .resultats{
     position: absolute;
     right: 400px;
-    
+
 }
 
 .resultats ul li a:hover

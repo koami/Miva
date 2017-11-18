@@ -164,8 +164,11 @@ class ProduitsController extends Controller
         if ($produits) {
             $prods = array();
             foreach ($produits as $produit) {
-                $prods[] = array("id" => $produit->getId(),
-                    "nom" => $produit->getNom());
+                $prods[] = array(
+                    "id" => $produit->getId(),
+                    "nom" => $produit->getNom(),
+                    "image" => $produit->getImage()->getAssetPath(),
+                );
             }
 
             $response->setData(array('produits' => $prods));

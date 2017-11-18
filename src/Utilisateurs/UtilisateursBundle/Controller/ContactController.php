@@ -26,12 +26,22 @@ class ContactController extends Controller
                     ->setTo('contact@miva.tg')
                     ->setCharset('utf-8')
                     ->setContentType('text/html')
-                    ->setBody($this->renderView('UtilisateursBundle:Default:layout/mailSent.html.twig', array('contact' => $entity)));
+                    ->setBody(
+                        '<html>' .
+                        ' <body>' .
+                        '<h3> Hi Team, I am </h3> <em>' . $entity->getName() .'</em>' .
+                        '<br/>' .
+                        '<p> I am reaching you about '. $entity->getSujet() .'</p>' .
+                        '<p>'. $entity->getMessage() .'</p>' .
+
+                        '<br/><br/><br/> Regards, <br/>' .
+                        '<p><em>'. $entity->getName() .'</em></p>' .
+                        ' </body>' .
+                        '</html>'
+                    );
 
                 $this->get('mailer')->send($message);
-
                 $this->get('session')->getFlashBag()->add('success', 'Merci, Nous avons recu votre mail.');
-                //return $this->render('UtilisateursBundle:Default:layout/mailSent.html.twig');
                 return $this->redirect($this->generateUrl('sendMail'));
             }
         }
