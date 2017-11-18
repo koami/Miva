@@ -2,18 +2,19 @@
 
 {% block body -%}
     <h1>Utilisateurs list</h1>
-
+<div id="test-list">
+    <input class="search" placeholder="Recherche">
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Nom</th>
+                <th class="sort" data-sort="nom">Nom</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="list">
         {% for utilisateur in utilisateurs %}
             <tr>
-                <td>{{ utilisateur.username }}</td>
+                <td class="nom">{{ utilisateur.username }}</td>
                 <td>
                     {% if utilisateur.adresses|length != 0 %}
                         <a href="{{ path('adminAdressesUtilisateurs', { 'id': utilisateur.id }) }}" title="Consulter les adresses"><i class="icon-book"></i></a>
@@ -26,4 +27,10 @@
         {% endfor %}
         </tbody>
     </table>
+    <ul class="pagination"></ul>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/admin/clients.js') }}"></script>
 {% endblock %}
