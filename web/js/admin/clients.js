@@ -6,6 +6,6 @@ var options = {
 };
 
 var usersList = new List('test-list', options,{
-    page: 10,
+    page: 5,
     pagination: true
 });
