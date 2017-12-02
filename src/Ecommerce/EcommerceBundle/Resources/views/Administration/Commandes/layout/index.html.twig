@@ -3,29 +3,26 @@
 {% block body %}
     <h1>Commandes list</h1>
 
+<div id="commandes-list">
+    <input class="search" placeholder="Recherche">
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Référence</th>
-                <th>Client</th>
-                <th>Factures</th>
-                <th>Etat</th>
-                <th>Livraison</th>
+                <th><button class="sort" data-sort="date">Date</button></th>
+                <th><button class="sort" data-sort="reference">Référence</button></th>
+                <th><button class="sort" data-sort="username">Client</button></th>
+                <th><button class="sort" data-sort="etat">Etat</button></th>
+                <th><button class="sort" data-sort="kabba">Livraison</button></th>
+                <th><button class="sort">Factures</button></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="list">
         {% for commande in commandes %}
             <tr>
-                <td>{{ commande.date|date('d-m-Y h:i:s') }}</td>
-                <td>{{ commande.reference }}</td>
-                <td>{{ commande.utilisateur.username }}</td>
-                <td>
-                    <a class="badge blue" href="{{ path('adminShowFacture', { 'id' : commande.id }) }}">
-                        <i style="font-size: 1.3em" class="fa fa-book"></i>
-                    </a>
-                </td>
-                <td>
+                <td class="date">{{ commande.date|date('d-m-Y h:i:s') }}</td>
+                <td class="reference">{{ commande.reference }}</td>
+                <td class="username">{{ commande.utilisateur.username }}</td>
+                <td class="etat">
                     {% if commande.livrer %}
                         <i class="fa fa-check-circle"></i> Livrer
                     {% else %}
@@ -34,15 +31,28 @@
                         </a>
                     {% endif %}
                 </td>
-                <td>
+                <td class="kabba">
                     {% if commande.kabba %}
                         Kabba / {{ commande.getDate()|date('d-m-Y H:i:s') }}
                     {% else %}
                         Normal
                     {% endif %}
                 </td>
+
+                 <td>
+                    <a class="badge blue" href="{{ path('adminShowFacture', { 'id' : commande.id }) }}">
+                        <i style="font-size: 1.3em" class="fa fa-file-pdf-o"></i>
+                    </a>
+                </td>
+
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <ul class="pagination"></ul>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/filtre.js') }}"></script>
 {% endblock %}

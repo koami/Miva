@@ -8,7 +8,7 @@
         <thead>
             <tr>
                 <th><button class="sort" data-sort="nom">Nom</button></th>
-                <th>Actions</th>
+                <th><button class="sort">Actions</button></th>
             </tr>
         </thead>
         <tbody class="list">
@@ -17,10 +17,10 @@
                 <td class="nom">{{ utilisateur.username }}</td>
                 <td>
                     {% if utilisateur.adresses|length != 0 %}
-                        <a href="{{ path('adminAdressesUtilisateurs', { 'id': utilisateur.id }) }}" title="Consulter les adresses"><i class="icon-book"></i></a>
+                        <a href="{{ path('adminAdressesUtilisateurs', { 'id': utilisateur.id }) }}" title="Consulter les adresses"><i class="fa fa-eye"></i></a>
                     {% endif %}
                     {% if utilisateur.commandes|length != 0 %}
-                        <a href="{{ path('adminFacturesUtilisateurs', { 'id': utilisateur.id }) }}" title="Consulter les factures"><i class="icon-book"></i></a>
+                        <a href="{{ path('adminFacturesUtilisateurs', { 'id': utilisateur.id }) }}" title="Consulter les factures"><i class="fa fa-file-pdf-o"></i></a>
                     {% endif %}
                 </td>
             </tr>
@@ -32,5 +32,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/admin/clients.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/filtre.js') }}"></script>
 {% endblock %}
