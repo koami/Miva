@@ -27,7 +27,7 @@ class RechercheType extends AbstractType
                 add('subCategorie', 'entity', array(
                     'class'=>'Ecommerce\EcommerceBundle\Entity\SubCategories',
                     'empty_value' => ' - Tous -',
-                    'attr' => array('class'=>'form-select subCategorie',))
+                    'attr' => array('class'=>'form-control miva form-select subCategorie',))
                 );
     }
     
