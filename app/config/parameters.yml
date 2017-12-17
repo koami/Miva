@@ -10,7 +10,7 @@ parameters:
     mailer_host: mail.miva.tg
     mailer_user: ark@miva.tg
     mailer_password: principia15&s
-    mailer_port: 587
+    # mailer_port: 587
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
 twig:
