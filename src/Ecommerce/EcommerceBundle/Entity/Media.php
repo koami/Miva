@@ -24,6 +24,12 @@ class Media
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Ecommerce\EcommerceBundle\Entity\Produits", inversedBy="images")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $produit;
+
+    /**
      * @var \DateTime
      *
      * @ORM\COlumn(name="updated_at",type="datetime", nullable=true)
@@ -139,5 +145,21 @@ class Media
         $this->name = $name;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProduit()
+    {
+        return $this->produit;
+    }
+
+    /**
+     * @param mixed $produit
+     */
+    public function setProduit($produit)
+    {
+        $this->produit = $produit;
     }
 }
