@@ -1,31 +1,8 @@
-{% extends '::layout/layoutAdmin.html.twig' %}
-
-{#{% block body %}
-<div class="row">
-    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
-        <h1>Produits edit</h1>
-        
-        <form action="{{ path('adminProduits_update', { 'id' : entity.id }) }}" method="POST" {{ form_enctype(edit_form) }}>
-        {{ form(edit_form) }}
-        </form>
-
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('adminProduits') }}">
-                    Back to the list
-                </a>
-            </li>
-            <li>{{ form(delete_form) }}</li>
-        </ul>
-    </div>
-</div>
-{% endblock %}#}
-
 {% block body %}
-    <div class="container">
-        <div class="cl-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
             <h1 class="m-t-md">Produits creation</h1>
-            <div class="row">
+            <div class="">
 
                 <form action="{{ path('adminProduits_update', { 'id' : entity.id }) }}"
                       method="POST" {{ form_enctype(edit_form) }}>
