@@ -55,7 +55,7 @@
                                 <div class="row" style="margin-top: 20px">
                                     {% for img in produit.images %}
                                         <div class="col-md-6 col-sm-6 col-xs-3 cadre">
-                                            <img class="img-responsive" src="{{ asset(img.AssetPath) }}"
+                                            <img class="img-responsive" src="{{ img.AssetPath|imagine_filter('produitThumb') }}"
                                                  alt="autres images" /><h1>here</h1>
                                         </div>
                                     {% endfor %}
