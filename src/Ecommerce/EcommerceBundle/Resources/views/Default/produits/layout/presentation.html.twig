@@ -53,22 +53,12 @@
                                     </a>
                                 </div>
                                 <div class="row" style="margin-top: 20px">
+                                {% for img in produit.images %}
                                     <div class="col-md-3 col-sm-3 col-xs-3 cadre">
-                                        <img class="img-responsive" src="{{ asset('img/img00.jpg') }}"
+                                        <img class="img-responsive" src="{{ asset(img.AssetPath) }}"
                                              alt="autres images" />
                                     </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cadre">
-                                        <img class="img-responsive" src="{{ asset('img/img00.jpg') }}"
-                                             alt="autres images"/>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cadre">
-                                        <img class="img-responsive" src="{{ asset('img/img00.jpg') }}"
-                                             alt="autres images"/>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cadre" >
-                                        <img class="img-responsive" src="{{ asset('img/img00.jpg') }}"
-                                             alt="autres images"/>
-                                    </div>
+                                {% endfor %}
                                 </div>
                             </div>
                         </div>
