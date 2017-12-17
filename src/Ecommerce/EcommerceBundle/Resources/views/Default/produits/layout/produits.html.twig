@@ -210,16 +210,16 @@
 
                                             <div class="pub">
 
-                                                {#% set image = produit.images.first() %#}
+                                                {% set image = produit.images.first() %}
                                                 <!--Card image-->
-                                                <!-- <div class="view overlay hm-zoom">
+                                                <div class="view overlay hm-zoom">
                                                     <a href="{{ path('presentation', { 'id' : produit.id }) }}">
                                                         <img
-                                                            {#src="{{ image.AssetPath|imagine_filter('produitThumb') }}"
+                                                            src="{{ image.AssetPath|imagine_filter('produitThumb') }}"
                                                             alt="{{ image.name }}"
-                                                            class="img-fluid" >#}
+                                                            class="img-fluid" >
                                                     </a>
-                                                </div> -->
+                                                </div>
 
                                                 <div class="price">
                                                     {{ produit.prix }}F CFA
