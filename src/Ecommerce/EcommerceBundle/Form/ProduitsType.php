@@ -34,8 +34,13 @@ class ProduitsType extends AbstractType
                     'max' => '100',
                     'require' => false,
             )))
-            ->add('image', new MediaType(), array(
-                'data_class' => Media::class,
+            ->add('images', 'collection', array(
+                'type' => new MediaType(),
+                'options' => array('data_class' => Media::class),
+                'allow_add' => true,
+                'allow_delete' => true,
+                'label' => 'Image',
+                'by_reference' => false,
             ))
             ->add('partenaire')
             ->add('garantie')
@@ -49,23 +54,6 @@ class ProduitsType extends AbstractType
                 'by_reference' => false,
             ))
         ;
-
-        /*->add('partenaire', 'entity', array('class' => 'Ecommerce\EcommerceBundle\Entity\Partenaires'))
-            ->add('garantie', 'entity', array(
-                'class' => 'Ecommerce\EcommerceBundle\Entity\Garanties',
-                'label' => 'Garantie'))
-            ->add('subCategorie', 'entity', array(
-                'class' => 'Ecommerce\EcommerceBundle\Entity\SubCategories',
-                'label' => 'Sous-Categorie',
-            ))*/
-        /*$builder->add('descriptions', 'collection', array(
-            'type' => new DescriptionsType(),
-            'options' => array('data_class' => Descriptions::class),
-            'allow_add' => true,
-            'allow_delete' => true,
-            'label' => 'Description',
-            'by_reference' => false,
-        ));*/
     }
     
     /**

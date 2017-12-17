@@ -197,84 +197,86 @@
                 <!--Second row-->
                 <div class="row" align="center">
                     <!--First columnn-->
-                    {% if produits|length != 0 %}
-                        {% for produit in produits %}
-                            <div class="m-t-md col-lg-4 col-md-4 col-sm-6">
-                                <div class="card  wow fadeIn" data-wow-delay="0.4s">
+                        {% if produits|length != 0 %}
+                            {% for produit in produits %}
+                                <div class="m-t-md col-lg-4 col-md-4 col-sm-6">
+                                    <div class="card  wow fadeIn" data-wow-delay="0.4s">
 
-                                    <a href="#" style="text-decoration: none">
+                                        <a href="#" style="text-decoration: none">
 
-                                        {% if produit.garantie != null %}
-                                            <img src="{{ asset('img/gar.png') }}"
-                                                 style="position: absolute;
+                                            {% if produit.garantie != null %}
+                                                <img src="{{ asset('img/gar.png') }}"
+                                                     style="position: absolute;
                                                         width: 65px;margin-left:-15px;
                                                         margin-top:-15px;z-index: 1"/>
-                                        {% endif %}
+                                            {% endif %}
 
-                                        <div class="pub">
+                                            <div class="pub">
 
-                                            <!--Card image-->
-                                            <div class="view overlay hm-zoom">
-                                                <a href="{{ path('presentation', { 'id' : produit.id }) }}">
-                                                <img
-                                                    src="{{ produit.image.AssetPath|imagine_filter('produitThumb') }}"
-                                                    alt="{{ produit.image.name }}"
-                                                    class="img-fluid" >
-                                                </a>
-                                            </div>
+                                                {% set image = produit.images.first() %}
+                                                <!--Card image-->
+                                                <div class="view overlay hm-zoom">
+                                                    <a href="{{ path('presentation', { 'id' : produit.id }) }}">
+                                                        <img
+                                                            src="{{ image.AssetPath|imagine_filter('produitThumb') }}"
+                                                            alt="{{ image.name }}"
+                                                            class="img-fluid" >
+                                                    </a>
+                                                </div>
 
-                                            <div class="price">
-                                                {{ produit.prix }}F CFA
-                                            </div>
+                                                <div class="price">
+                                                    {{ produit.prix }}F CFA
+                                                </div>
 
-                                            <img src="{{ asset('img/prod.png') }}" class="pos"/>
+                                                <img src="{{ asset('img/prod.png') }}" style="position:
+                                                 absolute;width: 75px; margin-left:153px;margin-top: -15px; z-index: 1"/>
 
-                                            <div class="card-block">
+                                                <div class="card-block">
 
-                                                <!--Title-->
-                                                <p style="position: absolute">
+                                                    <!--Title-->
+                                                    <p style="position: absolute">
                                                 <span class="card-title" style="font-size: 20px">
                                                     {{ produit.nom }}
                                                 </span>
 
-                                                {# Reduction #}
-                                                {% if produit.reduction != 0 %}
-                                                    <span class="badge green " style="font-weight: 700">
+                                                        {# Reduction #}
+                                                        {% if produit.reduction != 0 %}
+                                                            <span class="badge green " style="font-weight: 700">
                                                         - {{ produit.reduction }}%
                                                     </span>
-                                                    <br>
-                                                {% endif %}
-                                                </p>
+                                                            <br>
+                                                        {% endif %}
+                                                    </p>
 
-                                                <div style="margin-top: 70px">
-                                                {% if panier[produit.id] is not defined %}
-                                                    <a class="btn btn-large waves-effect waves-light miva produitAjax"
-                                                       style="float: left;" id="pro{{ produit.id }}"
-                                                       data-path="{{ path('ajouterPanier', { 'id' : produit.id }) }}">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
+                                                    <div style="margin-top: 70px">
+                                                        {% if panier[produit.id] is not defined %}
+                                                            <a class="btn btn-large waves-effect waves-light miva produitAjax"
+                                                               style="float: left;" id="pro{{ produit.id }}"
+                                                               data-path="{{ path('ajouterPanier', { 'id' : produit.id }) }}" >
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
 
-                                                {% endif %}
+                                                        {% endif %}
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="icon" style="margin-top: 15px;margin-left: 130px;" id="rating">
+                                                    <p>{{ starBar(5, produit.id, 15)|raw }}</p>
                                                 </div>
 
                                             </div>
-
-                                            <div class="icon" style="margin-top: 15px;margin-left: 130px;" id="rating">
-                                                <p>{{ starBar(5, produit.id, 15)|raw }}</p>
-                                            </div>
-
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
-                        {% endfor %}
+                            {% endfor %}
 
-                    {% else %}
-                        Aucun produit
+                        {% else %}
+                            Aucun produit
 
-                    {% endif %}
-                    <!--First columnn-->
+                        {% endif %}
+                        <!--First columnn-->
 
                 </div>
                 <div class="row m-t-md">

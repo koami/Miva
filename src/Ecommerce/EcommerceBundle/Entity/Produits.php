@@ -22,10 +22,10 @@ class Produits
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Ecommerce\EcommerceBundle\Entity\Media", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="Ecommerce\EcommerceBundle\Entity\Media", mappedBy="produit", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $image;
+    private $images;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ecommerce\EcommerceBundle\Entity\Garanties", inversedBy="produits")
@@ -91,6 +91,7 @@ class Produits
     public function __construct()
     {
         $this->descriptions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -174,26 +175,43 @@ class Produits
     }
 
     /**
-     * Set image
+     * @return mixed
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param mixed $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * Add image
      *
      * @param \Ecommerce\EcommerceBundle\Entity\Media $image
      * @return Produits
      */
-    public function setImage(\Ecommerce\EcommerceBundle\Entity\Media $image)
+    public function addImage(\Ecommerce\EcommerceBundle\Entity\Media $image)
     {
-        $this->image = $image;
+        $image->setProduit($this);
+        $this->images->add($image);
 
         return $this;
     }
 
     /**
-     * Get image
+     * Remove image
      *
-     * @return \Ecommerce\EcommerceBundle\Entity\Media 
+     * @param \Ecommerce\EcommerceBundle\Entity\Media $image
      */
-    public function getImage()
+    public function removeImage(\Ecommerce\EcommerceBundle\Entity\Media $image)
     {
-        return $this->image;
+        $this->images->removeElement($image);
     }
 
     /**

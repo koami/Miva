@@ -11,7 +11,7 @@ p# This file is auto-generated during the composer install
      mailer_user: ark@miva.tg
      mailer_password: 'principia15&s'
      locale: fr
-     secret: ThisTokenIsNotSoSecretChangeIt
+     secret: <1|AKZZkF;lmwD2(Z}F{WHw1_"H!]7eY}J0=it{Et9q31$%9&[/jRx)t2#8+wqT
  twig:
      globals:
          telephone: '99 99 00 20'

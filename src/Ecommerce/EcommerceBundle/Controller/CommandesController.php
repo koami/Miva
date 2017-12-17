@@ -81,9 +81,6 @@ class CommandesController extends Controller
             $kabba = 0;
         }
 
-        /*var_dump($kabba);
-        die();*/
-
         $commande->setDate(new \DateTime());
         $commande->setUtilisateur($this->container->get('security.context')->getToken()->getUser());
         $commande->setValider(0);
@@ -99,7 +96,6 @@ class CommandesController extends Controller
 
         $em->flush();
         $session->remove('commande'); //Supperssion de la session kaba
-
 
         return new Response($commande->getId());
     }
@@ -128,16 +124,7 @@ class CommandesController extends Controller
         $session->remove('commande');
 
         //Ici le mail de validation
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Commande Validation')
-            ->setFrom(array('ark@miva.tg' => "Miva"))
-            ->setTo($commande->getUtilisateur()->getEmailCanonical())
-            ->setCharset('utf-8')
-            ->setContentType('text/html')
-            ->setBody($this->renderView('EcommerceBundle:Default:SwiftLayout/validationCommande.html.twig',array(
-                'utilisateur' => $commande->getUtilisateur())));
-
-        $this->get('mailer')->send($message);
+        sendMails($commande);
 
         $this->get('session')->getFlashBag()->add('success','Votre commande est validé avec succès');
         return $this->redirect($this->generateUrl('factures'));
@@ -159,5 +146,31 @@ class CommandesController extends Controller
         $em->flush();
 
         return 0;
+    }
+
+    public function sendMails($commande){
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Commande Validation')
+            ->setFrom(array('ark@miva.tg' => "Miva"))
+            ->setTo($commande->getUtilisateur()->getEmailCanonical())
+            ->setCharset('utf-8')
+            ->setContentType('text/html')
+            ->setBody($this->renderView('EcommerceBundle:Default:SwiftLayout/validationCommande.html.twig',array(
+                'utilisateur' => $commande->getUtilisateur())));
+
+        $this->get('mailer')->send($message);
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('New Request')
+            ->setFrom($commande->getUtilisateur()->getEmailCanonical())
+            ->setTo(array('ark@miva.tg'))
+            ->setCharset('utf-8')
+            ->setContentType('text/html')
+            ->setBody($this->renderView('EcommerceBundle:Default:SwiftLayout/validationCommande.html.twig',array(
+                'commande' => $commande)));
+
+        $this->get('mailer')->send($message);
+
     }
 }

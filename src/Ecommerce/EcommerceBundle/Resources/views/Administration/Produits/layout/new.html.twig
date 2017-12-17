@@ -1,9 +1,10 @@
 {% extends '::layout/layoutAdmin.html.twig' %}
 
 {% block body %}
-    <div class="row">
-    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+    <div class="container">
+    <div class="cl-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
     <h1 class="m-t-md">Produits creation</h1>
+    <div class="row">
 
     <form action="{{ path('adminProduits_create') }}" {{ form_enctype(form) }} method="POST"
           class="adminProduits">
@@ -13,7 +14,15 @@
             {{ form_row(form.prix) }}
             {{ form_row(form.quantite) }}
             {{ form_row(form.reduction) }}
-            {{ form_row(form.image) }}
+            {#{{ form_row(form.image) }}#}
+
+            <ul class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+                {% for image in form.images %}
+                    <li>{{ form_row(image.file) }}</li>
+                    <li>{{ form_row(image.name) }}</li>
+                {% endfor %}
+            </ul>
+
             {{ form_row(form.partenaire) }}
             {{ form_row(form.garantie) }}
             {{ form_row(form.subCategorie) }}
@@ -29,13 +38,14 @@
         {#{{ form_widget(form) }}#}
     </form>
 
-    <ul class="record_actions m-t-md">
+    <ul class="record_actions">
         <li>
-            <a href="{{ path('adminProduits') }}" class="orange-text">
-                 <i class="fa fa-arrow-circle-left"></i> Back to the list
+            <a href="{{ path('adminProduits') }}">
+                Back to the list
             </a>
         </li>
     </ul>
+    </div>
     </div>
     </div>
 {% endblock %}
@@ -107,6 +117,57 @@
 
             // remove the li for the description form
             $descriptionFormLi.remove();
+        });
+    }
+</script>
+
+<script>
+    var $imagesCollectionHolder;
+
+    var $addImageLink = $('<i href="#" class="add_image_link fa fa-plus"></i>');
+    var $newImageLinkLi = $('<li></li>').append($addImageLink);
+
+    jQuery(document).ready(function() {
+        $imagesCollectionHolder = $('ul.images');
+
+        $imagesCollectionHolder.find('li').each(function() {
+            addImageFormDeleteLink($(this));
+        });
+
+        $imagesCollectionHolder.append($newImageLinkLi);
+
+        $imagesCollectionHolder.data('index', $imagesCollectionHolder.find(':input').length);
+
+        $addImageLink.on('click', function(e) {
+            e.preventDefault();
+
+            addImageForm($imagesCollectionHolder, $newImageLinkLi);
+        });
+    });
+
+    function addImageForm($imagesCollectionHolder, $newImageLinkLi) {
+        var prototype = $imagesCollectionHolder.data('prototype');
+
+        var index = $imagesCollectionHolder.data('index');
+
+        var newForm = prototype.replace(/__name__/g, index);
+
+        $imagesCollectionHolder.data('index', index + 1);
+
+        var $newFormLi = $('<li></li>').append(newForm);
+        $newImageLinkLi.before($newFormLi);
+
+        addImageFormDeleteLink($newFormLi)
+    }
+
+    function addImageFormDeleteLink($imageFormLi) {
+        var $removeFormA = $('<i href="#" class="fa fa-remove"></i>');
+        $imageFormLi.append($removeFormA);
+
+        $removeFormA.on('click', function(e) {
+            e.preventDefault();
+
+            $imageFormLi.remove();
         });
     }
 </script>

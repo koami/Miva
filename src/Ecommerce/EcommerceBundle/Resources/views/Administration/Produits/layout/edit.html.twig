@@ -1,6 +1,6 @@
 {% extends '::layout/layoutAdmin.html.twig' %}
 
-{% block body -%}
+{#{% block body %}
     <h1>Produits edit</h1>
     
     <form action="{{ path('adminProduits_update', { 'id' : entity.id }) }}" method="POST" {{ form_enctype(edit_form) }}>
@@ -15,4 +15,178 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+{% endblock %}#}
+
+{% block body %}
+    <div class="container">
+        <div class="cl-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+            <h1 class="m-t-md">Produits creation</h1>
+            <div class="row">
+
+                <form action="{{ path('adminProduits_update', { 'id' : entity.id }) }}"
+                      method="POST" {{ form_enctype(edit_form) }}>
+
+                    {{ form_start(edit_form) }}
+                    {{ form_row(edit_form.nom) }}
+                    {{ form_row(edit_form.prix) }}
+                    {{ form_row(edit_form.quantite) }}
+                    {{ form_row(edit_form.reduction) }}
+                    {#{{ form_row(form.image) }}#}
+
+                    <ul class="images" data-prototype="{{ form_widget(edit_form.images.vars.prototype)|e('html_attr') }}">
+                        {% for image in edit_form.images %}
+                            <li>{{ form_row(image.file) }}</li>
+                            <li>{{ form_row(image.name) }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    {{ form_row(edit_form.partenaire) }}
+                    {{ form_row(edit_form.garantie) }}
+                    {{ form_row(edit_form.subCategorie) }}
+
+                    <ul class="descriptions" data-prototype="{{ form_widget(edit_form.descriptions.vars.prototype)|e('html_attr') }}">
+                        {# iterate over each existing description and render its only field: name #}
+                        {% for description in edit_form.descriptions %}
+                            <li>{{ form_row(description.description) }}</li>
+                        {% endfor %}
+                    </ul>
+                    {{ form_end(edit_form) }}
+
+                    {#{{ form_widget(form) }}#}
+                </form>
+
+                <ul class="record_actions">
+                    <li>
+                        <a href="{{ path('adminProduits') }}">
+                            Back to the list
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var $collectionHolder;
+
+        // setup an "add a description" link
+        var $addDescriptionLink = $('<i href="#" class="add_description_link fa fa-plus"></i>');
+        var $newLinkLi = $('<li></li>').append($addDescriptionLink);
+
+        jQuery(document).ready(function() {
+            // Get the ul that holds the collection of descriptions
+            $collectionHolder = $('ul.descriptions');
+
+            // add a delete link to all of the existing decription form li elements
+            $collectionHolder.find('li').each(function() {
+                addDescriptionFormDeleteLink($(this));
+            });
+
+            // add the "add a description" anchor and li to the descriptions ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addDescriptionLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new description form (see next code block)
+                addDescriptionForm($collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addDescriptionForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a description" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+
+            // add a delete link to the new form
+            addDescriptionFormDeleteLink($newFormLi)
+        }
+
+        function addDescriptionFormDeleteLink($descriptionFormLi) {
+            var $removeFormA = $('<i href="#" class="fa fa-remove"></i>');
+            $descriptionFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the description form
+                $descriptionFormLi.remove();
+            });
+        }
+    </script>
+
+    <script>
+        var $imagesCollectionHolder;
+
+        var $addImageLink = $('<i href="#" class="add_image_link fa fa-plus"></i>');
+        var $newImageLinkLi = $('<li></li>').append($addImageLink);
+
+        jQuery(document).ready(function() {
+            $imagesCollectionHolder = $('ul.images');
+
+            $imagesCollectionHolder.find('li').each(function() {
+                addImageFormDeleteLink($(this));
+            });
+
+            $imagesCollectionHolder.append($newImageLinkLi);
+
+            $imagesCollectionHolder.data('index', $imagesCollectionHolder.find(':input').length);
+
+            $addImageLink.on('click', function(e) {
+                e.preventDefault();
+
+                addImageForm($imagesCollectionHolder, $newImageLinkLi);
+            });
+        });
+
+        function addImageForm($imagesCollectionHolder, $newImageLinkLi) {
+            var prototype = $imagesCollectionHolder.data('prototype');
+
+            var index = $imagesCollectionHolder.data('index');
+
+            var newForm = prototype.replace(/__name__/g, index);
+
+            $imagesCollectionHolder.data('index', index + 1);
+
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newImageLinkLi.before($newFormLi);
+
+            addImageFormDeleteLink($newFormLi)
+        }
+
+        function addImageFormDeleteLink($imageFormLi) {
+            var $removeFormA = $('<i href="#" class="fa fa-remove"></i>');
+            $imageFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                e.preventDefault();
+
+                $imageFormLi.remove();
+            });
+        }
+    </script>
+
 {% endblock %}
