@@ -1,137 +1,134 @@
 {% extends "::layout/defaultLayout.html.twig" %}
 
 {% block body %}
-    
-<div align="center" >
-    <img class="img-responsive" src="{{ asset('img/ban.jpg') }}">
-</div>
-    
-<main style="margin-top: 20px">
 
-    <!--Main layout-->
-    <div class="container">
-        <div class="row">
+    <div align="center" >
+        <img class="img-responsive" src="{{ asset('img/ban.jpg') }}">
+    </div>
 
-            <!--Sidebar-->
-            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.2s">
+    <main style="margin-top: 20px">
 
-                <!--/. Sidebar navigation -->
-                <div class="panel-group" id="accordion">
+        <!--Main layout-->
+        <div class="container">
+            <div class="row">
 
-                    {% set ray = 1 %}
-                    {% for rayon in rayons %}
+                <!--Sidebar-->
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.2s">
 
-                    <div class="panel panel-default">
+                    <!--/. Sidebar navigation -->
+                    <div class="panel-group" id="accordion">
 
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
+                        {% set ray = 1 %}
+                        {% for rayon in rayons %}
 
-                                {% if (ray % 2) == 0  %}
-                                <a data-toggle="collapse" data-parent="#accordion"
-                                   href="#{{ rayon.nom }}" class="btn grey"
-                                   style="display: block">
-                                    {{ rayon.nom }}
-                                </a>
-                                {% else %}
-                                <a data-toggle="collapse" data-parent="#accordion"
-                                   href="#{{ rayon.nom }}" class="btn orange"
-                                   style="display: block">
-                                    {{ rayon.nom }}
-                                </a>
-                                {% endif %}
-                            </h4>
-                        </div>
+                            <div class="panel panel-default">
 
-                        {% set cat = 0 %}
-                        <div id="{{ rayon.nom }}" class="panel-collapse collapse">
-                            <div class="list-group">
-                                {% for categorie in rayon.categories %}
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
 
-                                    {% if cat == 0 %}
-                                    <a href="{{ path('articles', { 'id' : categorie.id }) }}"
-                                       class="list-group-item active">
-                                        {{ categorie.nom }}
-                                    </a>
-                                    {% else %}
-                                    <a href="{{ path('articles', { 'id' : categorie.id }) }}"
-                                       class="list-group-item">
-                                        {{ categorie.nom }}
-                                    </a>
-                                    {% endif %}
-                                    {% set cat = 1 %}
-                                {% endfor %}
+                                        {% if (ray % 2) == 0  %}
+                                            <a data-toggle="collapse" data-parent="#accordion"
+                                               href="#{{ rayon.nom }}" class="btn grey"
+                                               style="display: block">
+                                                {{ rayon.nom }}
+                                            </a>
+                                        {% else %}
+                                            <a data-toggle="collapse" data-parent="#accordion"
+                                               href="#{{ rayon.nom }}" class="btn orange"
+                                               style="display: block">
+                                                {{ rayon.nom }}
+                                            </a>
+                                        {% endif %}
+                                    </h4>
+                                </div>
+
+                                {% set cat = 0 %}
+                                <div id="{{ rayon.nom }}" class="panel-collapse collapse">
+                                    <div class="list-group">
+                                        {% for categorie in rayon.categories %}
+
+                                            {% if cat == 0 %}
+                                                <a href="{{ path('articles', { 'id' : categorie.id }) }}"
+                                                   class="list-group-item active">
+                                                    {{ categorie.nom }}
+                                                </a>
+                                            {% else %}
+                                                <a href="{{ path('articles', { 'id' : categorie.id }) }}"
+                                                   class="list-group-item">
+                                                    {{ categorie.nom }}
+                                                </a>
+                                            {% endif %}
+                                            {% set cat = 1 %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
-
+                            {% set ray = ray + 1 %}
+                        {% endfor %}
                     </div>
-                    {% set ray = ray + 1 %}
-                    {% endfor %}
-                </div>
 
-                <br/>
+                    <br/>
 
-                <div class="widget-wrapper wow fadeIn" data-wow-delay="0.4s">
-                    <h4>NEWSLETTERS</h4>
-                    <br>
-                    <div class="card">
-                        <div class="card-block">
-                            <p><strong>Souscrire aux newsletter</strong></p>
-                            <p>Vous recevrez un mail de confirmation dans votre boite.</p>
-                            <div class="md-form">
-                                <i class="fa fa-user prefix"></i>
-                                <label for="form1">Votre nom</label>
-                                <input type="text" id="form1" class="">
+                    <div class="widget-wrapper wow fadeIn" data-wow-delay="0.4s">
+                        <h4>NEWSLETTERS</h4>
+                        <br>
+                        <div class="card">
+                            <div class="card-block">
+                                <p><strong>Souscrire aux newsletter</strong></p>
+                                <p>Vous recevrez un mail de confirmation dans votre boite.</p>
+                                <div class="md-form">
+                                    <i class="fa fa-user prefix"></i>
+                                    <label for="form1">Votre nom</label>
+                                    <input type="text" id="form1" class="">
+                                </div>
+                                <div class="md-form">
+                                    <i class="fa fa-envelope prefix"></i>
+                                    <label for="form2">Votre mail</label>
+                                    <input type="text" id="form2" class="">
+                                </div>
+                                <button class="btn btn-large miva waves-effect waves-light">S'abonner</button>
+
                             </div>
-                            <div class="md-form">
-                                <i class="fa fa-envelope prefix"></i>
-                                <label for="form2">Votre mail</label>
-                                <input type="text" id="form2" class="">
-                            </div>
-                            <button class="btn btn-large miva waves-effect waves-light">S'abonner</button>
-
                         </div>
                     </div>
+
                 </div>
-                <div align="center">
-                    <img class="img-responsive" src="{{ asset('img/miva-lay.jpg') }}"/>
-                </div>
+                <!--/.Sidebar-->
 
-            </div>
-            <!--/.Sidebar-->
+                <!--Main column-->
+                <div class="col-lg-8">
 
-            <!--Main column-->
-            <div class="col-lg-8">
+                    <!--First row-->
+                    <div class="row wow fadeIn" data-wow-delay="0.4s">
+                        <div class="col-lg-12">
+                            <div class="divider-new">
+                                <h2 class="h2-responsive">
+                                    Qu'y a t-il de nouveau?
+                                </h2>
+                            </div>
 
-                <!--First row-->
-                <div class="row wow fadeIn" data-wow-delay="0.4s">
-                    <div class="col-lg-12">
-                        <div class="divider-new">
-                            <h2 class="h2-responsive">
-                                Qu'y a t-il de nouveau?
-                            </h2>
-                        </div>
+                            <!--Carousel Wrapper-->
+                            <div id="carousel-example-1"
+                                 class="carousel slide carousel-fade"
+                                 data-ride="carousel">
 
-                        <!--Carousel Wrapper-->
-                        <div id="carousel-example-1"
-                             class="carousel slide carousel-fade"
-                             data-ride="carousel">
+                                <!--Indicators-->
+                                <ol class="carousel-indicators">
 
-                            <!--Indicators-->
-                            <ol class="carousel-indicators">
+                                    <li data-target="#carousel-example-1z"
+                                        data-slide-to="0" class="active"></li>
 
-                                <li data-target="#carousel-example-1z"
-                                    data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-1z"
+                                        data-slide-to="1"></li>
 
-                                <li data-target="#carousel-example-1z"
-                                    data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-1z"
+                                        data-slide-to="2"></li>
+                                </ol>
+                                <!--/.Indicators-->
 
-                                <li data-target="#carousel-example-1z"
-                                    data-slide-to="2"></li>
-                            </ol>
-                            <!--/.Indicators-->
-
-                            <!--Slides-->
-                            <div class="carousel-inner" role="listbox">
+                                <!--Slides-->
+                                <div class="carousel-inner" role="listbox">
                                     <!--First slide-->
                                     <div class="carousel-item active">
                                         <img src="{{ asset('img/img-1.jpg') }}"
@@ -164,39 +161,39 @@
                                         </div>
                                     </div>
                                     <!--/Third slide-->
-                            </div>
-                            <!--/.Slides-->
+                                </div>
+                                <!--/.Slides-->
 
-                            <!--Controls-->
-                            <a class="carousel-control-prev"
-                               href="#carousel-example-1z" role="button"
-                               data-slide="prev" style="width: 5%">
+                                <!--Controls-->
+                                <a class="carousel-control-prev"
+                                   href="#carousel-example-1z" role="button"
+                                   data-slide="prev" style="width: 5%">
                                 <span class="carousel-control-prev-icon"
                                       aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
+                                    <span class="sr-only">Previous</span>
+                                </a>
 
-                            <a class="carousel-control-next"
-                               href="#carousel-example-1z" role="button"
-                               data-slide="next">
+                                <a class="carousel-control-next"
+                                   href="#carousel-example-1z" role="button"
+                                   data-slide="next">
                                 <span class="carousel-control-next-icon"
                                       aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                            <!--/.Controls-->
+                                    <span class="sr-only">Next</span>
+                                </a>
+                                <!--/.Controls-->
 
+                            </div>
+                            <!--/.Carousel Wrapper-->
                         </div>
-                        <!--/.Carousel Wrapper-->
                     </div>
-                </div>
-                <!--/.First row-->
+                    <!--/.First row-->
 
-                <br>
-                <hr class="extra-margins">
+                    <br>
+                    <hr class="extra-margins">
 
-                <!--Second row-->
-                <div class="row" align="center">
-                    <!--First columnn-->
+                    <!--Second row-->
+                    <div class="row" align="center">
+                        <!--First columnn-->
                         {% if produits|length != 0 %}
                             {% for produit in produits %}
                                 <div class="m-t-md col-lg-4 col-md-4 col-sm-6">
@@ -278,132 +275,132 @@
                         {% endif %}
                         <!--First columnn-->
 
+                    </div>
+                    <div class="row m-t-md">
+                        <a class="red-text text-darken-4 btn-large waves-effect waves-light"
+                           href="{{ path('voirPlus') }}" style="display:block"> <i class="fa fa-arrow-right"></i> TOUS LES ARTICLES
+                        </a>
+                    </div>
+                    <!--/.Second row-->
+
                 </div>
-                <div class="row m-t-md">
-                    <a class="red-text text-darken-4 btn-large waves-effect waves-light"
-                       href="{{ path('voirPlus') }}" style="display:block"> <i class="fa fa-arrow-right"></i> TOUS LES ARTICLES
-                    </a>
-                </div>
-                <!--/.Second row-->
+                <!--/.Main column-->
 
             </div>
-            <!--/.Main column-->
 
         </div>
-    
-    </div>
-    <!--/.Main layout-->
-    <!--Partenaire-->
-    <div id="partenaire" class="zone">
-        <div>
-            <h3>Qui sont nos partenaires ?</h3>
-            <p style="margin-top: 20px">Nous avons des entites derriere nous comme:</p>
-        </div>
-
-
-        <!--Carousel Wrapper-->
-        <div id="carousel-example-1" class="carousel slide carousel-fade"
-             data-ride="carousel">
-            <!--Indicators-->
-            <!--/.Indicators-->
-
-            <!--Slides-->
-            <div class="carousel-inner" role="listbox">
-
-                <!--First slide-->
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-                    </div>
-                </div>
-                <!--/First slide-->
-
-                <!--Second slide-->
-                <div class="carousel-item">
-                    <div class="row">
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail"
-                                 src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail"
-                                 src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail"
-                                 src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail"
-                                 src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                            <img class="img-thumbnail"
-                                 src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
-                        </div>
-                    </div>
-                </div>
-                <!--/Second slide-->
+        <!--/.Main layout-->
+        <!--Partenaire-->
+        <div id="partenaire" class="zone">
+            <div>
+                <h3>Qui sont nos partenaires ?</h3>
+                <p style="margin-top: 20px">Nous avons des entites derriere nous comme:</p>
             </div>
-            <!--/.Slides-->
 
-            <!--Controls-->
-            <div style="">
-                <a class="carousel-control-prev" href="#carousel-example-1"
-                   role="button" data-slide="prev">
+
+            <!--Carousel Wrapper-->
+            <div id="carousel-example-1" class="carousel slide carousel-fade"
+                 data-ride="carousel">
+                <!--Indicators-->
+                <!--/.Indicators-->
+
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+
+                    <!--First slide-->
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+                        </div>
+                    </div>
+                    <!--/First slide-->
+
+                    <!--Second slide-->
+                    <div class="carousel-item">
+                        <div class="row">
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail"
+                                     src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail"
+                                     src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail" src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail"
+                                     src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail"
+                                     src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+                                <img class="img-thumbnail"
+                                     src="{{ asset('img/partenaire.jpg')}}" alt="First slide">
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Second slide-->
+                </div>
+                <!--/.Slides-->
+
+                <!--Controls-->
+                <div style="">
+                    <a class="carousel-control-prev" href="#carousel-example-1"
+                       role="button" data-slide="prev">
                     <span class="fa fa-chevron-left" style="font-size: 2em;margin-top: 30px"
                           aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
+                        <span class="sr-only">Previous</span>
+                    </a>
 
-                <a class="carousel-control-next"
-                   href="#carousel-example-1" role="button"
-                   data-slide="next">
+                    <a class="carousel-control-next"
+                       href="#carousel-example-1" role="button"
+                       data-slide="next">
                     <span class="fa fa-chevron-right" style="font-size: 2em;margin-top: 30px"
                           aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!--/.Controls-->
+
             </div>
-            <!--/.Controls-->
+            <!--/.Carousel Wrapper-->
 
         </div>
-        <!--/.Carousel Wrapper-->
+        <!--End Partenaire-->
 
-    </div>
-    <!--End Partenaire-->
-
-</main>
+    </main>
 
 {% endblock %}
 

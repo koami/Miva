@@ -1,7 +1,6 @@
 {% extends "::layout/defaultLayout.html.twig" %}
 
 {% block titre %}MIVA | Articles{% endblock %}
-{#{% block description %}{{ produit.description }}{% endblock %#}
 
 {% block body %}
 
@@ -13,20 +12,19 @@
                 <div id="categorie">
                     <!--Carousel Wrapper-->
                     <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
-
                         <!--Slides-->
                         <div class="carousel-inner" role="listbox">
                             <!--First slide-->
                             <div class="carousel-item active">
                                 <div class="col-lg-12">
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 grey lighten-4 ">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 grey lighten-4 ">
                                             <a href=""><h2 class="style">Vetement</h2></a>
                                         </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pink lighten-4">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 pink lighten-4">
                                             <a href=""><h2 class="style">Chaussure</h2></a>
                                         </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 green lighten-4">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 green lighten-4">
                                             <a href=""><h2 class="style">Bijoux</h2></a>
                                         </div>
                                     </div>
@@ -52,6 +50,7 @@
                         <!--/Second slide-->
                     </div>
                     <!--/.Slides-->
+
                     <!--Controls-->
                     <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev" style="color: black">
                         <span class="carousel-control-prev-icon" aria-hidden="true" style="box-shadow: 0 2px 2px rgba(0,0,0,0.5);background-color: black;"></span>
@@ -76,23 +75,23 @@
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.2s">
 
                     {% for cate in categorie %}
-                        <div class="widget-wrapper">
-                            {% set i = 0 %}
-                            <div class="list-group">
-                                {% for subCategorie in cate.subCategories %}
-                                    {% if (i % 2) == 0 %}
-                                        <a href="{{ path('articles', { 'id' : subCategorie.id }) }}" class="list-group-item active">
-                                            {{ subCategorie.nom }}
-                                        </a>
-                                    {% else %}
-                                        <a href="{{ path('articles', { 'id' : subCategorie.id }) }}" class="list-group-item">
-                                            {{ subCategorie.nom }}
-                                        </a>
-                                    {% endif %}
-                                    {% set i = i + 1 %}
-                                {% endfor %}
-                            </div>
+                    <div class="widget-wrapper">
+                        {% set i = 0 %}
+                        <div class="list-group">
+                            {% for subCategorie in cate.subCategories %}
+                                {% if (i % 2) == 0 %}
+                                    <a href="{{ path('articles', { 'id' : subCategorie.id }) }}" class="list-group-item active">
+                                        {{ subCategorie.nom }}
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('articles', { 'id' : subCategorie.id }) }}" class="list-group-item">
+                                        {{ subCategorie.nom }}
+                                    </a>
+                                {% endif %}
+                                {% set i = i + 1 %}
+                            {% endfor %}
                         </div>
+                    </div>
                     {% endfor %}
 
                 </div>
@@ -100,6 +99,7 @@
 
                 <!--Main column-->
                 <div class="col-lg-8">
+
                     <div class="row" align="center">
                         <!--First columnn-->
                         {% if produits|length != 0 %}
@@ -178,14 +178,97 @@
                             {% endfor %}
 
                         {% else %}
-                            <div align="center">
-                                <img class="img-responsive" src="{{ asset('img/fiasco.jpg') }}"/>
-                            </div>
+                            Aucun produit
 
                         {% endif %}
                         <!--First columnn-->
 
                     </div>
+
+                    {#<div class="row">
+
+                        <!--First columnn-->
+                        {% if produits|length != 0 %}
+                            {% for produit in produits %}
+                                <div class="m-t-md col-lg-4 col-md-4 col-sm-6">
+                                    <div class="card  wow fadeIn" data-wow-delay="0.4s">
+
+                                        <a href="#" style="text-decoration: none">
+
+                                            {% if produit.garantie != null %}
+                                                <img src="{{ asset('img/gar.png') }}"
+                                                     style="position: absolute;
+                                                        width: 65px;margin-left:-15px;
+                                                        margin-top:-15px;z-index: 1"/>
+                                            {% endif %}
+
+                                            <div class="pub">
+
+                                                <!--Card image-->
+                                                <div class="view overlay hm-zoom">
+                                                    <a href="{{ path('presentation', { 'id' : produit.id }) }}">
+                                                        <img
+                                                                src="{{ produit.image.AssetPath|imagine_filter('produitThumb') }}"
+                                                                alt="{{ produit.image.name }}"
+                                                                class="img-fluid" >
+                                                    </a>
+                                                </div>
+
+                                                <div class="price">
+                                                    {{ produit.prix }}F CFA
+                                                </div>
+
+                                                <img src="{{ asset('img/prod.png') }}" style="position:
+                                                 absolute;width: 75px; margin-left:153px;margin-top: -15px; z-index: 1"/>
+
+                                                <div class="card-block">
+
+                                                    <!--Title-->
+                                                    <p style="position: absolute">
+                                                <span class="card-title" style="font-size: 20px">
+                                                    {{ produit.nom }}
+                                                </span>
+
+                                                        #}{# Reduction #}{#
+                                                        {% if produit.reduction != 0 %}
+                                                            <span class="badge green " style="font-weight: 700">
+                                                        - {{ produit.reduction }}%
+                                                    </span>
+                                                            <br>
+                                                        {% endif %}
+                                                    </p>
+
+                                                    <div style="margin-top: 70px">
+                                                        {% if panier[produit.id] is not defined %}
+                                                            <a class="btn btn-large waves-effect waves-light miva produitAjax"
+                                                               style="float: left;" id="pro{{ produit.id }}"
+                                                               data-path="{{ path('ajouterPanier', { 'id' : produit.id }) }}" >
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+
+                                                        {% endif %}
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="icon" style="margin-top: 15px;margin-left: 130px;" id="rating">
+                                                    <p>{{ starBar(5, produit.id, 15)|raw }}</p>
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+                        {% else %}
+                            Aucun produit
+
+                        {% endif %}
+                        <!--First columnn-->
+
+                    </div>#}
 
                     <div class="row">
                         {{ knp_pagination_render(produits) }}
@@ -206,4 +289,7 @@
     {{ parent() }}
     <!-- Panier -->
     <script src="{{ asset('js/panier.js') }}"></script>
+
+
 {% endblock %}
+
