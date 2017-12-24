@@ -6,6 +6,7 @@ $('document').ready(function(){
             var subCategorie = $('.subCategorie').val();
             data = {chaine: motCle, subCategorie: subCategorie};
             var path = $('.formAjax').attr('data-action');
+            console.log(path);
             $.ajax({
                 type: 'get',
                 url : path,
